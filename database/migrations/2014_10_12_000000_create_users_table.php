@@ -12,7 +12,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("CREATE TYPE statut_enum AS ENUM ('actif', 'inactif', 'suspendu')");
+        DB::statement("DROP TYPE IF EXISTS statut_enum");
+
+        DB::statement("CREATE TYPE statut_enum AS ENUM ('Actif', 'Inactif', 'Suspendu')");
 
         Schema::create('users', function (Blueprint $table) {
             $table->id();
@@ -22,7 +24,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->text('password');
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
-            $table->string('statut')->default('actif');
+            $table->string('statut');
             $table->boolean('is_approved')->default(false);
             $table->text('avatar')->nullable();
             $table->rememberToken();
@@ -31,6 +33,9 @@ return new class extends Migration
 
         // Convertir la colonne 'statut' en ENUM PostgreSQL
         DB::statement("ALTER TABLE users ALTER COLUMN statut TYPE statut_enum USING statut::statut_enum");
+
+        // Redéfinir la valeur par défaut maintenant que le type est bon
+        DB::statement("ALTER TABLE users ALTER COLUMN statut SET DEFAULT 'Actif'");
     }
 
     /**
