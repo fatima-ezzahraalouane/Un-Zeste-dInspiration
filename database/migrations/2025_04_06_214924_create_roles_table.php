@@ -20,8 +20,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // Modifier la colonne pour utiliser le type ENUM PostgreSQL
         DB::statement("ALTER TABLE roles ALTER COLUMN name_user TYPE role_user USING name_user::role_user");
 
+        // Ajouter la contrainte NOT NULL
         DB::statement("ALTER TABLE roles ALTER COLUMN name_user SET NOT NULL");
 
         DB::table('roles')->insert([
