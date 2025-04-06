@@ -25,7 +25,7 @@
                 <input type="search"
                     placeholder="Recherchez une recette, un ingrédient..."
                     class="w-full px-8 py-4 rounded-full bg-white/95 text-brand-dark placeholder-brand-gray focus:outline-none focus:ring-2 focus:ring-brand-burgundy/50">
-                <a href="login.html" class="absolute right-4 top-1/2 -translate-y-1/2 bg-brand-burgundy text-white p-3 rounded-full hover:bg-brand-red transition-colors">
+                <a href="{{ route('login') }}" class="absolute right-4 top-1/2 -translate-y-1/2 bg-brand-burgundy text-white p-3 rounded-full hover:bg-brand-red transition-colors">
                     <i class="fas fa-search"></i>
                 </a>
             </div>
@@ -199,9 +199,9 @@
         <p class="text-white/90 text-lg mb-10">
             Partagez vos créations culinaires et découvrez un monde de saveurs extraordinaires
         </p>
-        <button class="shine-effect bg-white text-primary px-10 py-4 rounded-full font-medium text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+        <a href="{{ route('login') }}" class="bg-white text-primary px-10 py-4 rounded-full font-medium text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
             Commencer l'Aventure
-        </button>
+        </a>
     </div>
 </section>
 
