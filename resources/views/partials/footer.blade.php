@@ -10,10 +10,8 @@
                 <div>
                     <h4 class="playfair text-xl font-semibold mb-4">Navigation</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Accueil</a></li>
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Recettes</a></li>
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Chefs</a></li>
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="{{ route('login') }}" class="text-brand-peach hover:text-white transition-colors">Connexion</a></li>
+                        <li><a href="{{ route('register') }}" class="text-brand-peach hover:text-white transition-colors">Inscription</a></li>
                     </ul>
                 </div>
                 <div>
@@ -59,12 +57,7 @@
 
             <!-- Footer Bottom -->
             <div class="flex justify-center items-center text-brand-peach text-sm">
-                <!-- <div class="mb-4 md:mb-0"> -->
                 <p>&copy; 2024 Un Zeste d'Inspiration. Tous droits réservés.</p>
-                <!-- </div> -->
-                <!-- <div class="flex items-center space-x-4">
-                <p>Dernière mise à jour: <span id="currentDateTime">2025-03-16 16:36:15</span></p>
-                </div> -->
             </div>
         </div>
     </footer>
