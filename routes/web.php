@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Page d'accueil
 Route::get('/', function () {
     return view('visiteur');
 })->name('visiteur');
+
+// Connexion
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+// Inscription
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');

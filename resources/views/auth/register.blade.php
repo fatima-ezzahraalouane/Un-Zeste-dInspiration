@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Un Zeste d'Inspiration - Connexion</title>
+    <title>Un Zeste d'Inspiration - Inscription</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script src="http://parsleyjs.org/dist/parsley.js"></script>
-
     <script>
         tailwind.config = {
             theme: {
@@ -48,7 +46,7 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-20">
                 <a href="#" class="flex items-center space-x-2">
-                    <img src="logo.png" alt="Logo" class="h-18 w-20">
+                    <img src="removebg-previeww.png" alt="Logo" class="h-18 w-24">
                     <span class="playfair text-2xl font-bold text-brand-burgundy">
                         Un Zeste d'Inspiration
                     </span>
@@ -57,14 +55,28 @@
         </div>
     </nav>
 
-    <!-- Login Section -->
+    <!-- Signup Section -->
     <section class="min-h-screen flex items-center justify-center">
-        <div class="mt-20 form-container rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
+        <div class="mt-28 mb-8 form-container rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
             <div class="text-center mb-6">
-                <h2 class="playfair text-3xl font-bold text-brand-burgundy mb-2">Connexion</h2>
-                <p class="text-brand-gray">Bienvenue de retour ! Veuillez vous connecter à votre compte.</p>
+                <h2 class="playfair text-3xl font-bold text-brand-burgundy mb-2">Inscription</h2>
+                <p class="text-brand-gray">Créez votre compte et rejoignez notre communauté culinaire.</p>
             </div>
             <form class="space-y-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-brand-gray mb-2">Prénom</label>
+                        <input type="text" 
+                               class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                               placeholder="Votre prénom">
+                    </div>
+                    <div>
+                        <label class="block text-brand-gray mb-2">Nom</label>
+                        <input type="text" 
+                               class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                               placeholder="Votre nom">
+                    </div>
+                </div>
                 <div>
                     <label class="block text-brand-gray mb-2">Email</label>
                     <input type="email" 
@@ -77,21 +89,27 @@
                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                            placeholder="Votre mot de passe">
                 </div>
-                <div class="flex items-center justify-between">
-                    <label class="flex items-center">
-                        <input type="checkbox" class="w-4 h-4 rounded border-gray-200 text-brand-coral focus:ring-brand-coral">
-                        <span class="ml-2 text-brand-gray">Se souvenir de moi</span>
-                    </label>
-                    <a href="forgot-password.html" class="text-brand-coral hover:text-brand-red transition-colors">Mot de passe oublié ?</a>
+                <div>
+                    <label class="block text-brand-gray mb-2">Confirmer le mot de passe</label>
+                    <input type="password" 
+                           class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                           placeholder="Confirmez votre mot de passe">
+                </div>
+                <div>
+                    <label class="block text-brand-gray mb-2">Rôle</label>
+                    <select class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20">
+                        <option value="Client">Client</option>
+                        <option value="Chef">Chef de Cuisine</option>
+                    </select>
                 </div>
                 <button type="submit" 
                         class="w-full bg-brand-burgundy text-white py-3 rounded-lg hover:bg-brand-red transition-colors">
-                    Se connecter
+                    S'inscrire
                 </button>
             </form>
             <div class="mt-6 text-center">
-                <p class="text-brand-gray">Pas encore membre ?</p>
-                <a href="{{ route('register') }}" class="text-brand-coral hover:text-brand-red transition-colors">Créer un compte</a>
+                <p class="text-brand-gray">Déjà membre ?</p>
+                <a href="{{ route('login') }}" class="text-brand-coral hover:text-brand-red transition-colors">Se connecter</a>
             </div>
         </div>
     </section>
