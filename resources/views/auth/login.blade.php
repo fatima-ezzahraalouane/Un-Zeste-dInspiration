@@ -91,7 +91,7 @@
             </form>
             <div class="mt-6 text-center">
                 <p class="text-brand-gray">Pas encore membre ?</p>
-                <a href="registre.html" class="text-brand-coral hover:text-brand-red transition-colors">Créer un compte</a>
+                <a href="{{ route('register') }}" class="text-brand-coral hover:text-brand-red transition-colors">Créer un compte</a>
             </div>
         </div>
     </section>
