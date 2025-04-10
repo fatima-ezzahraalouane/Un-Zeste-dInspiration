@@ -48,10 +48,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_approved' => 'boolean',
     ];
 
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function chef()
+    {
+        return $this->hasOne(Chef::class);
+    }
+
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
     }
 }
