@@ -199,7 +199,7 @@
         <p class="text-white/90 text-lg mb-10">
             Partagez vos créations culinaires et découvrez un monde de saveurs extraordinaires
         </p>
-        <a href="{{ route('login') }}" class="bg-white text-primary px-10 py-4 rounded-full font-medium text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+        <a href="{{ route('register') }}" class="bg-white text-primary px-10 py-4 rounded-full font-medium text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
             Commencer l'Aventure
         </a>
     </div>

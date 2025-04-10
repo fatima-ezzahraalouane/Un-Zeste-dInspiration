@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -12,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->enum('name_user', ['Client', 'Chef', 'Admin'])->unique();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->text('biographie')->nullable();
+            $table->string('adresse')->nullable();
             $table->timestamps();
         });
-
-        DB::table('roles')->insert([
-            ['name_user' => 'Client'],
-            ['name_user' => 'Chef'],
-            ['name_user' => 'Admin'],
-        ]);
     }
 
     /**
@@ -30,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('clients');
     }
 };
