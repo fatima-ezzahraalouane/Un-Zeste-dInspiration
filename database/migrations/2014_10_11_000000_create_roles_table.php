@@ -12,21 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("DROP TYPE IF EXISTS role_user");
-        
-        DB::statement("CREATE TYPE role_user AS ENUM ('Client', 'Chef', 'Admin')");
-
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name_user')->unique();
+            $table->enum('name_user', ['Client', 'Chef', 'Admin'])->unique();
             $table->timestamps();
         });
-
-        // Modifier la colonne pour utiliser le type ENUM PostgreSQL
-        DB::statement("ALTER TABLE roles ALTER COLUMN name_user TYPE role_user USING name_user::role_user");
-
-        // Ajouter la contrainte NOT NULL
-        DB::statement("ALTER TABLE roles ALTER COLUMN name_user SET NOT NULL");
 
         DB::table('roles')->insert([
             ['name_user' => 'Client'],
@@ -41,5 +31,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('roles');
-        DB::statement("DROP TYPE IF EXISTS role_user");    }
+    }
 };
