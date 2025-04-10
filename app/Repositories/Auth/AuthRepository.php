@@ -27,6 +27,19 @@ class AuthRepository implements AuthRepositoryInterface
             'is_approved'   => $isChef ? false : true,
         ]);
 
-    
+        if ($isChef) {
+            Chef::create([
+                'user_id'    => $user->id,
+                'biographie' => null,
+                'adresse'    => null,
+                'specialite' => null,
+            ]);
+        } else {
+            Client::create([
+                'user_id'    => $user->id,
+                'biographie' => null,
+                'adresse'    => null,
+            ]);
+        }
     }
 }
