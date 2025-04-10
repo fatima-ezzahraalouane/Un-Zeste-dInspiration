@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,13 +41,14 @@
         }
     </style>
 </head>
+
 <body class="poppins bg-brand-peach">
     <!-- Navbar -->
     <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-20">
                 <a href="#" class="flex items-center space-x-2">
-                    <img src="removebg-previeww.png" alt="Logo" class="h-18 w-24">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-18 w-24">
                     <span class="playfair text-2xl font-bold text-brand-burgundy">
                         Un Zeste d'Inspiration
                     </span>
@@ -62,51 +64,77 @@
                 <h2 class="playfair text-3xl font-bold text-brand-burgundy mb-2">Inscription</h2>
                 <p class="text-brand-gray">Créez votre compte et rejoignez notre communauté culinaire.</p>
             </div>
-            <form class="space-y-6">
+            <form action="{{ route('register') }}" method="POST" class="space-y-6">
+                @csrf
+
+                @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <span onclick="this.parentElement.remove()" class="absolute top-0 right-0 px-4 py-3 cursor-pointer">&times;</span>
+                </div>
+                @endif
+
+                @if(session('success'))
+                <div id="popup-success" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+                    {{ session('success') }}
+                    <span onclick="document.getElementById('popup-success').remove()" class="absolute top-0 right-0 px-4 py-3 cursor-pointer">&times;</span>
+                </div>
+                @endif
+
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-brand-gray mb-2">Prénom</label>
-                        <input type="text" 
-                               class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                               placeholder="Votre prénom">
+                        <input type="text" name="first_name"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                            placeholder="Votre prénom" required>
                     </div>
                     <div>
                         <label class="block text-brand-gray mb-2">Nom</label>
-                        <input type="text" 
-                               class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                               placeholder="Votre nom">
+                        <input type="text" name="last_name"
+                            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                            placeholder="Votre nom" required>
                     </div>
                 </div>
+
                 <div>
                     <label class="block text-brand-gray mb-2">Email</label>
-                    <input type="email" 
-                           class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                           placeholder="Votre adresse e-mail">
+                    <input type="email" name="email"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                        placeholder="Votre adresse e-mail" required>
                 </div>
+
                 <div>
                     <label class="block text-brand-gray mb-2">Mot de passe</label>
-                    <input type="password" 
-                           class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                           placeholder="Votre mot de passe">
+                    <input type="password" name="password"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                        placeholder="Votre mot de passe" required>
                 </div>
+
                 <div>
                     <label class="block text-brand-gray mb-2">Confirmer le mot de passe</label>
-                    <input type="password" 
-                           class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                           placeholder="Confirmez votre mot de passe">
+                    <input type="password" name="password_confirmation"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                        placeholder="Confirmez votre mot de passe" required>
                 </div>
+
                 <div>
                     <label class="block text-brand-gray mb-2">Rôle</label>
-                    <select class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20">
+                    <select name="role" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20" required>
                         <option value="Client">Client</option>
-                        <option value="Chef">Chef de Cuisine</option>
+                        <option value="Chef">Chef</option>
                     </select>
                 </div>
-                <button type="submit" 
-                        class="w-full bg-brand-burgundy text-white py-3 rounded-lg hover:bg-brand-red transition-colors">
+
+                <button type="submit"
+                    class="w-full bg-brand-burgundy text-white py-3 rounded-lg hover:bg-brand-red transition-colors">
                     S'inscrire
                 </button>
             </form>
+
             <div class="mt-6 text-center">
                 <p class="text-brand-gray">Déjà membre ?</p>
                 <a href="{{ route('login') }}" class="text-brand-coral hover:text-brand-red transition-colors">Se connecter</a>
@@ -161,8 +189,8 @@
                     <div class="text-brand-peach">
                         <p class="mb-2">Newsletter culinaire</p>
                         <div class="flex">
-                            <input type="email" placeholder="Votre email" 
-                                   class="bg-white/10 rounded-l-full py-2 px-4 focus:outline-none focus:bg-white/20 transition-all flex-grow">
+                            <input type="email" placeholder="Votre email"
+                                class="bg-white/10 rounded-l-full py-2 px-4 focus:outline-none focus:bg-white/20 transition-all flex-grow">
                             <button class="bg-white text-brand-burgundy px-6 rounded-r-full hover:bg-brand-peach transition-all">
                                 <i class="fas fa-paper-plane"></i>
                             </button>
@@ -170,15 +198,14 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Séparateur -->
+
             <div class="border-t border-white/10 my-12"></div>
-            
-            <!-- Footer Bottom -->
+
             <div class="flex justify-center items-center text-brand-peach text-sm">
-                    <p>&copy; 2024 Un Zeste d'Inspiration. Tous droits réservés.</p>
+                <p>&copy; 2024 Un Zeste d'Inspiration. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 </body>
+
 </html>
