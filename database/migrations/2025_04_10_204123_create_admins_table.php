@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('niveau_acces')->nullable(); // ou autre champ spécifique à l'admin
+            $table->string('telephone')->nullable();
             $table->timestamps();
         });
     }
