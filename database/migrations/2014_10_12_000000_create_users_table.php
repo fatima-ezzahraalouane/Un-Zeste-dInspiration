@@ -12,10 +12,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // DB::statement("DROP TYPE IF EXISTS statut_enum");
-
-        // DB::statement("CREATE TYPE statut_enum AS ENUM ('Actif', 'Inactif', 'Suspendu')");
-
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
@@ -30,10 +26,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
-
-        // DB::statement("ALTER TABLE users ALTER COLUMN statut TYPE statut_enum USING statut::statut_enum");
-
-        // DB::statement("ALTER TABLE users ALTER COLUMN statut SET DEFAULT 'Actif'");
     }
 
     /**
@@ -42,6 +34,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
-        // DB::statement("DROP TYPE IF EXISTS statut_enum");
     }
 };
