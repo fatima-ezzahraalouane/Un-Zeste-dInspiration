@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\RegisterRequest;
@@ -22,5 +23,10 @@ class AuthController extends Controller
         $this->authRepository->register($request);
 
         return redirect()->route('login')->with('success', 'Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter.');
+    }
+
+    public function login(LoginRequest $request)
+    {
+        return $this->authRepository->login($request);
     }
 }
