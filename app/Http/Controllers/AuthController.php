@@ -18,16 +18,26 @@ class AuthController extends Controller
         $this->authRepository = $authRepository;
     }
 
-    public function register(RegisterRequest $request): RedirectResponse
+    public function register(RegisterRequest $request)
     {
         $this->authRepository->register($request);
 
         return redirect()->route('login')
-                        ->with('success', 'Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter.');
+            ->with('success', 'Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter.');
     }
 
     public function login(LoginRequest $request)
     {
-        return $this->authRepository->login($request);
+        $result = $this->authRepository->login($request);
+
+        if (!$result['success']) {
+            return back()->withErrors(['email' => $result['error']]);
+        }
+
+        return match ($result['role']) {
+            'Admin' => redirect()->route('admin.dashboard')->with('success', 'Bienvenue dans le tableau de bord Admin 👨‍💼'),
+            'Chef' => redirect()->route('chef.dashboard')->with('success', 'Bienvenue Chef 👨‍🍳 !'),
+            'Gourmand' => redirect()->route('gourmand.accueil')->with('success', 'Bienvenue Dégustateur(trice) 😋 !'),
+        };
     }
 }
