@@ -97,7 +97,7 @@
                             placeholder="Votre prénom"
                             required data-parsley-minlength="2"
                             data-parsley-pattern="^[A-Za-zÀ-ÿ\s\-]+$"
-                            data-parsley-pattern-message="Seules les lettres et les tirets sont autorisés">
+                            data-parsley-pattern-message="Le prénom ne peut contenir que des lettres et des tirets">
                     </div>
                     <div>
                         <label class="block text-brand-gray mb-2">Nom</label>
@@ -106,7 +106,7 @@
                             placeholder="Votre nom"
                             required data-parsley-minlength="2"
                             data-parsley-pattern="^[A-Za-zÀ-ÿ\s\-]+$"
-                            data-parsley-pattern-message="Seules les lettres et les tirets sont autorisés">
+                            data-parsley-pattern-message="Le nom ne peut contenir que des lettres et des tirets">
                     </div>
                 </div>
 
@@ -129,7 +129,7 @@
                         data-parsley-pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{6,}$"
                         data-parsley-required-message="Le mot de passe est requis"
                         data-parsley-minlength-message="Le mot de passe doit contenir au moins 6 caractères"
-                        data-parsley-pattern-message="Le mot de passe doit contenir lettres, chiffres et symboles">
+                        data-parsley-pattern-message="Le mot de passe doit contenir au moins une lettre, un chiffre et un symbole">
                 </div>
 
                 <div>
