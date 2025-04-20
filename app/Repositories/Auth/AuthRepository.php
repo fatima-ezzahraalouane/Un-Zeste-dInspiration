@@ -8,6 +8,8 @@ use App\Models\Chef;
 use App\Models\Gourmand;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthRepository implements AuthRepositoryInterface
 {
@@ -41,5 +43,31 @@ class AuthRepository implements AuthRepositoryInterface
                 'adresse'    => null,
             ]);
         }
+    }
+
+    public function login(LoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            if ($user->statut === 'Inactif' || !$user->is_approved) {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'Votre compte est en attente de validation par l’administrateur.',
+                ]);
+            }
+
+            return match ($user->role->name_user) {
+                'Admin' => redirect()->route('admin.dashboard'),
+                'Chef' => redirect()->route('chef.dashboard'),
+                'Gourmand' => redirect()->route('gourmand.accueil'),
+            };
+        }
+
+        return redirect()->back()->withErrors([
+            'email' => 'Email ou mot de passe incorrect.',
+        ]);
     }
 }
