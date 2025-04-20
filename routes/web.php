@@ -30,3 +30,5 @@ Route::get('/register', function () {
 })->name('register');
 
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
+
+Route::post('/login',[AuthController::class, 'login'])->name('login.store');
