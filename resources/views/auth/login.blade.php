@@ -70,16 +70,33 @@
                 <h2 class="playfair text-3xl font-bold text-brand-burgundy mb-2">Connexion</h2>
                 <p class="text-brand-gray">Bienvenue de retour ! Veuillez vous connecter à votre compte.</p>
             </div>
-            <form class="space-y-6">
+            <form action="{{ route('login') }}" method="POST" class="space-y-6" data-parsley-validate>
+                @csrf
+
+                @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <span onclick="this.parentElement.remove()" class="absolute top-0 right-0 px-4 py-3 cursor-pointer">&times;</span>
+                </div>
+                @endif
+
                 <div>
                     <label class="block text-brand-gray mb-2">Email</label>
-                    <input type="email"
+                    <input type="email" name="email"
+                        required required data-parsley-type="email"
+                        data-parsley-trigger="blur"
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                         placeholder="Votre adresse e-mail">
                 </div>
                 <div>
                     <label class="block text-brand-gray mb-2">Mot de passe</label>
-                    <input type="password"
+                    <input type="password" name="password"
+                        required data-parsley-minlength="8"
+                        data-parsley-trigger="blur"
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                         placeholder="Votre mot de passe">
                 </div>
@@ -166,6 +183,24 @@
             </div>
         </div>
     </footer> -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        window.ParsleyConfig = {
+            errorsWrapper: '<div class="text-sm text-red-500 mt-1"></div>',
+            errorTemplate: '<div></div>',
+            errorClass: 'border-red-500 ring-1 ring-red-300',
+            successClass: 'border-green-500 ring-1 ring-green-300'
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2/dist/parsley.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2/dist/i18n/fr.js"></script>
+    <script>
+        window.Parsley.setLocale('fr');
+    </script>
+
 </body>
 
 </html>
