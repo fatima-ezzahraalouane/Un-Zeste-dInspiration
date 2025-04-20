@@ -54,20 +54,21 @@ class AuthRepository implements AuthRepositoryInterface
 
             if ($user->statut === 'Inactif' || !$user->is_approved) {
                 Auth::logout();
-                return back()->withErrors([
-                    'email' => 'Votre compte est en attente de validation par l’administrateur.',
-                ]);
+                return [
+                    'success' => false,
+                    'error' => 'Votre compte est en attente de validation par l’administrateur.',
+                ];
             }
 
-            return match ($user->role->name_user) {
-                'Admin' => redirect()->route('admin.dashboard'),
-                'Chef' => redirect()->route('chef.dashboard'),
-                'Gourmand' => redirect()->route('gourmand.accueil'),
-            };
+            return [
+                'success' => true,
+                'role' => $user->role->name_user,
+            ];
         }
 
-        return redirect()->back()->withErrors([
-            'email' => 'Email ou mot de passe incorrect.',
-        ]);
+        return [
+            'success' => false,
+            'error' => 'Email ou mot de passe incorrect.',
+        ];
     }
 }
