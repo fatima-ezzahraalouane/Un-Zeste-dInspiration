@@ -214,13 +214,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2/dist/parsley.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2/dist/i18n/fr.js"></script>
-
-    <script>
-        window.Parsley.setLocale('fr');
-    </script>
-
     <script>
         window.ParsleyConfig = {
             errorsWrapper: '<div class="text-sm text-red-500 mt-1"></div>',
@@ -229,6 +222,15 @@
             successClass: 'border-green-500 ring-1 ring-green-300'
         };
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2/dist/parsley.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2/dist/i18n/fr.js"></script>
+
+    <script>
+        window.Parsley.setLocale('fr');
+    </script>
+
+
 
 </body>
 
