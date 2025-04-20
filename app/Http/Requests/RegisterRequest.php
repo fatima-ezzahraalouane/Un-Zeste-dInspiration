@@ -29,4 +29,10 @@ class RegisterRequest extends FormRequest
             'role'                  => 'required|in:Gourmand,Chef',
         ];
     }
+
+    public function messages(){
+        return [
+            'email.unique' => "cette adresse email est déjà utilisée"
+        ];
+    }
 }
