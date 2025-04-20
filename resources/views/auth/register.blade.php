@@ -94,13 +94,19 @@
                         <label class="block text-brand-gray mb-2">Prénom</label>
                         <input type="text" name="first_name"
                             class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                            placeholder="Votre prénom" required data-parsley-minlength="2">
+                            placeholder="Votre prénom"
+                            required data-parsley-minlength="2"
+                            data-parsley-pattern="^[A-Za-zÀ-ÿ\s]+$"
+                            data-parsley-pattern-message="Le prénom ne doit contenir que des lettres">
                     </div>
                     <div>
                         <label class="block text-brand-gray mb-2">Nom</label>
                         <input type="text" name="last_name"
                             class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                            placeholder="Votre nom" required data-parsley-minlength="2">
+                            placeholder="Votre nom"
+                            required data-parsley-minlength="2"
+                            data-parsley-pattern="^[A-Za-zÀ-ÿ\s]+$"
+                            data-parsley-pattern-message="Le nom ne doit contenir que des lettres">
                     </div>
                 </div>
 
@@ -108,14 +114,21 @@
                     <label class="block text-brand-gray mb-2">Email</label>
                     <input type="email" name="email"
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                        placeholder="Votre adresse e-mail" required required data-parsley-type="email">
+                        placeholder="Votre adresse e-mail"
+                        required required data-parsley-type="email"
+                        data-parsley-type-message="Veuillez entrer un email valide">
                 </div>
 
                 <div>
                     <label class="block text-brand-gray mb-2">Mot de passe</label>
                     <input type="password" name="password"
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                        placeholder="Votre mot de passe" required data-parsley-minlength="8">
+                        placeholder="Votre mot de passe"
+                        required data-parsley-minlength="8"
+                        data-parsley-pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{6,}$"
+                        data-parsley-required-message="Le mot de passe est requis"
+                        data-parsley-minlength-message="Le mot de passe doit contenir au moins 6 caractères"
+                        data-parsley-pattern-message="Le mot de passe doit contenir lettres, chiffres et symboles">
                 </div>
 
                 <div>
