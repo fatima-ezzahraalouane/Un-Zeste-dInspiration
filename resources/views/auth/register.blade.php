@@ -129,7 +129,7 @@
                     <label class="block text-brand-gray mb-2">Rôle</label>
                     <select name="role" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20" required>
                         <option value="">Sélectionnez un rôle</option>
-                        <option value="Client">Client</option>
+                        <option value="Gourmand">Gourmand</option>
                         <option value="Chef">Chef</option>
                     </select>
                 </div>

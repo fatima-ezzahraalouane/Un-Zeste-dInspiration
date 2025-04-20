@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,13 +43,14 @@
         }
     </style>
 </head>
+
 <body class="poppins bg-brand-peach">
     <!-- Navbar -->
     <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-20">
                 <a href="#" class="flex items-center space-x-2">
-                    <img src="logo.png" alt="Logo" class="h-18 w-20">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-18 w-20">
                     <span class="playfair text-2xl font-bold text-brand-burgundy">
                         Un Zeste d'Inspiration
                     </span>
@@ -58,8 +60,12 @@
     </nav>
 
     <!-- Login Section -->
-    <section class="min-h-screen flex items-center justify-center">
-        <div class="mt-20 form-container rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
+    <section class="relative min-h-screen flex items-center justify-center bg-brand-peach">
+
+        <div class="absolute inset-0 bg-cover bg-center blur-sm opacity-70"
+            style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');"></div>
+
+        <div class="relative z-10 mt-28 mb-8 form-container rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
             <div class="text-center mb-6">
                 <h2 class="playfair text-3xl font-bold text-brand-burgundy mb-2">Connexion</h2>
                 <p class="text-brand-gray">Bienvenue de retour ! Veuillez vous connecter à votre compte.</p>
@@ -67,15 +73,15 @@
             <form class="space-y-6">
                 <div>
                     <label class="block text-brand-gray mb-2">Email</label>
-                    <input type="email" 
-                           class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                           placeholder="Votre adresse e-mail">
+                    <input type="email"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                        placeholder="Votre adresse e-mail">
                 </div>
                 <div>
                     <label class="block text-brand-gray mb-2">Mot de passe</label>
-                    <input type="password" 
-                           class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
-                           placeholder="Votre mot de passe">
+                    <input type="password"
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
+                        placeholder="Votre mot de passe">
                 </div>
                 <div class="flex items-center justify-between">
                     <label class="flex items-center">
@@ -84,8 +90,8 @@
                     </label>
                     <a href="forgot-password.html" class="text-brand-coral hover:text-brand-red transition-colors">Mot de passe oublié ?</a>
                 </div>
-                <button type="submit" 
-                        class="w-full bg-brand-burgundy text-white py-3 rounded-lg hover:bg-brand-red transition-colors">
+                <button type="submit"
+                    class="w-full bg-brand-burgundy text-white py-3 rounded-lg hover:bg-brand-red transition-colors">
                     Se connecter
                 </button>
             </form>
@@ -97,7 +103,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-brand-burgundy text-white py-12">
+    <!-- <footer class="bg-brand-burgundy text-white py-12">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -143,8 +149,8 @@
                     <div class="text-brand-peach">
                         <p class="mb-2">Newsletter culinaire</p>
                         <div class="flex">
-                            <input type="email" placeholder="Votre email" 
-                                   class="bg-white/10 rounded-l-full py-2 px-4 focus:outline-none focus:bg-white/20 transition-all flex-grow">
+                            <input type="email" placeholder="Votre email"
+                                class="bg-white/10 rounded-l-full py-2 px-4 focus:outline-none focus:bg-white/20 transition-all flex-grow">
                             <button class="bg-white text-brand-burgundy px-6 rounded-r-full hover:bg-brand-peach transition-all">
                                 <i class="fas fa-paper-plane"></i>
                             </button>
@@ -152,15 +158,14 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Séparateur -->
+
             <div class="border-t border-white/10 my-12"></div>
-            
-            <!-- Footer Bottom -->
+
             <div class="flex justify-center items-center text-brand-peach text-sm">
-                    <p>&copy; 2024 Un Zeste d'Inspiration. Tous droits réservés.</p>
+                <p>&copy; 2024 Un Zeste d'Inspiration. Tous droits réservés.</p>
             </div>
         </div>
-    </footer>
+    </footer> -->
 </body>
+
 </html>

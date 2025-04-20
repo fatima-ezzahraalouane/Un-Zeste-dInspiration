@@ -5,7 +5,7 @@ namespace App\Repositories\Auth;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\Chef;
-use App\Models\Client;
+use App\Models\Gourmand;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -35,7 +35,7 @@ class AuthRepository implements AuthRepositoryInterface
                 'specialite' => null,
             ]);
         } else {
-            Client::create([
+            Gourmand::create([
                 'user_id'    => $user->id,
                 'biographie' => null,
                 'adresse'    => null,

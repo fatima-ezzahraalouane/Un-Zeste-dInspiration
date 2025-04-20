@@ -61,9 +61,9 @@ class User extends Authenticatable
         return $this->hasOne(Chef::class);
     }
 
-    public function client()
+    public function gourmand()
     {
-        return $this->hasOne(Client::class);
+        return $this->hasOne(Gourmand::class);
     }
 
     public function admin()
