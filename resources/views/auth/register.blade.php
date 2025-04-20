@@ -96,8 +96,8 @@
                             class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                             placeholder="Votre prénom"
                             required data-parsley-minlength="2"
-                            data-parsley-pattern="^[A-Za-zÀ-ÿ\s]+$"
-                            data-parsley-pattern-message="Le prénom ne doit contenir que des lettres">
+                            data-parsley-pattern="^[A-Za-zÀ-ÿ\s\-]+$"
+                            data-parsley-pattern-message="Seules les lettres et les tirets sont autorisés">
                     </div>
                     <div>
                         <label class="block text-brand-gray mb-2">Nom</label>
@@ -105,8 +105,8 @@
                             class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                             placeholder="Votre nom"
                             required data-parsley-minlength="2"
-                            data-parsley-pattern="^[A-Za-zÀ-ÿ\s]+$"
-                            data-parsley-pattern-message="Le nom ne doit contenir que des lettres">
+                            data-parsley-pattern="^[A-Za-zÀ-ÿ\s\-]+$"
+                            data-parsley-pattern-message="Seules les lettres et les tirets sont autorisés">
                     </div>
                 </div>
 
@@ -115,7 +115,8 @@
                     <input type="email" name="email"
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                         placeholder="Votre adresse e-mail"
-                        required required data-parsley-type="email"
+                        required data-parsley-type="email"
+                        data-parsley-pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                         data-parsley-type-message="Veuillez entrer un email valide">
                 </div>
 
@@ -242,9 +243,6 @@
     <script>
         window.Parsley.setLocale('fr');
     </script>
-
-
-
 </body>
 
 </html>
