@@ -22,7 +22,8 @@ class AuthController extends Controller
     {
         $this->authRepository->register($request);
 
-        return redirect()->route('login')->with('success', 'Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter.');
+        return redirect()->route('login')
+                        ->with('success', 'Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter.');
     }
 
     public function login(LoginRequest $request)
