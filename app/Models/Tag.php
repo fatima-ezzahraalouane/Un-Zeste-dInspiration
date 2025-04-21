@@ -11,7 +11,7 @@ class Tag extends Model
 
     protected $fillable = ['name'];
 
-    // 🔗 Relation : Un tag peut être associé à plusieurs recettes
+    // Un tag peut être associé à plusieurs recettes
     public function recipes()
     {
         return $this->belongsToMany(Recipe::class, 'recipe_tag');
