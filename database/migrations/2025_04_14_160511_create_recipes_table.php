@@ -20,8 +20,8 @@ return new class extends Migration
             $table->integer('cooking_time');    
             $table->integer('servings');         
             $table->enum('complexity', ['Facile', 'Moyen', 'Difficile']);
-            $table->json('ingredients');
-            $table->json('instructions');
+            $table->text('ingredients');
+            $table->text('instructions');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
