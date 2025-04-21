@@ -16,5 +16,9 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(GourmandSeeder::class);
         $this->call(ChefSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(RecipeSeeder::class);
+        $this->call(TagSeeder::class);
+        $this->call(RecipeTagSeeder::class);
     }
 }
