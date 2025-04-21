@@ -12,7 +12,7 @@ class RecipeSeeder extends Seeder
         $recipes = [
             [
                 'title' => 'Salade Niçoise',
-                'image' => 'salade-nicoise.jpg',
+                'image' => 'https://images.radio-canada.ca/q_auto,w_844/v1/alimentation/recette/16x9/salade-nicoise-haricots-thon.jpg',
                 'description' => 'Une salade fraîche typique du sud de la France.',
                 'preparation_time' => 15,
                 'cooking_time' => 0,
@@ -24,7 +24,7 @@ class RecipeSeeder extends Seeder
             ],
             [
                 'title' => 'Tajine de poulet',
-                'image' => 'tajine-poulet.jpg',
+                'image' => 'https://images.radio-canada.ca/v1/alimentation/recette/4x3/tajine-poulet-soulard.jpg',
                 'description' => 'Tajine traditionnel au citron confit et olives.',
                 'preparation_time' => 20,
                 'cooking_time' => 60,
@@ -36,7 +36,7 @@ class RecipeSeeder extends Seeder
             ],
             [
                 'title' => 'Couscous royal',
-                'image' => 'couscous.jpg',
+                'image' => 'https://img.cuisineaz.com/660x495/2025/02/19/i203994-couscous-a-preparer-a-l-avance.jpg',
                 'description' => 'Plat marocain à base de semoule, légumes et viande.',
                 'preparation_time' => 30,
                 'cooking_time' => 90,
@@ -48,7 +48,7 @@ class RecipeSeeder extends Seeder
             ],
             [
                 'title' => 'Soupe de légumes',
-                'image' => 'soupe-legumes.jpg',
+                'image' => 'https://cdn.pratico-pratiques.com/app/uploads/sites/3/2018/08/20182515/soupe-aux-legumes-dautomne.jpeg',
                 'description' => 'Soupe réconfortante à base de légumes frais.',
                 'preparation_time' => 15,
                 'cooking_time' => 30,
@@ -60,7 +60,7 @@ class RecipeSeeder extends Seeder
             ],
             [
                 'title' => 'Quiche lorraine',
-                'image' => 'quiche.jpg',
+                'image' => 'https://simplyhomecooked.com/wp-content/uploads/2023/01/quiche-lorraine-recipe-19.jpg',
                 'description' => 'Tarte salée aux lardons et à la crème.',
                 'preparation_time' => 20,
                 'cooking_time' => 35,
@@ -72,7 +72,7 @@ class RecipeSeeder extends Seeder
             ],
             [
                 'title' => 'Gâteau au chocolat',
-                'image' => 'gateau-chocolat.jpg',
+                'image' => 'https://cdn.pratico-pratiques.com/app/uploads/sites/3/2018/10/09152353/gateau-au-chocolat_pg.jpg',
                 'description' => 'Gâteau moelleux au chocolat noir.',
                 'preparation_time' => 15,
                 'cooking_time' => 25,
@@ -84,7 +84,7 @@ class RecipeSeeder extends Seeder
             ],
             [
                 'title' => 'Crêpes sucrées',
-                'image' => 'crepes.jpg',
+                'image' => 'https://cuisinovores.com/wp-content/uploads/2024/10/photo_crepes_sucrees_cuisinovores-500x375.webp',
                 'description' => 'Crêpes fines à garnir selon vos envies.',
                 'preparation_time' => 10,
                 'cooking_time' => 20,
@@ -96,7 +96,7 @@ class RecipeSeeder extends Seeder
             ],
             [
                 'title' => 'Tiramisu',
-                'image' => 'tiramisu.jpg',
+                'image' => 'https://www.galbani.fr/wp-content/uploads/2017/07/Galbani_Veritable_Tiramisu_opt2.jpg',
                 'description' => 'Dessert italien à base de mascarpone et café.',
                 'preparation_time' => 25,
                 'cooking_time' => 0,
@@ -108,7 +108,7 @@ class RecipeSeeder extends Seeder
             ],
             [
                 'title' => 'Gratin dauphinois',
-                'image' => 'gratin.jpg',
+                'image' => 'https://iod.keplrstatic.com/api/ar_1,c_crop,g_north/c_fill,dpr_auto,f_auto,q_70,w_750/mon_marche/REC_Gratin_dauphinois_au_patates_douces.png',
                 'description' => 'Plat de pommes de terre à la crème et au fromage.',
                 'preparation_time' => 15,
                 'cooking_time' => 60,
@@ -120,7 +120,7 @@ class RecipeSeeder extends Seeder
             ],
             [
                 'title' => 'Velouté de potiron',
-                'image' => 'veloute.jpg',
+                'image' => 'https://assets.afcdn.com/recipe/20160330/15787_w1024h576c1cx2808cy1872.jpg',
                 'description' => 'Soupe douce à base de potiron.',
                 'preparation_time' => 10,
                 'cooking_time' => 30,
