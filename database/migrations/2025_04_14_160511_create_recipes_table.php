@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('preparation_time');
             $table->integer('cooking_time');    
             $table->integer('servings');         
-            $table->enum('complexity', ['Easy', 'Medium', 'Hard']);
+            $table->enum('complexity', ['Facile', 'Moyen', 'Difficile']);
             $table->json('ingredients');
             $table->json('instructions');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
