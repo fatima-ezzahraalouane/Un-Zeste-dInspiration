@@ -25,4 +25,19 @@ class RecipeController extends Controller
     {
         $this->recipeRepo->store($request);
     }
+
+    public function show($id)
+    {
+        return $this->recipeRepo->show($id);
+    }
+
+    public function update(UpdateRecipeRequest $request, $id)
+    {
+        return $this->recipeRepo->update($request, $id);
+    }
+
+    public function destroy($id)
+    {
+        return $this->recipeRepo->destroy($id);
+    }
 }
