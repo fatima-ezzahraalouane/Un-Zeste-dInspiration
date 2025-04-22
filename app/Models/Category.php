@@ -11,7 +11,7 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
-    // Une catégorie a plusieurs recettes
+    // catégorie a plusieurs recettes
     public function recipes()
     {
         return $this->hasMany(Recipe::class);
