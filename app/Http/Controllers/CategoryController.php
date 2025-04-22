@@ -34,4 +34,10 @@ class CategoryController extends Controller
         $this->categoryRepository->update($request, $id);
         return back()->with('success', 'Catégorie modifiée.');
     }
+
+    public function destroy($id)
+    {
+        $this->categoryRepository->delete($id);
+        return back()->with('success', 'Catégorie supprimée.');
+    }
 }
