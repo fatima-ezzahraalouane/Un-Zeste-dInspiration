@@ -10,34 +10,34 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    protected CategoryRepositoryInterface $categoryRepository;
+    protected $categoryRepo;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    public function __construct(CategoryRepositoryInterface $categoryRepo)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->categoryRepo = $categoryRepo;
     }
 
     public function index()
     {
-        $categories = $this->categoryRepository->getAll();
+        $categories = $this->categoryRepo->getAll();
         return view('categories.index', compact('categories'));
     }
 
     public function store(StoreCategoryRequest $request)
     {
-        $this->categoryRepository->store($request);
+        $this->categoryRepo->store($request);
         return back()->with('success', 'Catégorie ajoutée avec succès !');
     }
 
     public function update(UpdateCategoryRequest $request, $id)
     {
-        $this->categoryRepository->update($request, $id);
+        $this->categoryRepo->update($request, $id);
         return back()->with('success', 'Catégorie modifiée.');
     }
 
     public function destroy($id)
     {
-        $this->categoryRepository->delete($id);
+        $this->categoryRepo->delete($id);
         return back()->with('success', 'Catégorie supprimée.');
     }
 }
