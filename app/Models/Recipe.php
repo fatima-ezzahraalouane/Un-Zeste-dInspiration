@@ -35,7 +35,7 @@ class Recipe extends Model
     }
 
     // recette peut aimer par plusieurs gourmands
-    public function favoritesBy()
+    public function favoritedBy()
     {
         return $this->belongsToMany(Gourmand::class, 'favorites');
     }
