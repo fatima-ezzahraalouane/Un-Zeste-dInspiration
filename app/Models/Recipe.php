@@ -22,13 +22,13 @@ class Recipe extends Model
         'category_id',
     ];
 
-    // Une recette appartient à une catégorie
+    // recette appartient à une catégorie
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    // Une recette peut avoir plusieurs tags
+    // recette peut avoir plusieurs tags
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'recipe_tag');
