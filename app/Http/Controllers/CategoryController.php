@@ -28,4 +28,10 @@ class CategoryController extends Controller
         $this->categoryRepository->store($request);
         return back()->with('success', 'Catégorie ajoutée avec succès !');
     }
+
+    public function update(UpdateCategoryRequest $request, $id)
+    {
+        $this->categoryRepository->update($request, $id);
+        return back()->with('success', 'Catégorie modifiée.');
+    }
 }
