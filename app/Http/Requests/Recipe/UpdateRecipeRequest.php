@@ -36,4 +36,18 @@ class UpdateRecipeRequest extends FormRequest
             'tags.*'            => 'exists:tags,id',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Le titre est obligatoire.',
+            'description.required' => 'La description est requise.',
+            'preparation_time.required' => 'Le temps de préparation est requis.',
+            'cooking_time.required' => 'Le temps de cuisson est requis.',
+            'servings.required' => 'Le nombre de portions est requis.',
+            'complexity.in' => 'La complexité doit être Facile, Moyen ou Difficile.',
+            'category_id.exists' => 'La catégorie sélectionnée est invalide.',
+            'tags.*.exists' => 'Un ou plusieurs tags sont invalides.',
+        ];
+    }
 }
