@@ -33,4 +33,10 @@ class Recipe extends Model
     {
         return $this->belongsToMany(Tag::class, 'recipe_tag');
     }
+
+    // recette peut aimer par plusieurs gourmands
+    public function favoritesBy()
+    {
+        return $this->belongsToMany(Gourmand::class, 'favorites');
+    }
 }
