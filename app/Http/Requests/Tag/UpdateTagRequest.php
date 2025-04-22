@@ -25,4 +25,12 @@ class UpdateTagRequest extends FormRequest
             'name' => 'required|string|max:255|unique:tags,name,' . $this->route('id'),
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Le nom du tag est requis.',
+            'name.unique'   => 'Ce tag est déjà utilisé.',
+        ];
+    }
 }
