@@ -2,12 +2,16 @@
 
 namespace App\Providers;
 
-use App\Repositories\Category\CategoryRepository;
 use Illuminate\Support\ServiceProvider;
 
 use App\Repositories\Auth\AuthRepositoryInterface;
 use App\Repositories\Auth\AuthRepository;
+use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Recipe\RecipeRepository;
+use App\Repositories\Recipe\RecipeRepositoryInterface;
+use App\Repositories\Tag\TagRepository;
+use App\Repositories\Tag\TagRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
+        $this->app->bind(RecipeRepositoryInterface::class, RecipeRepository::class);
+        $this->app->bind(TagRepositoryInterface::class, TagRepository::class);
 
     }
 
