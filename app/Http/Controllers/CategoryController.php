@@ -22,4 +22,10 @@ class CategoryController extends Controller
         $categories = $this->categoryRepository->getAll();
         return view('categories.index', compact('categories'));
     }
+
+    public function store(StoreCategoryRequest $request)
+    {
+        $this->categoryRepository->store($request);
+        return back()->with('success', 'Catégorie ajoutée avec succès !');
+    }
 }
