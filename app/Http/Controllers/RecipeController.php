@@ -15,4 +15,14 @@ class RecipeController extends Controller
     {
         $this->recipeRepo = $recipeRepo;
     }
+
+    public function index()
+    {
+        $this->recipeRepo->index();
+    }
+
+    public function store(StoreRecipeRequest $request)
+    {
+        $this->recipeRepo->store($request);
+    }
 }
