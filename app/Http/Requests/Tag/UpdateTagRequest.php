@@ -11,7 +11,7 @@ class UpdateTagRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check() && auth()->user()->role->name_user === 'Admin';
     }
 
     /**
