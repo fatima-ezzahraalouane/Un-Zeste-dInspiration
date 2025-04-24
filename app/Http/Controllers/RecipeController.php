@@ -54,4 +54,11 @@ class RecipeController extends Controller
         $recipes = $this->recipeRepo->getMostLikedRecipes(4);
         return view('gourmand.accueil', compact('recipes'));
     }
+
+    // top recettes pour le carrousel (composant)
+    public function topForCarousel()
+    {
+        $recipes = $this->recipeRepo->getMostLikedRecipes(5);
+        return view('components.carousel', compact('recipes'));
+    }
 }
