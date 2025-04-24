@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../../../public/images/logo.png" type="image/png">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     <title>Un Zeste d'Inspiration</title>
     
     <!-- TailwindCSS + FontAwesome + AOS -->
