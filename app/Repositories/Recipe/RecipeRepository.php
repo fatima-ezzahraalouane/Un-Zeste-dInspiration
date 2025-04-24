@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories\Recipe;
 
 use App\Models\Recipe;
@@ -14,8 +15,16 @@ class RecipeRepository implements RecipeRepositoryInterface
     public function store(Request $request)
     {
         $recipe = Recipe::create($request->only([
-            'title', 'image', 'description', 'preparation_time', 'cooking_time',
-            'servings', 'complexity', 'ingredients', 'instructions', 'category_id'
+            'title',
+            'image',
+            'description',
+            'preparation_time',
+            'cooking_time',
+            'servings',
+            'complexity',
+            'ingredients',
+            'instructions',
+            'category_id'
         ]));
 
         if ($request->has('tags')) {
@@ -34,8 +43,16 @@ class RecipeRepository implements RecipeRepositoryInterface
     {
         $recipe = Recipe::findOrFail($id);
         $recipe->update($request->only([
-            'title', 'image', 'description', 'preparation_time', 'cooking_time',
-            'servings', 'complexity', 'ingredients', 'instructions', 'category_id'
+            'title',
+            'image',
+            'description',
+            'preparation_time',
+            'cooking_time',
+            'servings',
+            'complexity',
+            'ingredients',
+            'instructions',
+            'category_id'
         ]));
 
         if ($request->has('tags')) {
@@ -51,5 +68,20 @@ class RecipeRepository implements RecipeRepositoryInterface
         $recipe->tags()->detach();
         $recipe->delete();
         return true;
+    }
+
+    // public function getMostLikedRecipes()
+    // {
+    //     return Recipe::withCount('favoritedBy')
+    //         ->orderByDesc('favorited_by_count')
+    //         ->get();
+    // }
+
+    public function getMostLikedRecipes(int $limit)
+    {
+        return Recipe::withCount('favoritedBy')
+            ->orderByDesc('favorited_by_count')
+            ->take($limit)
+            ->get();
     }
 }
