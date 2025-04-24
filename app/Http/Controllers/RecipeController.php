@@ -40,4 +40,11 @@ class RecipeController extends Controller
     {
         return $this->recipeRepo->destroy($id);
     }
+
+    // top recettes pour la page d'accueil du visiteur
+    public function topForVisiteur()
+    {
+        $recipes = $this->recipeRepo->getMostLikedRecipes(3);
+        return view('visiteur', compact('recipes'));
+    }
 }
