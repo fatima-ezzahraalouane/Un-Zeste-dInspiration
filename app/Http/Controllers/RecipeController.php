@@ -47,4 +47,11 @@ class RecipeController extends Controller
         $recipes = $this->recipeRepo->getMostLikedRecipes(3);
         return view('visiteur', compact('recipes'));
     }
+
+    // top recettes pour la page d'accueil du gourmand
+    public function topForGourmand()
+    {
+        $recipes = $this->recipeRepo->getMostLikedRecipes(4);
+        return view('gourmand.accueil', compact('recipes'));
+    }
 }
