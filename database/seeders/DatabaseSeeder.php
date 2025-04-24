@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RecipeSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(RecipeTagSeeder::class);
+        $this->call(FavoriteSeeder::class);
     }
 }
