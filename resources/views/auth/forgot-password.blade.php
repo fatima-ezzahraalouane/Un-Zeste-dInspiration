@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Un Zeste d'Inspiration - Réinitialiser le Mot de Passe</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -49,8 +50,8 @@
     <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-20">
-                <a href="#" class="flex items-center space-x-2">
-                    <img src="logo.png" alt="Logo" class="h-18 w-20">
+                <a href="{{ route('visiteur') }}" class="flex items-center space-x-2">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-18 w-20">
                     <span class="playfair text-2xl font-bold text-brand-burgundy">
                         Un Zeste d'Inspiration
                     </span>
@@ -61,16 +62,20 @@
 
     <!-- Forgot Password Section -->
     <section class="min-h-screen flex items-center justify-center">
+        <div class="absolute inset-0 bg-cover bg-center blur-sm opacity-70"
+            style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');"></div>
         <div class="form-container rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
             <div class="text-center mb-6">
                 <h2 class="playfair text-3xl font-bold text-brand-burgundy mb-2">Réinitialiser le Mot de Passe</h2>
                 <p class="text-brand-gray">Entrez votre adresse e-mail pour recevoir un lien de réinitialisation de mot
                     de passe.</p>
             </div>
-            <form class="space-y-6">
+
+            <form method="POST" action="{{ route('password.email') }}" class="space-y-6" data-parsley-validate>
+                @csrf
                 <div>
                     <label class="block text-brand-gray mb-2">Email</label>
-                    <input type="email"
+                    <input type="email" name="email" required
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                         placeholder="Votre adresse e-mail">
                 </div>
@@ -79,16 +84,17 @@
                     Envoyer le lien de réinitialisation
                 </button>
             </form>
+
             <div class="mt-6 text-center">
                 <p class="text-brand-gray">Vous vous souvenez de votre mot de passe ?</p>
-                <a href="login.html" class="text-brand-coral hover:text-brand-red transition-colors">Retour à la
+                <a href="{{ route('login') }}" class="text-brand-coral hover:text-brand-red transition-colors">Retour à la
                     connexion</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-brand-burgundy text-white py-12">
+    <!-- <footer class="bg-brand-burgundy text-white py-12">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -154,15 +160,13 @@
                 </div>
             </div>
 
-            <!-- Séparateur -->
             <div class="border-t border-white/10 my-12"></div>
 
-            <!-- Footer Bottom -->
             <div class="flex justify-center items-center text-brand-peach text-sm">
                 <p>&copy; 2024 Un Zeste d'Inspiration. Tous droits réservés.</p>
             </div>
         </div>
-    </footer>
+    </footer> -->
 </body>
 
 </html>
