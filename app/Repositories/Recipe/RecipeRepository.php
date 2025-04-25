@@ -24,7 +24,8 @@ class RecipeRepository implements RecipeRepositoryInterface
             'complexity',
             'ingredients',
             'instructions',
-            'category_id'
+            'category_id',
+            'chef_id' => auth()->user()->chef->id
         ]));
 
         if ($request->has('tags')) {
@@ -79,7 +80,8 @@ class RecipeRepository implements RecipeRepositoryInterface
 
     public function getMostLikedRecipes(int $limit)
     {
-        return Recipe::withCount('favoritedBy')
+        return Recipe::with('chef.user')
+            ->withCount('favoritedBy')
             ->orderByDesc('favorited_by_count')
             ->take($limit)
             ->get();
