@@ -7,6 +7,10 @@ use App\Http\Requests\Recipe\StoreRecipeRequest;
 use App\Http\Requests\Recipe\UpdateRecipeRequest;
 use App\Repositories\Recipe\RecipeRepositoryInterface;
 
+use App\Models\Recipe;
+use App\Models\Chef;
+use App\Models\User;
+
 class RecipeController extends Controller
 {
     protected $recipeRepo;
@@ -45,7 +49,17 @@ class RecipeController extends Controller
     public function topForVisiteur()
     {
         $recipes = $this->recipeRepo->getMostLikedRecipes(3);
-        return view('visiteur', compact('recipes'));
+
+        $stats = [
+            'recipes' => Recipe::count(),
+            'experiences' => 0,
+            'chefs' => Chef::count(),
+            'members' => User::whereHas('role', function ($q) {
+                $q->where('name_user', 'Gourmand');
+            })->count(),
+        ];
+
+        return view('visiteur', compact('recipes', 'stats'));
     }
 
     // top recettes pour la page d'accueil du gourmand
