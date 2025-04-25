@@ -21,9 +21,10 @@ use App\Http\Controllers\RecipeController;
 */
 
 // Page d'accueil
-Route::get('/', function () {
-    return view('visiteur');
-})->name('visiteur');
+// Route::get('/', function () {
+//     return view('visiteur');
+// })->name('visiteur');
+Route::get('/', [RecipeController::class, 'topForVisiteur'])->name('visiteur');
 
 // Connexion
 Route::get('/login', function () {
