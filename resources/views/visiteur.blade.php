@@ -38,19 +38,19 @@
     <div class="max-w-7xl mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="stat-card rounded-2xl p-8 text-center card-hover" data-aos="fade-up" data-aos-delay="0">
-                <div class="text-4xl font-bold text-brand-burgundy mb-2" data-value="1500">0</div>
+                <div class="text-4xl font-bold text-brand-burgundy mb-2">{{ $stats['recipes'] }}</div>
                 <p class="text-brand-gray">Recettes Délicieuses</p>
             </div>
             <div class="stat-card rounded-2xl p-8 text-center card-hover" data-aos="fade-up" data-aos-delay="0">
-                <div class="text-4xl font-bold text-brand-burgundy mb-2" data-value="1500">0</div>
+                <div class="text-4xl font-bold text-brand-burgundy mb-2">{{ $stats['experiences'] }}</div>
                 <p class="text-brand-gray">Expériences Culinaires</p>
             </div>
             <div class="stat-card rounded-2xl p-8 text-center card-hover" data-aos="fade-up" data-aos-delay="100">
-                <div class="text-4xl font-bold text-brand-burgundy mb-2" data-value="250">0</div>
+                <div class="text-4xl font-bold text-brand-burgundy mb-2">{{ $stats['chefs'] }}</div>
                 <p class="text-brand-gray">Chefs Passionnés</p>
             </div>
             <div class="stat-card rounded-2xl p-8 text-center card-hover" data-aos="fade-up" data-aos-delay="200">
-                <div class="text-4xl font-bold text-brand-burgundy mb-2" data-value="50000">0</div>
+                <div class="text-4xl font-bold text-brand-burgundy mb-2">{{ $stats['members'] }}</div>
                 <p class="text-brand-gray">Membres Actifs</p>
             </div>
         </div>
