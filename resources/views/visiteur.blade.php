@@ -66,7 +66,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Recette 1 -->
-            <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up">
+            <!-- <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up">
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c"
                         alt="Salade Gourmet"
@@ -94,10 +94,10 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Recette 2 -->
-            <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up" data-aos-delay="100">
+            <!-- <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up" data-aos-delay="100">
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1560717845-968823efbee1"
                         alt="Saumon Grillé"
@@ -125,10 +125,10 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Recette 3 -->
-            <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up" data-aos-delay="200">
+            <!-- <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up" data-aos-delay="200">
                 <div class="relative">
                     <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307"
                         alt="Dessert Gourmand"
@@ -156,7 +156,40 @@
                         </button>
                     </div>
                 </div>
+            </div> -->
+        
+            @foreach ($recipes as $index => $recipe)
+    <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+        <div class="relative">
+            <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}" class="w-full h-64 object-cover">
+            <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg">
+                <i class="fas fa-heart text-brand-red"></i>
             </div>
+        </div>
+        <div class="p-6">
+            <h3 class="playfair text-xl font-bold text-brand-burgundy mb-2">
+                {{ $recipe->title }}
+            </h3>
+            <p class="text-brand-gray mb-4">
+                {{ Str::limit($recipe->description, 120) }}
+            </p>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <img src="https://i.pravatar.cc/40?img={{ $index + 1 }}"
+                         alt="Chef"
+                         class="w-8 h-8 rounded-full border-2 border-brand-coral">
+                    <span class="text-sm text-brand-gray">Chef Inconnu</span>
+                </div>
+                <a href="#" class="px-4 py-2 bg-brand-burgundy text-white rounded-full text-sm hover:bg-brand-red transition-colors">
+                    Voir la recette
+                </a>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+        
+        
         </div>
     </div>
 </section>
