@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Un Zeste d'Inspiration - Connexion</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -49,7 +50,7 @@
     <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center h-20">
-                <a href="#" class="flex items-center space-x-2">
+                <a href="{{ route('visiteur') }}" class="flex items-center space-x-2">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-18 w-20">
                     <span class="playfair text-2xl font-bold text-brand-burgundy">
                         Un Zeste d'Inspiration
@@ -105,7 +106,7 @@
                         <input type="checkbox" class="w-4 h-4 rounded border-gray-200 text-brand-coral focus:ring-brand-coral">
                         <span class="ml-2 text-brand-gray">Se souvenir de moi</span>
                     </label>
-                    <a href="forgot-password.html" class="text-brand-coral hover:text-brand-red transition-colors">Mot de passe oublié ?</a>
+                    <a href="{{ route('forgot-password') }}" class="text-brand-coral hover:text-brand-red transition-colors">Mot de passe oublié ?</a>
                 </div>
                 <button type="submit"
                     class="w-full bg-brand-burgundy text-white py-3 rounded-lg hover:bg-brand-red transition-colors">
