@@ -39,4 +39,9 @@ class Recipe extends Model
     {
         return $this->belongsToMany(Gourmand::class, 'favorites');
     }
+
+    public function chef()
+    {
+        return $this->belongsTo(Chef::class);
+    }
 }
