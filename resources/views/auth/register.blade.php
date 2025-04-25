@@ -7,7 +7,7 @@
     <title>Un Zeste d'Inspiration - Inscription</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="icon" href="../../../public/images/logo.png" type="image/png">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
         tailwind.config = {
@@ -128,7 +128,7 @@
                         required data-parsley-minlength="8"
                         data-parsley-pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{6,}$"
                         data-parsley-required-message="Le mot de passe est requis"
-                        data-parsley-minlength-message="Le mot de passe doit contenir au moins 6 caractères"
+                        data-parsley-minlength-message="Le mot de passe doit contenir au moins 8 caractères"
                         data-parsley-pattern-message="Le mot de passe doit contenir au moins une lettre, un chiffre et un symbole">
                 </div>
 
