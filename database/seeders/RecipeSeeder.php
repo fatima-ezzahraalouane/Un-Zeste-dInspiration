@@ -21,6 +21,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'tomates, thon, œufs, haricots verts, olives',
                 'instructions' => 'Couper les légumes, Mélanger avec le thon et les œufs',
                 'category_id' => 1,
+                'chef_id' => 1,
             ],
             [
                 'title' => 'Tajine de poulet',
@@ -33,6 +34,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'poulet, citron confit, olives, épices',
                 'instructions' => 'Faire revenir le poulet, Ajouter les ingrédients et mijoter',
                 'category_id' => 2,
+                'chef_id' => 1,
             ],
             [
                 'title' => 'Couscous royal',
@@ -45,6 +47,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'semoule, agneau, poulet, légumes',
                 'instructions' => 'Cuire les viandes, Préparer les légumes, Servir avec la semoule',
                 'category_id' => 2,
+                'chef_id' => 1,
             ],
             [
                 'title' => 'Soupe de légumes',
@@ -57,6 +60,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'carottes, pommes de terre, oignons, courgettes',
                 'instructions' => 'Faire revenir les légumes, Ajouter de l’eau et cuire',
                 'category_id' => 1,
+                'chef_id' => 1,
             ],
             [
                 'title' => 'Quiche lorraine',
@@ -69,6 +73,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'pâte brisée, lardons, œufs, crème fraîche',
                 'instructions' => 'Préparer la garniture, Cuire au four',
                 'category_id' => 2,
+                'chef_id' => 1,
             ],
             [
                 'title' => 'Gâteau au chocolat',
@@ -81,6 +86,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'chocolat, beurre, farine, œufs, sucre',
                 'instructions' => 'Faire fondre le chocolat, Mélanger les ingrédients, Cuire au four',
                 'category_id' => 3,
+                'chef_id' => 1,
             ],
             [
                 'title' => 'Crêpes sucrées',
@@ -93,6 +99,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'farine, lait, œufs, sucre, beurre',
                 'instructions' => 'Préparer la pâte, Cuire les crêpes dans une poêle',
                 'category_id' => 3,
+                'chef_id' => 1,
             ],
             [
                 'title' => 'Tiramisu',
@@ -105,6 +112,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'mascarpone, café, biscuits, œufs, sucre',
                 'instructions' => 'Préparer la crème, Monter le dessert en couches, Réfrigérer',
                 'category_id' => 3,
+                'chef_id' => 1,
             ],
             [
                 'title' => 'Gratin dauphinois',
@@ -117,6 +125,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'pommes de terre, crème, fromage râpé, ail',
                 'instructions' => 'Couper les pommes de terre, Cuire au four avec crème et fromage',
                 'category_id' => 2,
+                'chef_id' => 1,
             ],
             [
                 'title' => 'Velouté de potiron',
@@ -129,6 +138,7 @@ class RecipeSeeder extends Seeder
                 'ingredients' => 'potiron, oignon, crème, beurre',
                 'instructions' => 'Faire revenir les légumes, Mixer avec de la crème',
                 'category_id' => 1,
+                'chef_id' => 1,
             ],
         ];
 
