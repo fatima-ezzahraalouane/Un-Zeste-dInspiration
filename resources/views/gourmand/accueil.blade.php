@@ -164,7 +164,7 @@
                         <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}"
                             class="w-full h-64 object-cover">
                         <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-gray text-xl"></i>
+                            <i class="fas fa-heart text-xl {{ in_array($recipe->id, $likedRecipes) ? 'text-brand-burgundy' : 'text-brand-gray' }}"></i>
                         </button>
                     </div>
                     <div class="p-6">
