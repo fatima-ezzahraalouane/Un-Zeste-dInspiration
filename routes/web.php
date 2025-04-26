@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ChefController;
 use App\Http\Controllers\GourmandController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\VisiteurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ use App\Http\Controllers\RecipeController;
 // Route::get('/', function () {
 //     return view('visiteur');
 // })->name('visiteur');
-Route::get('/', [RecipeController::class, 'topForVisiteur'])->name('visiteur');
+Route::get('/', [VisiteurController::class, 'index'])->name('visiteur');
 
 // Connexion
 Route::get('/login', function () {
