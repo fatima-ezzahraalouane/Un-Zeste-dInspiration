@@ -40,4 +40,11 @@ class AuthController extends Controller
             'Gourmand' => redirect()->route('gourmand.accueil')->with('success', 'Bienvenue Dégustateur(trice) 😋 !'),
         };
     }
+
+    public function logout()
+    {
+        $this->authRepository->logout();
+
+        return redirect()->route('visiteur')->with('success', 'Déconnexion réussie');
+    }
 }
