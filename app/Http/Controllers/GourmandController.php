@@ -7,6 +7,7 @@ use App\Repositories\Recipe\RecipeRepositoryInterface;
 use App\Models\Recipe;
 use App\Models\Chef;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class GourmandController extends Controller
 {
@@ -30,6 +31,11 @@ class GourmandController extends Controller
             })->count(),
         ];
 
-        return view('gourmand.accueil', compact('recipes', 'stats'));
+        $likedRecipes = [];
+        if (Auth::check() && Auth::user()->role->name_user === 'Gourmand' && Auth::user()->gourmand) {
+            $likedRecipes = Auth::user()->gourmand->favorites->pluck('id')->toArray();
+        }
+
+        return view('gourmand.accueil', compact('recipes', 'stats', 'likedRecipes'));
     }
 }
