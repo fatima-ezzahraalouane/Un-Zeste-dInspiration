@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Favorite;
 
 use App\Models\Favorite;
 use App\Repositories\Favorite\FavoriteRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Http\Requests\Favorite\DeleteFavoriteRequest;
+use App\Http\Requests\Favorite\StoreFavoriteRequest;
 
 class FavoriteRepository implements FavoriteRepositoryInterface
 {
-    public function store(Request $request)
+    public function store(StoreFavoriteRequest $request)
     {
         Favorite::firstOrCreate([
             'gourmand_id' => $request->user()->gourmand->id,
@@ -16,7 +18,7 @@ class FavoriteRepository implements FavoriteRepositoryInterface
         ]);
     }
 
-    public function destroy(Request $request)
+    public function destroy(DeleteFavoriteRequest $request)
     {
         Favorite::where('gourmand_id', $request->user()->gourmand->id)
                 ->where('recipe_id', $request->recipe_id)
