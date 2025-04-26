@@ -1,0 +1,41 @@
+<nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-center h-20">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-18 w-24">
+                <span class="playfair text-2xl font-bold text-brand-burgundy">
+                    Un Zeste d'Inspiration
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Accueil</a>
+                <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Recettes</a>
+                <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Blog</a>
+                <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Mes Favoris</a>
+                <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Profil</a>
+                <a href="#"
+                    class="shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                    Déconnexion
+                </a>
+            </div>
+
+            <button id="burger-menu" class="md:hidden text-brand-burgundy">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg rounded-lg mt-2 mx-4 p-4 mb-4">
+        <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Accueil</a>
+        <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Recettes</a>
+        <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Blog</a>
+        <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Mes Favoris</a>
+        <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Profil</a>
+        <a href="#"
+            class="block text-center shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full mt-4 hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+            Déconnexion
+        </a>
+    </div>
+</nav>
