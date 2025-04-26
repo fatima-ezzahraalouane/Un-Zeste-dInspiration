@@ -129,7 +129,7 @@
     <!-- Statistics Section -->
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="stat-card rounded-2xl p-8 text-center" data-aos="fade-up">
                     <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up" data-count="1500">1500+</h3>
                     <p class="text-brand-gray">Total des Recettes</p>
@@ -141,6 +141,10 @@
                 <div class="stat-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up" data-count="250">250+</h3>
                     <p class="text-brand-gray">Total des Chefs</p>
+                </div>
+                <div class="stat-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up" data-count="250">250+</h3>
+                    <p class="text-brand-gray">Total des Gourmands</p>
                 </div>
             </div>
         </div>
