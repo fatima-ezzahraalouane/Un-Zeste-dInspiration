@@ -282,10 +282,9 @@
                     const url = isFavorite ?
                         "{{ route('favorites.destroy') }}" :
                         "{{ route('favorites.store') }}";
-                    const method = isFavorite ? 'DELETE' : 'POST';
 
                     fetch(url, {
-                            method: method,
+                            method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -309,6 +308,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>
