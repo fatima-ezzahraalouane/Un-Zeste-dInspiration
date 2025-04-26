@@ -153,13 +153,15 @@
     <!-- Top 4 Recipes -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="playfair text-4xl font-bold text-brand-burgundy text-center mb-12">Recettes Populaires</h2>
+            <h2 class="playfair text-4xl font-bold text-brand-burgundy text-center mb-12">
+                Recettes Populaires
+            </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Recette 1 -->
-                <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up">
+                @foreach ($recipes as $index => $recipe)
+                <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Salade Gourmet"
+                        <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}"
                             class="w-full h-64 object-cover">
                         <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
                             <i class="fas fa-heart text-brand-gray text-xl"></i>
@@ -167,123 +169,33 @@
                     </div>
                     <div class="p-6">
                         <h3 class="playfair text-xl font-bold text-brand-burgundy mb-2">
-                            Salade Gourmet aux Agrumes
+                            {{ $recipe->title }}
                         </h3>
                         <p class="text-brand-gray mb-4">
-                            Une explosion de saveurs fraîches avec des agrumes de saison et une vinaigrette maison.
+                            {{ \Illuminate\Support\Str::limit($recipe->description, 100) }}
                         </p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?img=1" alt="Chef"
+                                <img src="{{ $recipe->chef->user->avatar ?? 'https://img.freepik.com/premium-vector/chef-restaurant-avatar-cartoon-illustration_1951-375.jpg?w=360' }}" alt="Chef"
                                     class="w-8 h-8 rounded-full border-2 border-brand-coral">
-                                <span class="text-sm text-brand-gray">Chef Marie</span>
+                                <span class="text-sm text-brand-gray">
+                                    {{ $recipe->chef ? $recipe->chef->user->first_name . ' ' . $recipe->chef->user->last_name : 'Chef inconnu' }}
+                                </span>
                             </div>
-                            <button
+                            <a href="#"
                                 class="px-4 py-2 bg-brand-burgundy text-white rounded-full text-sm hover:bg-brand-red transition-colors">
                                 Voir la recette
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Recette 2 -->
-                <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1560717845-968823efbee1" alt="Saumon Grillé"
-                            class="w-full h-64 object-cover">
-                        <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-burgundy text-xl"></i>
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="playfair text-xl font-bold text-brand-burgundy mb-2">
-                            Saumon Grillé aux Herbes
-                        </h3>
-                        <p class="text-brand-gray mb-4">
-                            Un délicieux saumon grillé accompagné d'herbes fraîches et de légumes de saison.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?img=2" alt="Chef"
-                                    class="w-8 h-8 rounded-full border-2 border-brand-coral">
-                                <span class="text-sm text-brand-gray">Chef Thomas</span>
-                            </div>
-                            <button
-                                class="px-4 py-2 bg-brand-burgundy text-white rounded-full text-sm hover:bg-brand-red transition-colors">
-                                Voir la recette
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recette 3 -->
-                <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up"
-                    data-aos-delay="200">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307" alt="Dessert Gourmand"
-                            class="w-full h-64 object-cover">
-                        <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-burgundy text-xl"></i>
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="playfair text-xl font-bold text-brand-burgundy mb-2">
-                            Tarte aux Fruits Rouges
-                        </h3>
-                        <p class="text-brand-gray mb-4">
-                            Une délicieuse tarte aux fruits rouges avec une crème pâtissière maison.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?img=3" alt="Chef"
-                                    class="w-8 h-8 rounded-full border-2 border-brand-coral">
-                                <span class="text-sm text-brand-gray">Chef Sophie</span>
-                            </div>
-                            <button
-                                class="px-4 py-2 bg-brand-burgundy text-white rounded-full text-sm hover:bg-brand-red transition-colors">
-                                Voir la recette
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recette 4 -->
-                <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up"
-                    data-aos-delay="300">
-                    <div class="relative">
-                        <img src="https://www.casa-azzurra-italia.fr/wp-content/uploads/2022/11/Tagliatelles-aux-champignons-de-paris-et-grana-padano-Casa-Azzurra.jpg"
-                            alt="Pâtes aux Champignons" class="w-full h-64 object-cover">
-                        <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-gray text-xl"></i>
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="playfair text-xl font-bold text-brand-burgundy mb-2">
-                            Pâtes aux Champignons
-                        </h3>
-                        <p class="text-brand-gray mb-4">
-                            Des pâtes délicieuses avec une sauce crémeuse aux champignons et du parmesan.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?img=4" alt="Chef"
-                                    class="w-8 h-8 rounded-full border-2 border-brand-coral">
-                                <span class="text-sm text-brand-gray">Chef Pierre</span>
-                            </div>
-                            <button
-                                class="px-4 py-2 bg-brand-burgundy text-white rounded-full text-sm hover:bg-brand-red transition-colors">
-                                Voir la recette
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
+
             <div class="text-center mt-8">
-                <button
-                    class="px-6 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
+                <a href="#" class="px-6 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
                     Voir Plus
-                </button>
+                </a>
             </div>
         </div>
     </section>
