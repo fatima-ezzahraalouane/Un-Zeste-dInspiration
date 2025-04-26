@@ -298,9 +298,29 @@
                             if (isFavorite) {
                                 icon.classList.remove('text-brand-burgundy');
                                 icon.classList.add('text-brand-gray');
+
+                                // ✅ Toast pour Retirer
+                                Toastify({
+                                    text: "Recette retirée des favoris ❌",
+                                    duration: 3000,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    backgroundColor: "#f87171",
+                                }).showToast();
                             } else {
                                 icon.classList.remove('text-brand-gray');
                                 icon.classList.add('text-brand-burgundy');
+
+                                // ✅ Toast pour Ajouter
+                                Toastify({
+                                    text: "Recette ajoutée aux favoris ✅",
+                                    duration: 3000,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    backgroundColor: "#34d399",
+                                }).showToast();
                             }
                         })
                         .catch(error => console.error('Erreur favori:', error));
@@ -308,6 +328,13 @@
             });
         });
     </script>
+
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- Toastify JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 
 </body>
 
