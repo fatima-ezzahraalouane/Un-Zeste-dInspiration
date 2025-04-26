@@ -2,13 +2,13 @@
 
 namespace App\Repositories\Auth;
 
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use App\Models\Chef;
 use App\Models\Gourmand;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\LoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 
 class AuthRepository implements AuthRepositoryInterface
