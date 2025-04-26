@@ -9,6 +9,7 @@ use App\Http\Controllers\ChefController;
 use App\Http\Controllers\GourmandController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\VisiteurController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +81,8 @@ Route::middleware(['auth', 'check.role:Chef'])->prefix('chef')->group(function (
 Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(function () {
     Route::get('/accueil', [GourmandController::class, 'index'])->name('gourmand.accueil');
     Route::get('/recettes-top', [RecipeController::class, 'topForGourmand'])->name('recipes.top.gourmand');
+    Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
+    Route::delete('/favorites', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 });
 
 
