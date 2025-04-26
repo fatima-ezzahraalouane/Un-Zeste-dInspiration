@@ -45,30 +45,6 @@ class RecipeController extends Controller
         return $this->recipeRepo->destroy($id);
     }
 
-    // top recettes pour la page d'accueil du visiteur
-    public function topForVisiteur()
-    {
-        $recipes = $this->recipeRepo->getMostLikedRecipes(3);
-
-        $stats = [
-            'recipes' => Recipe::count(),
-            'experiences' => 0,
-            'chefs' => Chef::count(),
-            'members' => User::whereHas('role', function ($q) {
-                $q->where('name_user', 'Gourmand');
-            })->count(),
-        ];
-
-        return view('visiteur', compact('recipes', 'stats'));
-    }
-
-    // top recettes pour la page d'accueil du gourmand
-    public function topForGourmand()
-    {
-        $recipes = $this->recipeRepo->getMostLikedRecipes(4);
-        return view('gourmand.accueil', compact('recipes'));
-    }
-
     // top recettes pour le carrousel (composant)
     public function topForCarousel()
     {
