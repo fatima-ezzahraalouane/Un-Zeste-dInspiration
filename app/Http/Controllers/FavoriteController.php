@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Favorite\StoreFavoriteRequest;
 use App\Http\Requests\Favorite\DeleteFavoriteRequest;
 use App\Repositories\Favorite\FavoriteRepositoryInterface;
-use Illuminate\Http\JsonResponse;
 
 class FavoriteController extends Controller
 {
@@ -18,17 +17,16 @@ class FavoriteController extends Controller
         $this->favoriteRepo = $favoriteRepo;
     }
 
-    public function store(StoreFavoriteRequest $request): JsonResponse
+    public function store(StoreFavoriteRequest $request)
     {
         $this->favoriteRepo->store($request);
-
-        return response()->json(['message' => 'Recette ajoutée aux favoris.']);
+        return back()->with('success', 'Recette ajoutée avec succès !');
     }
 
-    public function destroy(DeleteFavoriteRequest $request): JsonResponse
+    public function destroy(DeleteFavoriteRequest $request)
     {
         $this->favoriteRepo->destroy($request);
 
-        return response()->json(['message' => 'Recette retirée des favoris.']);
+        return back()->with('success', 'Recette retirée des favoris');
     }
 }
