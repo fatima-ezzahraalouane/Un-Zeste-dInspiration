@@ -10,4 +10,14 @@ class Favorite extends Model
     use HasFactory;
 
     protected $fillable = ['gourmand_id', 'recipe_id'];
+
+    public function gourmand()
+    {
+        return $this->belongsTo(Gourmand::class);
+    }
+
+    public function recipe()
+    {
+        return $this->belongsTo(Recipe::class);
+    }
 }
