@@ -46,6 +46,8 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.st
 
 Route::post('/login',[AuthController::class, 'login'])->name('login.store');
 
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 // Afficher formulaire email
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgot-password');
 
