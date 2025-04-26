@@ -131,19 +131,19 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="stat-card rounded-2xl p-8 text-center" data-aos="fade-up">
-                    <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up">1500</h3>
+                    <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up">{{ $stats['recipes'] }}</h3>
                     <p class="text-brand-gray">Total des Recettes</p>
                 </div>
                 <div class="stat-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up">300</h3>
+                    <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up">{{ $stats['experiences'] }}</h3>
                     <p class="text-brand-gray">Total des Expériences Culinaires</p>
                 </div>
                 <div class="stat-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up">250</h3>
+                    <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up">{{ $stats['chefs'] }}</h3>
                     <p class="text-brand-gray">Total des Chefs</p>
                 </div>
                 <div class="stat-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up">250</h3>
+                    <h3 class="text-4xl font-bold text-brand-burgundy mb-2 count-up">{{ $stats['members'] }}</h3>
                     <p class="text-brand-gray">Total des Gourmands</p>
                 </div>
             </div>
