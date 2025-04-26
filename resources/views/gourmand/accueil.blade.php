@@ -163,7 +163,9 @@
                     <div class="relative">
                         <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}"
                             class="w-full h-64 object-cover">
-                        <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                        <button
+                            class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md toggle-favorite"
+                            data-recipe-id="{{ $recipe->id }}">
                             <i class="fas fa-heart text-xl {{ in_array($recipe->id, $likedRecipes) ? 'text-brand-burgundy' : 'text-brand-gray' }}"></i>
                         </button>
                     </div>
@@ -265,6 +267,46 @@
         document.getElementById('burger-menu').addEventListener('click', () => {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.toggle-favorite').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const recipeId = this.dataset.recipeId;
+                    const icon = this.querySelector('i');
+                    const isFavorite = icon.classList.contains('text-brand-burgundy');
+
+                    const url = isFavorite ?
+                        "{{ route('favorites.destroy') }}" :
+                        "{{ route('favorites.store') }}";
+                    const method = isFavorite ? 'DELETE' : 'POST';
+
+                    fetch(url, {
+                            method: method,
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            },
+                            body: JSON.stringify({
+                                recipe_id: recipeId
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (isFavorite) {
+                                icon.classList.remove('text-brand-burgundy');
+                                icon.classList.add('text-brand-gray');
+                            } else {
+                                icon.classList.remove('text-brand-gray');
+                                icon.classList.add('text-brand-burgundy');
+                            }
+                        })
+                        .catch(error => console.error('Erreur favori:', error));
+                });
+            });
         });
     </script>
 </body>
