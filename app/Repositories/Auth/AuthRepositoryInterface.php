@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Auth;
 
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
 
 interface AuthRepositoryInterface
 {
-    public function register(RegisterRequest $request): void;
+    public function register(RegisterRequest $request);
     public function login(LoginRequest $request);
 }
