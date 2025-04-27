@@ -67,6 +67,10 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 // routes admin
 Route::middleware(['auth', 'check.role:Admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
+    Route::patch('/users/{user}/approve', [AdminController::class, 'approveUser'])->name('admin.users.approve');
+    Route::patch('/users/{user}/suspend', [AdminController::class, 'suspendUser'])->name('admin.users.suspend');
+    Route::delete('/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
 });
 
 
