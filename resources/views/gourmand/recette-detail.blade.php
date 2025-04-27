@@ -172,16 +172,9 @@
                         class="bg-white bg-opacity-70 backdrop-blur-md shadow-lg p-6 rounded-xl hover:shadow-2xl transition-all duration-300">
                         <h2 class="text-2xl font-bold text-brand-burgundy mb-4">🛒 Ingrédients</h2>
                         <ul id="ingredients-list" class="list-disc list-inside text-brand-dark space-y-2">
-                            <li>500g de viande (bœuf ou agneau) en dés</li>
-                            <li>2 oignons hachés</li>
-                            <li>2 tomates pelées et mixées</li>
-                            <li>2 branches de céleri hachées</li>
-                            <li>150g de lentilles</li>
-                            <li>100g de pois chiches trempés</li>
-                            <li>2 c. à soupe de concentré de tomate</li>
-                            <li>2 c. à soupe de farine (diluée dans l’eau)</li>
-                            <li>1/2 tasse de vermicelles ou de riz</li>
-                            <li><strong>Épices :</strong> sel, poivre, curcuma, gingembre, cannelle</li>
+                            @foreach(explode(',', $recipe->ingredients) as $ingredient)
+                            <li>{{ trim($ingredient) }}</li>
+                            @endforeach
                         </ul>
                     </div>
 
