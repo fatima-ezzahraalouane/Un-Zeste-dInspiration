@@ -45,7 +45,7 @@ Route::get('/forgot-password', function () {
 
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 
-Route::post('/login',[AuthController::class, 'login'])->name('login.store');
+Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
@@ -68,6 +68,7 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 Route::middleware(['auth', 'check.role:Admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
+    // gestion des utilisateurs
     Route::patch('/users/{user}/approve', [AdminController::class, 'approveUser'])->name('admin.users.approve');
     Route::patch('/users/{user}/suspend', [AdminController::class, 'suspendUser'])->name('admin.users.suspend');
     Route::delete('/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
@@ -94,9 +95,3 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::post('/favorites/delete', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 });
-
-
-
-// Route::get('/top-recipes/visiteur', [RecipeController::class, 'topForVisiteur'])->name('recipes.top.visiteur');
-// Route::get('/top-recipes/gourmand', [RecipeController::class, 'topForGourmand'])->name('recipes.top.gourmand');
-// Route::get('/carousel/recettes', [RecipeController::class, 'topForCarousel'])->name('recipes.carousel');
