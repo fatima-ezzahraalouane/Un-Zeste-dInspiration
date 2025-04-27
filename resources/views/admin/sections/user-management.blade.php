@@ -2,16 +2,6 @@
     <div class="flex justify-between items-center">
         <h1 class="playfair text-2xl md:text-3xl font-bold text-brand-burgundy">Gestion des Utilisateurs
         </h1>
-        <!-- <div class="flex space-x-3">
-                        <button
-                            class="bg-brand-burgundy text-white px-4 py-2 rounded-lg hover:bg-brand-red transition-all">
-                            <i class="fas fa-plus mr-2"></i>Ajouter
-                        </button>
-                        <button
-                            class="bg-brand-peach text-brand-burgundy px-4 py-2 rounded-lg hover:bg-brand-burgundy hover:text-white transition-all">
-                            <i class="fas fa-download mr-2"></i>Exporter
-                        </button>
-                    </div> -->
     </div>
 
     <!-- Tabs -->
@@ -19,42 +9,7 @@
         <button class="px-4 py-2 border-b-2 border-brand-burgundy text-brand-burgundy font-medium">
             Tous les utilisateurs
         </button>
-        <!-- <button class="px-4 py-2 text-gray-500 hover:text-brand-burgundy">
-                        Chefs en attente
-                    </button>
-                    <button class="px-4 py-2 text-gray-500 hover:text-brand-burgundy">
-                        Chefs validés
-                    </button>
-                    <button class="px-4 py-2 text-gray-500 hover:text-brand-burgundy">
-                        Clients
-                    </button> -->
     </div>
-
-    <!-- Filters and Search -->
-    <!-- <div class="flex flex-col md:flex-row justify-between space-y-3 md:space-y-0">
-                    <div class="relative">
-                        <input type="text" placeholder="Rechercher un utilisateur..."
-                            class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent w-full md:w-80">
-                        <span class="absolute left-3 top-2.5 text-gray-400">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </div>
-                    <div class="flex space-x-3">
-                        <select
-                            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
-                            <option>Tous les statuts</option>
-                            <option>Actif</option>
-                            <option>Suspendu</option>
-                            <option>En attente</option>
-                        </select>
-                        <select
-                            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
-                            <option>Filtrer par date</option>
-                            <option>Plus récent</option>
-                            <option>Plus ancien</option>
-                        </select>
-                    </div>
-                </div> -->
 
     <!-- Users Table -->
     <div class="bg-white rounded-xl shadow-md overflow-hidden">
@@ -163,7 +118,6 @@
                     </tr>
                     @endforeach
                 </tbody>
-
             </table>
         </div>
         <!-- Pagination -->
