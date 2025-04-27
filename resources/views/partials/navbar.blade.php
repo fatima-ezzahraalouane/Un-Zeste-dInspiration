@@ -3,9 +3,9 @@
             <div class="flex justify-between items-center h-20">
                 <a href="#" class="flex items-center space-x-2">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-18 w-24">
-                    <span class="playfair text-2xl font-bold text-brand-burgundy">
+                    <!-- <span class="playfair text-2xl font-bold text-brand-burgundy">
                         Un Zeste d'Inspiration
-                    </span>
+                    </span> -->
                 </a>
 
                 <div class="hidden md:flex items-center space-x-5">
