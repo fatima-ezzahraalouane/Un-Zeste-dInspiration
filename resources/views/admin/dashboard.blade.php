@@ -223,23 +223,18 @@
                             <canvas id="categoryChart"></canvas>
                         </div>
                         <div class="mt-4 grid grid-cols-2 gap-2">
+                            @foreach($categories as $index => $category)
                             <div class="flex items-center">
-                                <span class="w-3 h-3 rounded-full bg-brand-burgundy mr-2"></span>
-                                <span class="text-sm">Plats Principaux (76)</span>
+                                <span class="w-3 h-3 rounded-full mr-2"
+                                    style="background-color: {{ ['#793E37', '#B55D51', '#974344', '#4C4C4C'][$index % 4] }};">
+                                </span>
+                                <span class="text-sm">
+                                    {{ $category->name }} ({{ $category->recipes_count }})
+                                </span>
                             </div>
-                            <div class="flex items-center">
-                                <span class="w-3 h-3 rounded-full bg-brand-coral mr-2"></span>
-                                <span class="text-sm">Desserts (69)</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="w-3 h-3 rounded-full bg-brand-red mr-2"></span>
-                                <span class="text-sm">Entrées (54)</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="w-3 h-3 rounded-full bg-brand-dark mr-2"></span>
-                                <span class="text-sm">Boissons (47)</span>
-                            </div>
+                            @endforeach
                         </div>
+
                     </div>
 
                     <!-- Top 3 Chefs les plus actifs -->
@@ -1378,19 +1373,23 @@
         });
     </script>
     <script>
-        // Configuration du graphique des catégories
         const ctx = document.getElementById('categoryChart').getContext('2d');
+
+        const categoryLabels = {!! json_encode($categories->pluck('name')) !!};
+        const categoryData = {!! json_encode($categories->pluck('recipes_count')) !!};
+
         new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['Plats Principaux', 'Desserts', 'Entrées', 'Boissons'],
+                labels: categoryLabels,
                 datasets: [{
-                    data: [76, 69, 54, 47],
+                    data: categoryData,
                     backgroundColor: [
-                        '#793E37', // brand-burgundy
-                        '#B55D51', // brand-coral
-                        '#974344', // brand-red
-                        '#4C4C4C' // brand-dark
+                        '#793E37',
+                        '#B55D51',
+                        '#974344',
+                        '#4C4C4C',
+                        // ajoute d'autres couleurs si tu as plus de catégories
                     ],
                     borderWidth: 0,
                     hoverOffset: 4
@@ -1419,6 +1418,8 @@
             }
         });
     </script>
+
+
 </body>
 
 </html>
