@@ -95,10 +95,13 @@
                 </a>
 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="registre.html"
-                        class="shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-                        Déconnexion
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit"
+                            class="shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                            Déconnexion
+                        </button>
+                    </form>
                 </div>
 
                 <button id="burger-menu" class="md:hidden text-brand-burgundy">
