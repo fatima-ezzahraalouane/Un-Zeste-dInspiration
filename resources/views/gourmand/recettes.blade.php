@@ -59,7 +59,7 @@
 
         .carousel-content {
             position: relative;
-            bottom: 136px;
+            bottom: 112px;
             background: rgba(0, 0, 0, 0.5);
             color: white;
             padding: 10px;
@@ -273,59 +273,7 @@
     </section>
 
     <!-- Carousel Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 relative">
-            <h2 class="playfair text-4xl font-bold text-brand-burgundy text-center mb-12">Les Recettes en Vedette</h2>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <div class="carousel-item">
-                        <img src="https://www.stefanofaita.com/wp-content/uploads/2022/04/pizzamargherita1.jpg"
-                            alt="Pizza Margherita" class="w-full h-80 object-cover rounded-lg">
-                        <div class="carousel-content">
-                            <h3 class="text-xl font-bold">Pizza Margherita</h3>
-                            <p>Une pizza italienne classique avec mozzarella et basilic.</p>
-                            <a href="detail-recette.html"
-                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
-                                Voir la recette</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Salade Gourmet"
-                            class="w-full h-80 object-cover rounded-lg">
-                        <div class="carousel-content">
-                            <h3 class="text-xl font-bold">Salade Gourmet aux Agrumes</h3>
-                            <p>Un mélange frais et savoureux de fruits et légumes.</p>
-                            <a href="detail-recette.html"
-                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
-                                Voir la recette</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1560717845-968823efbee1" alt="Saumon Grillé"
-                            class="w-full h-80 object-cover rounded-lg">
-                        <div class="carousel-content">
-                            <h3 class="text-xl font-bold">Saumon Grillé aux Herbes</h3>
-                            <p>Un plat sain et délicieux aux arômes méditerranéens.</p>
-                            <a href="detail-recette.html"
-                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
-                                Voir la recette</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307"
-                            alt="Tarte aux Fruits Rouges" class="w-full h-80 object-cover rounded-lg">
-                        <div class="carousel-content">
-                            <h3 class="text-xl font-bold">Tarte aux Fruits Rouges</h3>
-                            <p>Une tarte délicieuse garnie de fruits rouges frais.</p>
-                            <a href="detail-recette.html"
-                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
-                                Voir la recette</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('components.carousel', ['recipes' => $recipes])
 
     <!-- Footer -->
     @include('partials.footerc')
@@ -375,85 +323,9 @@
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Carousel functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Carousel functionality
-            let currentIndex = 0;
-            const track = document.querySelector('.carousel-track');
-            const slides = document.querySelectorAll('.carousel-item');
-            const totalSlides = slides.length;
-            let visibleSlides = 1; // Default for mobile
-
-            // Determine visible slides based on screen width
-            function updateVisibleSlides() {
-                if (window.innerWidth >= 1024) {
-                    visibleSlides = 3;
-                } else if (window.innerWidth >= 768) {
-                    visibleSlides = 2;
-                } else {
-                    visibleSlides = 1;
-                }
-                updateCarousel();
-            }
-
-            // Update carousel position
-            function updateCarousel() {
-                const maxIndex = totalSlides - visibleSlides;
-                if (currentIndex > maxIndex) {
-                    currentIndex = maxIndex;
-                }
-                if (currentIndex < 0) {
-                    currentIndex = 0;
-                }
-
-                const slidePercentage = 100 / visibleSlides;
-                track.style.transform = `translateX(-${currentIndex * slidePercentage}%)`;
-            }
-
-            // Auto slide functionality
-            function autoSlide() {
-                currentIndex = (currentIndex + 1) % (totalSlides - visibleSlides + 1);
-                updateCarousel();
-            }
-
-            // Touch support for mobile swiping
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            track.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            track.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-
-            function handleSwipe() {
-                if (touchEndX < touchStartX - 50) { // Swiped left
-                    currentIndex = Math.min(totalSlides - visibleSlides, currentIndex + 1);
-                    updateCarousel();
-                }
-                if (touchEndX > touchStartX + 50) { // Swiped right
-                    currentIndex = Math.max(0, currentIndex - 1);
-                    updateCarousel();
-                }
-            }
-
-            // Handle window resize
-            window.addEventListener('resize', updateVisibleSlides);
-
-            // Initialize
-            updateVisibleSlides();
-
-            // Set auto slide interval - adjust timing as needed
-            const slideInterval = setInterval(autoSlide, 5000);
-
-            // Pause auto-sliding when user interacts with swipe
-            track.addEventListener('touchstart', () => clearInterval(slideInterval));
-        });
     </script>
+
+<script src="{{ asset('js/carousel.js') }}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
