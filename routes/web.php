@@ -81,6 +81,7 @@ Route::middleware(['auth', 'check.role:Chef'])->prefix('chef')->group(function (
 Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(function () {
     Route::get('/accueil', [GourmandController::class, 'index'])->name('gourmand.accueil');
     Route::get('/recettes', [RecipeController::class, 'browse'])->name('gourmand.recettes');
+    Route::get('/gourmand/carousel', [RecipeController::class, 'getTopCarousel'])->name('gourmand.carousel');
 
     // Routes pour Favoris
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
