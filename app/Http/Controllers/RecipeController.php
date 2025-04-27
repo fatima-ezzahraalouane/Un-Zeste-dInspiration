@@ -6,18 +6,27 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Recipe\StoreRecipeRequest;
 use App\Http\Requests\Recipe\UpdateRecipeRequest;
 use App\Repositories\Recipe\RecipeRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Tag\TagRepositoryInterface;
 
 use App\Models\Recipe;
 use App\Models\Chef;
 use App\Models\User;
 
+use App\Models\Category;
+use App\Models\Tag;
+
 class RecipeController extends Controller
 {
     protected $recipeRepo;
+    protected $categoryRepo;
+    protected $tagRepo;
 
-    public function __construct(RecipeRepositoryInterface $recipeRepo)
+    public function __construct(RecipeRepositoryInterface $recipeRepo, CategoryRepositoryInterface $categoryRepo, TagRepositoryInterface $tagRepo)
     {
         $this->recipeRepo = $recipeRepo;
+        $this->categoryRepo = $categoryRepo;
+        $this->tagRepo = $tagRepo;
     }
 
     public function index()
@@ -50,5 +59,14 @@ class RecipeController extends Controller
     {
         $recipes = $this->recipeRepo->getMostLikedRecipes(5);
         return view('components.carousel', compact('recipes'));
+    }
+
+    public function browse(Request $request)
+    {
+        $recipes = $this->recipeRepo->search($request);
+        $categories = $this->categoryRepo->getAll();
+        $tags = $this->tagRepo->all();
+
+        return view('gourmand.recettes', compact('recipes', 'categories', 'tags'));
     }
 }
