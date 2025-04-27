@@ -128,16 +128,17 @@
     <!-- Recipe Details Section -->
     <section class="py-12 bg-white shadow-lg rounded-lg">
         <div class="max-w-7xl mx-auto px-6">
-            <h1 class="text-5xl playfair font-bold text-brand-burgundy mt-14 mb-6">Soupe Harira Marocaine
-            </h1>
+            <h1 class="text-5xl playfair font-bold text-brand-burgundy mt-14 mb-6">{{ $recipe->title }}</h1>
+
             <div class="flex flex-wrap items-center mb-6">
-                <span class="bg-brand-coral text-white text-sm px-3 py-1 rounded-full mr-4">Catégorie</span>
+                <span class="bg-brand-coral text-white text-sm px-3 py-1 rounded-full mr-4">{{ $recipe->category->name ?? 'Sans catégorie' }}</span>
                 <div class="flex flex-wrap space-x-2">
-                    <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full">#Tag1</span>
-                    <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full">#Tag2</span>
+                    @foreach($recipe->tags as $tag)
+                    <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full">#{{ $tag->name }}</span>
+                    @endforeach
                 </div>
             </div>
-            <img src="https://elhdagafood.ma/wp-content/uploads/2022/04/Harira-Bidaouia.jpg" alt="Recette"
+            <img src="{{ $recipe->image ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $recipe->title }}"
                 class="w-full h-96 object-cover rounded-lg mb-6 shadow-xl">
             <div class="relative p-8 bg-gradient-to-br from-brand-peach to-white shadow-2xl rounded-2xl">
 
@@ -146,17 +147,10 @@
                         <h2 class="text-2xl playfair font-bold text-brand-burgundy mb-3">Temps de Préparation et de
                             Cuisson
                         </h2>
-                        <p class="text-brand-gray"><i class="fas fa-clock mr-2"></i> Préparation: <strong>20
-                                min</strong></p>
-                        <p class="text-brand-gray"><i class="fas fa-clock mr-2"></i> Cuisson: <strong>30 min</strong>
-                        </p>
-                        <p class="text-brand-gray">
-                            <i class="fas fa-user-friends mr-2"></i> Pour <strong>4 personnes</strong>
-                        </p>
-                        <p class="text-brand-gray mt-1">
-                            <i class="fas fa-signal mr-2"></i> Complexité : <strong>Facile</strong>
-                        </p>
-
+                        <p class="text-brand-gray"><i class="fas fa-clock mr-2"></i> Préparation: <strong>{{ $recipe->preparation_time }} min</strong></p>
+                        <p class="text-brand-gray"><i class="fas fa-clock mr-2"></i> Cuisson: <strong>{{ $recipe->cooking_time }} min</strong></p>
+                        <p class="text-brand-gray"><i class="fas fa-user-friends mr-2"></i> Pour <strong>{{ $recipe->servings }} personnes</strong></p>
+                        <p class="text-brand-gray mt-1"><i class="fas fa-signal mr-2"></i> Complexité : <strong>{{ $recipe->complexity }}</strong></p>
                     </div>
                     <div>
                         <h2 class="text-2xl playfair font-bold text-brand-burgundy mb-3">Description</h2>
