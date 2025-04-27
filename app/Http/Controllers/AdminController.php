@@ -27,9 +27,15 @@ class AdminController extends Controller
 
         $categories = Category::withCount('recipes')->get();
 
+        $topChefs = Chef::withCount('recipes')
+            ->orderByDesc('recipes_count')
+            ->take(3)
+            ->get();
+
         return view('admin.dashboard', compact(
             'user',
-            'stats', 'categories'
+            'stats',
+            'categories', 'topChefs'
         ));
     }
 }
