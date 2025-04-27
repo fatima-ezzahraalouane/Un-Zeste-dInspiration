@@ -9,7 +9,7 @@
                             alt="{{ $recipe->title }}" class="w-full h-80 object-cover rounded-lg">
                         <div class="carousel-content">
                             <h3 class="text-xl font-bold">{{ $recipe->title }}</h3>
-                            <p>{{ Str::limit($recipe->description, 40) }}</p>
+                            <p>{{ Str::limit($recipe->description, 30) }}</p>
                             <a href="#" class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
                                 Voir la recette
                             </a>
