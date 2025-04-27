@@ -32,8 +32,8 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg rounded-lg mt-2 mx-4 p-4 mb-4">
-        <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Accueil</a>
-        <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Recettes</a>
+        <a href="{{ route('gourmand.accueil') }}" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Accueil</a>
+        <a href="{{ route('gourmand.recettes') }}" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Recettes</a>
         <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Blog</a>
         <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Mes Favoris</a>
         <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Profil</a>
