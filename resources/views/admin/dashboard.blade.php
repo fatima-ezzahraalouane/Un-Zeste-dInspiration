@@ -234,7 +234,6 @@
                             </div>
                             @endforeach
                         </div>
-
                     </div>
 
                     <!-- Top 3 Chefs les plus actifs -->
