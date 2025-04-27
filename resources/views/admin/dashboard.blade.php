@@ -238,48 +238,31 @@
 
                     <!-- Top 3 Chefs les plus actifs -->
                     <div class="bg-white rounded-xl shadow-md p-6">
-                        <h3 class="playfair text-xl font-bold text-brand-burgundy mb-4">Top 3 Chefs les plus actifs</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center p-3 bg-brand-peach/70 rounded-lg">
-                                <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
-                                    <img src="../profilCV.jpg" alt="Chef" class="w-full h-full object-cover" />
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="font-semibold">Fatima-Ezzahra Alouane</h4>
-                                    <p class="text-sm text-brand-gray">32 recettes publiées</p>
-                                </div>
-                                <div class="bg-brand-burgundy text-white px-3 py-1 rounded-full text-sm">
-                                    1<sup>er</sup>
-                                </div>
-                            </div>
+    <h3 class="playfair text-xl font-bold text-brand-burgundy mb-4">Top 3 Chefs les plus actifs</h3>
+    <div class="space-y-4">
+        @foreach($topChefs as $index => $chef)
+        <div class="flex items-center p-3 {{ $index == 0 ? 'bg-brand-peach/70' : 'bg-gray-100' }} rounded-lg">
+            <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                <img src="{{ $recipe->chef->user->avatar ?? 'https://img.freepik.com/premium-vector/chef-restaurant-avatar-cartoon-illustration_1951-375.jpg?w=360' }}"
+                    alt="Chef" class="w-full h-full object-cover rounded-full border-2 border-brand-coral" />
+            </div>
+            <div class="flex-1">
+                <h4 class="font-semibold">{{ $chef->user->last_name ?? 'Chef' }} {{ $chef->user->first_name ?? '' }}</h4>
+                <p class="text-sm text-brand-gray">{{ $chef->recipes_count }} recettes publiées</p>
+            </div>
+            <div class="
+                @if($index == 0) bg-brand-burgundy 
+                @elseif($index == 1) bg-brand-coral 
+                @else bg-brand-red 
+                @endif 
+                text-white px-3 py-1 rounded-full text-sm">
+                {{ $index + 1 }}<sup>{{ $index == 0 ? 'er' : 'e' }}</sup>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
 
-                            <div class="flex items-center p-3 bg-gray-100 rounded-lg">
-                                <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
-                                    <img src="../profilCV.jpg" alt="Chef" class="w-full h-full object-cover" />
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="font-semibold">Fatima Alouane</h4>
-                                    <p class="text-sm text-brand-gray">28 recettes publiées</p>
-                                </div>
-                                <div class="bg-brand-coral text-white px-3 py-1 rounded-full text-sm">
-                                    2<sup>e</sup>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center p-3 bg-gray-100 rounded-lg">
-                                <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
-                                    <img src="../profilCV.jpg" alt="Chef" class="w-full h-full object-cover" />
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="font-semibold">Fatima</h4>
-                                    <p class="text-sm text-brand-gray">24 recettes publiées</p>
-                                </div>
-                                <div class="bg-brand-red text-white px-3 py-1 rounded-full text-sm">
-                                    3<sup>e</sup>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Recent Activity -->
