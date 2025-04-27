@@ -154,9 +154,7 @@
                     </div>
                     <div>
                         <h2 class="text-2xl playfair font-bold text-brand-burgundy mb-3">Description</h2>
-                        <p class="text-brand-gray">Une description détaillée de la recette, soulignant les saveurs et
-                            les
-                            techniques utilisées.</p>
+                        <p class="text-brand-gray">{{ $recipe->description }}</p>
                     </div>
                 </div>
                 <!-- Bouton Imprimer en haut à droite -->
