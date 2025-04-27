@@ -65,4 +65,11 @@ class AdminController extends Controller
 
         return back()->with('success', 'Utilisateur suspendu avec succès.');
     }
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+
+        return back()->with('success', 'Utilisateur supprimé avec succès.');
+    }
 }
