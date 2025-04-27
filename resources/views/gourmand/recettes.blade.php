@@ -244,21 +244,28 @@
 
             <!-- Pagination Controls -->
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
-                <button id="prevPage"
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">1</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">2</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">3</button>
+                @if ($recipes->onFirstPage())
+                <span
+                    class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 transition-all cursor-not-allowed">Précédent</span>
+                @else
+                <a href="{{ $recipes->previousPageUrl() }}"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</a>
+                @endif
 
+                @foreach ($recipes->getUrlRange(1, $recipes->lastPage()) as $page => $url)
+                <a href="{{ $url }}"
+                    class="px-4 py-2 rounded-lg {{ $page == $recipes->currentPage() ? 'bg-brand-red' : 'bg-brand-burgundy' }} text-white hover:bg-brand-red transition-all">{{ $page }}</a>
+                @endforeach
 
-                <div id="pageNumbers" class="flex space-x-2"></div>
-
-                <button id="nextPage"
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</button>
+                @if ($recipes->hasMorePages())
+                <a href="{{ $recipes->nextPageUrl() }}"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</a>
+                @else
+                <span
+                    class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 transition-all cursor-not-allowed">Suivant</span>
+                @endif
             </div>
+
         </div>
     </section>
 
