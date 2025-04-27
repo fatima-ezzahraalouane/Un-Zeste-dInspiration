@@ -37,52 +37,6 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(12px);
-            padding: 20px;
-            transition: all 0.4s ease-in-out;
-        }
-
-        .glass-effect:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-        }
-
-        .input-container {
-            display: flex;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            padding: 12px;
-            box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .input-container:hover {
-            box-shadow: inset 0 6px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .input-container input,
-        .input-container select {
-            border: none;
-            outline: none;
-            background: transparent;
-            flex-grow: 1;
-            padding: 12px;
-            font-size: 18px;
-            color: #4C4C4C;
-            font-weight: 500;
-        }
-
-        .input-container i {
-            margin-right: 12px;
-            color: #793E37;
-            font-size: 20px;
-        }
-
         .carousel-container {
             position: relative;
             max-width: 100%;
@@ -104,7 +58,7 @@
 
         .carousel-content {
             position: relative;
-            bottom: 95px;
+            bottom: 136px;
             background: rgba(0, 0, 0, 0.5);
             color: white;
             padding: 10px;
@@ -169,119 +123,96 @@
 
 <body class="poppins bg-brand-peach">
     <!-- Navbar -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center h-20">
-                <a href="#" class="flex items-center space-x-2">
-                    <img src="logo.png" alt="Logo" class="h-18 w-24">
-                    <span class="playfair text-2xl font-bold text-brand-burgundy">
-                        Un Zeste d'Inspiration
-                    </span>
-                </a>
+    @include('partials.navbarc')
 
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="text-brand-dark hover:text-brand-coral transition-colors">Accueil</a>
-                    <a href="recipes.html" class="text-brand-dark hover:text-brand-coral transition-colors">Recettes</a>
-                    <a href="blog.html" class="text-brand-dark hover:text-brand-coral transition-colors">Blog</a>
-                    <a href="favorites.html" class="text-brand-dark hover:text-brand-coral transition-colors">Mes
-                        Favoris</a>
-                    <a href="profile.html" class="text-brand-dark hover:text-brand-coral transition-colors">Profil</a>
-                    <a href="registre.html"
-                        class="shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-                        Déconnexion
-                    </a>
-                </div>
-
-                <button id="burger-menu" class="md:hidden text-brand-burgundy">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
+    <!-- Hero Section -->
+    <section class="relative h-[70vh] bg-cover bg-center flex items-center justify-center"
+        style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-burgundy/70 to-brand-red/70"></div>
+        <div class="relative text-center text-white px-4 z-10 max-w-2xl mt-4">
+            <h1 class="playfair text-5xl font-bold mb-4">Explorez les Saveurs du Monde</h1>
+            <p class="text-lg leading-relaxed">Découvrez une collection exquise de recettes, des plats traditionnels
+                aux créations modernes.</p>
+            <a href="#recette"
+                class="mt-6 inline-block px-6 py-3 bg-white text-brand-burgundy font-semibold rounded-full hover:bg-brand-burgundy hover:text-white transition-all duration-300">
+                Découvrir les Recettes
+            </a>
         </div>
+    </section>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md rounded-lg mt-2 mx-4">
-            <div class="flex flex-col px-4 py-2 space-y-2">
-                <a href="index.html" class="text-brand-dark hover:text-brand-coral transition-colors">Accueil</a>
-                <a href="recipes.html" class="text-brand-dark hover:text-brand-coral transition-colors">Recettes</a>
-                <a href="blog.html" class="text-brand-dark hover:text-brand-coral transition-colors">Blog</a>
-                <a href="favorites.html" class="text-brand-dark hover:text-brand-coral transition-colors">Mes
-                    Favoris</a>
-                <a href="profile.html" class="text-brand-dark hover:text-brand-coral transition-colors">Profil</a>
-                <a href="registre.html"
-                    class="shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-                    Déconnexion
-                </a>
-            </div>
-        </div>
-    </nav>
+    <!-- Recipes List Section -->
+    <section id="recette" class="py-12 bg-white rounded-lg">
+        <div class="max-w-7xl mx-auto px-6">
+            <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mb-10">Explorer les Recettes</h1>
 
-    <!-- Filters Section -->
-    <section class="py-10 bg-white/60 shadow-xl rounded-lg">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center mt-20">
-                <div class="glass-effect">
-                    <label for="search" class="block text-brand-dark font-semibold text-lg mb-2">Rechercher par
-                        titre:</label>
-                    <div class="input-container">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="search" placeholder="Ex: Tarte aux fraises">
+            <!-- Search Bar + Pagination + Add Recipe Button -->
+            <div
+                class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-4 md:p-6 bg-gray-100 shadow-md rounded-lg gap-4">
+                <!-- Search Bar -->
+                <div class="relative w-full md:w-2/5">
+                    <div class="flex flex-col sm:flex-row w-full gap-2">
+                        <div class="relative flex-grow">
+                            <i class="fas fa-search absolute left-4 top-3 text-brand-gray"></i>
+                            <input type="text" id="recipeSearchInput" placeholder="Rechercher une recette..."
+                                class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy transition-all shadow-sm">
+                        </div>
+                        <button id="recipeSearchButton"
+                            class="px-4 py-3 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all shadow-md">
+                            Rechercher
+                        </button>
                     </div>
                 </div>
-                <div class="glass-effect">
-                    <label for="category" class="block text-brand-dark font-semibold text-lg mb-2">Catégorie:</label>
-                    <div class="input-container">
-                        <i class="fas fa-layer-group"></i>
-                        <select id="category">
+
+                <!-- Filters -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full md:w-auto">
+                    <!-- Category Selector -->
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <label for="recipeCategory" class="text-brand-dark font-medium whitespace-nowrap">Catégorie
+                            :</label>
+                        <select id="recipeCategory"
+                            class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
                             <option value="all">Toutes</option>
                             <option value="entree">Entrée</option>
                             <option value="plat">Plat Principal</option>
                             <option value="dessert">Dessert</option>
                         </select>
                     </div>
-                </div>
-                <div class="glass-effect">
-                    <label for="tags" class="block text-brand-dark font-semibold text-lg mb-2">Tags:</label>
-                    <div class="input-container">
-                        <i class="fas fa-tags"></i>
-                        <select id="tags">
+
+                    <!-- Tags Selector -->
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <label for="recipeTags" class="text-brand-dark font-medium whitespace-nowrap">Tags :</label>
+                        <select id="recipeTags"
+                            class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
                             <option value="all">Tous</option>
                             <option value="vegan">Vegan</option>
                             <option value="gluten-free">Sans Gluten</option>
                             <option value="quick">Rapide</option>
                         </select>
                     </div>
-                </div>
-                <div class="glass-effect">
-                    <label for="pagination" class="block text-brand-dark font-semibold text-lg mb-2">Afficher par
-                        page:</label>
-                    <div class="input-container">
-                        <i class="fas fa-file-alt"></i>
-                        <select id="pagination">
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
+
+                    <!-- Pagination Selector + Add Recipe Button -->
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <label for="recipePagination" class="text-brand-dark font-medium whitespace-nowrap">Afficher
+                            :</label>
+                        <select id="recipePagination"
+                            class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
+                            <option value="5">5 par page</option>
+                            <option value="10">10 par page</option>
+                            <option value="15">15 par page</option>
                         </select>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-
-    <!-- Recipes List Section -->
-    <section class="py-8 bg-brand-peach">
-        <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="recipes-grid">
-                <!-- Example Recipe Card -->
                 <div
                     class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
                     <div class="relative">
                         <img src="https://i0.wp.com/mesbrouillonsdecuisine.fr/wp-content/uploads/2022/06/IMG_1978.jpg?resize=1080%2C1512&ssl=1"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                             alt="Recette">
-                        <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-burgundy text-xl"></i>
-                        </div>
+                        <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                            <i class="fas fa-heart text-brand-gray text-xl"></i>
+                        </button>
                     </div>
                     <div class="p-6">
                         <div class="flex items-center space-x-2 mb-3">
@@ -433,25 +364,23 @@
                         </div>
                     </div>
                 </div>
-                <!-- Repeat similar cards as needed -->
             </div>
-        </div>
-    </section>
+            <!-- Pagination Controls -->
+            <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
+                <button id="prevPage"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</button>
+                <button
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">1</button>
+                <button
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">2</button>
+                <button
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">3</button>
 
-    <!-- Pagination -->
-    <section class="py-8 bg-brand-peach">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-center space-x-2">
-                <button
-                    class="px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Précédent</button>
-                <button
-                    class="px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">1</button>
-                <button
-                    class="px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">2</button>
-                <button
-                    class="px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">3</button>
-                <button
-                    class="px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Suivant</button>
+
+                <div id="pageNumbers" class="flex space-x-2"></div>
+
+                <button id="nextPage"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</button>
             </div>
         </div>
     </section>
@@ -468,6 +397,9 @@
                         <div class="carousel-content">
                             <h3 class="text-xl font-bold">Pizza Margherita</h3>
                             <p>Une pizza italienne classique avec mozzarella et basilic.</p>
+                            <a href="detail-recette.html"
+                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
+                                Voir la recette</a>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -476,6 +408,9 @@
                         <div class="carousel-content">
                             <h3 class="text-xl font-bold">Salade Gourmet aux Agrumes</h3>
                             <p>Un mélange frais et savoureux de fruits et légumes.</p>
+                            <a href="detail-recette.html"
+                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
+                                Voir la recette</a>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -484,6 +419,9 @@
                         <div class="carousel-content">
                             <h3 class="text-xl font-bold">Saumon Grillé aux Herbes</h3>
                             <p>Un plat sain et délicieux aux arômes méditerranéens.</p>
+                            <a href="detail-recette.html"
+                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
+                                Voir la recette</a>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -492,6 +430,9 @@
                         <div class="carousel-content">
                             <h3 class="text-xl font-bold">Tarte aux Fruits Rouges</h3>
                             <p>Une tarte délicieuse garnie de fruits rouges frais.</p>
+                            <a href="detail-recette.html"
+                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
+                                Voir la recette</a>
                         </div>
                     </div>
                 </div>
@@ -500,85 +441,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-brand-burgundy text-white py-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="playfair text-2xl font-bold mb-4">Un Zeste d'Inspiration</h3>
-                    <p class="text-brand-peach">
-                        Votre destination culinaire d'excellence pour découvrir et partager des recettes
-                        extraordinaires.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="playfair text-xl font-semibold mb-4">Navigation</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-brand-peach hover:text-white transition-colors">Accueil</a>
-                        </li>
-                        <li><a href="recipes.html"
-                                class="text-brand-peach hover:text-white transition-colors">Recettes</a></li>
-                        <li><a href="chefs.html" class="text-brand-peach hover:text-white transition-colors">Chefs</a>
-                        </li>
-                        <li><a href="blog.html" class="text-brand-peach hover:text-white transition-colors">Blog</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="playfair text-xl font-semibold mb-4">Légal</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Conditions
-                                d'utilisation</a></li>
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Politique de
-                                confidentialité</a></li>
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Mentions légales</a>
-                        </li>
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="playfair text-xl font-semibold mb-4">Suivez-nous</h4>
-                    <div class="flex space-x-4 mb-6">
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                    <div class="text-brand-peach">
-                        <p class="mb-2">Newsletter culinaire</p>
-                        <div class="flex">
-                            <input type="email" placeholder="Votre email"
-                                class="bg-white/10 rounded-l-full py-2 px-4 focus:outline-none focus:bg-white/20 transition-all flex-grow">
-                            <button
-                                class="bg-white text-brand-burgundy px-6 rounded-r-full hover:bg-brand-peach transition-all">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Séparateur -->
-            <div class="border-t border-white/10 my-12"></div>
-
-            <!-- Footer Bottom -->
-            <div class="flex justify-center items-center text-brand-peach text-sm">
-                <p>&copy; 2024 Un Zeste d'Inspiration. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer>
-
+    @include('partials.footerc')
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -627,7 +490,6 @@
         });
 
         // Carousel functionality
-        // Add this to your existing script section
         document.addEventListener('DOMContentLoaded', function () {
             // Carousel functionality
             let currentIndex = 0;
