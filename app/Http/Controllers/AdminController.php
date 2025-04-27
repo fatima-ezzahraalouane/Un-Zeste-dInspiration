@@ -42,7 +42,18 @@ class AdminController extends Controller
             'user',
             'stats',
             'categories',
-            'topChefs', 'users'
+            'topChefs',
+            'users'
         ));
+    }
+
+    public function approveUser(User $user)
+    {
+        $user->update([
+            'is_approved' => true,
+            'statut' => 'Actif'
+        ]);
+
+        return back()->with('success', 'Utilisateur approuvé avec succès.');
     }
 }
