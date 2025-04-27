@@ -212,9 +212,12 @@
                     <div class="relative">
                         <img src="{{ $recipe->image ?? 'https://via.placeholder.com/400x300' }}"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" alt="{{ $recipe->title }}">
-                        <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-gray text-xl"></i>
+                        <button
+                            class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md toggle-favorite"
+                            data-recipe-id="{{ $recipe->id }}">
+                            <i class="fas fa-heart text-xl {{ in_array($recipe->id, $likedRecipes) ? 'text-brand-burgundy' : 'text-brand-gray' }}"></i>
                         </button>
+
                     </div>
                     <div class="p-6">
                         <div class="flex items-center space-x-2 mb-3">
@@ -466,6 +469,73 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.toggle-favorite').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    const recipeId = this.dataset.recipeId;
+                    const icon = this.querySelector('i');
+                    const isFavorite = icon.classList.contains('text-brand-burgundy');
+
+                    const url = isFavorite ?
+                        "{{ route('favorites.destroy') }}" :
+                        "{{ route('favorites.store') }}";
+
+                    fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            },
+                            body: JSON.stringify({
+                                recipe_id: recipeId
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (isFavorite) {
+                                icon.classList.remove('text-brand-burgundy');
+                                icon.classList.add('text-brand-gray');
+
+                                // ✅ Toast pour Retirer
+                                Toastify({
+                                    text: "Recette retirée des favoris ❌",
+                                    duration: 3000,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    backgroundColor: "#f87171",
+                                }).showToast();
+                            } else {
+                                icon.classList.remove('text-brand-gray');
+                                icon.classList.add('text-brand-burgundy');
+
+                                // ✅ Toast pour Ajouter
+                                Toastify({
+                                    text: "Recette ajoutée aux favoris ✅",
+                                    duration: 3000,
+                                    close: true,
+                                    gravity: "top",
+                                    position: "right",
+                                    backgroundColor: "#34d399",
+                                }).showToast();
+                            }
+                        })
+                        .catch(error => console.error('Erreur favori:', error));
+                });
+            });
+        });
+    </script>
+
+    <!-- Toastify CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- Toastify JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 
 </body>
 
