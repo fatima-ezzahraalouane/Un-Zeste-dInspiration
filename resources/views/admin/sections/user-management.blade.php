@@ -94,193 +94,73 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
+                    @foreach ($users as $user)
                     <tr class="hover:bg-gray-50">
-                        <!-- <td class="px-4 py-4">
-                                        <input type="checkbox"
-                                            class="rounded text-brand-burgundy focus:ring-brand-burgundy">
-                                    </td> -->
                         <td class="px-4 py-4">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
-                                    <img src="../profilCV.jpg" alt="User"
-                                        class="w-full h-full object-cover" />
+                                    <img src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('images/default-avatar.png') }}" alt="User" class="w-full h-full object-cover" />
                                 </div>
                                 <div>
-                                    <div class="font-medium">Fatima-Ezzahra Alouane</div>
-                                    <div class="text-sm text-gray-500">fatima@gmail.com</div>
+                                    <div class="font-medium">{{ $user->last_name }} {{ $user->first_name }}</div>
+                                    <div class="text-sm text-gray-500">{{ $user->email }}</div>
                                 </div>
                             </div>
                         </td>
+
                         <td class="px-4 py-4 text-sm">
-                            Chef
+                            {{ $user->role->name_user }}
                         </td>
-                        <!-- <td class="px-4 py-4 text-sm">
-                                        32
-                                    </td> -->
+
                         <td class="px-4 py-4 text-sm">
-                            12/01/2025
+                            {{ optional($user->created_at)->format('d/m/Y') }}
                         </td>
+
                         <td class="px-4 py-4 text-sm">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                                Actif
-                            </span>
+                            @if($user->statut === 'Suspendu')
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Suspendu</span>
+                            @elseif($user->statut === 'Actif' && $user->is_approved)
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Actif</span>
+                            @else
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">En attente</span>
+                            @endif
                         </td>
+
                         <td class="px-4 py-4 text-right text-sm">
                             <div class="flex justify-end space-x-2">
-                                <!-- <button class="text-brand-burgundy hover:text-brand-red">
-                                                <i class="fas fa-eye"></i>
-                                            </button> -->
-                                <!-- <button class="text-brand-burgundy hover:text-brand-red">
-                                                <i class="fas fa-edit"></i>
-                                            </button> -->
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
+                                @if(!$user->is_approved)
+                                <form action="{{ route('admin.users.approve', $user) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="text-brand-burgundy hover:text-brand-red" title="Approuver">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </form>
+                                @endif
+
+                                @if($user->statut !== 'Suspendu')
+                                <form action="{{ route('admin.users.suspend', $user) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="text-brand-burgundy hover:text-brand-red" title="Suspendre">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
+                                @endif
+
+                                <form action="{{ route('admin.users.delete', $user) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-brand-burgundy hover:text-brand-red" title="Supprimer">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>
-                    <tr class="hover:bg-gray-50">
-                        <!-- <td class="px-4 py-4">
-                                        <input type="checkbox"
-                                            class="rounded text-brand-burgundy focus:ring-brand-burgundy">
-                                    </td> -->
-                        <td class="px-4 py-4">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
-                                    <img src="../profilCV.jpg" alt="User"
-                                        class="w-full h-full object-cover" />
-                                </div>
-                                <div>
-                                    <div class="font-medium">Moi</div>
-                                    <div class="text-sm text-gray-500">moi@email.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-4 py-4 text-sm">
-                            Chef
-                        </td>
-                        <!-- <td class="px-4 py-4 text-sm">
-                                        0
-                                    </td> -->
-                        <td class="px-4 py-4 text-sm">
-                            20/03/2025
-                        </td>
-                        <td class="px-4 py-4 text-sm">
-                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">
-                                En attente
-                            </span>
-                        </td>
-                        <td class="px-4 py-4 text-right text-sm">
-                            <div class="flex justify-end space-x-2">
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-gray-50">
-                        <!-- <td class="px-4 py-4">
-                                        <input type="checkbox"
-                                            class="rounded text-brand-burgundy focus:ring-brand-burgundy">
-                                    </td> -->
-                        <td class="px-4 py-4">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
-                                    <img src="../profilCV.jpg" alt="User"
-                                        class="w-full h-full object-cover" />
-                                </div>
-                                <div>
-                                    <div class="font-medium">Fatii</div>
-                                    <div class="text-sm text-gray-500">fatii@email.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-4 py-4 text-sm">
-                            Client
-                        </td>
-                        <!-- <td class="px-4 py-4 text-sm">
-                                        -
-                                    </td> -->
-                        <td class="px-4 py-4 text-sm">
-                            15/02/2025
-                        </td>
-                        <td class="px-4 py-4 text-sm">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                                Actif
-                            </span>
-                        </td>
-                        <td class="px-4 py-4 text-right text-sm">
-                            <div class="flex justify-end space-x-2">
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-gray-50">
-                        <!-- <td class="px-4 py-4">
-                                        <input type="checkbox"
-                                            class="rounded text-brand-burgundy focus:ring-brand-burgundy">
-                                    </td> -->
-                        <td class="px-4 py-4">
-                            <div class="flex items-center">
-                                <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
-                                    <img src="../profilCV.jpg" alt="User"
-                                        class="w-full h-full object-cover" />
-                                </div>
-                                <div>
-                                    <div class="font-medium">Fatima</div>
-                                    <div class="text-sm text-gray-500">fatima@email.com</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-4 py-4 text-sm">
-                            Chef
-                        </td>
-                        <!-- <td class="px-4 py-4 text-sm">
-                                        28
-                                    </td> -->
-                        <td class="px-4 py-4 text-sm">
-                            05/01/2025
-                        </td>
-                        <td class="px-4 py-4 text-sm">
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">
-                                Actif
-                            </span>
-                        </td>
-                        <td class="px-4 py-4 text-right text-sm">
-                            <div class="flex justify-end space-x-2">
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                                <button class="text-brand-burgundy hover:text-brand-red">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
+
             </table>
         </div>
         <!-- Pagination -->
@@ -288,41 +168,55 @@
             <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                 <div>
                     <p class="text-sm text-gray-700">
-                        Affichage de <span class="font-medium">1</span> à <span
-                            class="font-medium">10</span> sur <span class="font-medium">97</span> résultats
+                        Affichage de
+                        <span class="font-medium">{{ $users->firstItem() }}</span>
+                        à
+                        <span class="font-medium">{{ $users->lastItem() }}</span>
+                        sur
+                        <span class="font-medium">{{ $users->total() }}</span> résultats
                     </p>
                 </div>
                 <div>
-                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-                        aria-label="Pagination">
-                        <a href="#"
+                    <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                        <!-- Previous Page Link -->
+                        @if ($users->onFirstPage())
+                        <span
+                            class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-400">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        @else
+                        <a href="{{ $users->previousPageUrl() }}"
                             class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                             <i class="fas fa-chevron-left"></i>
                         </a>
-                        <a href="#"
-                            class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                            1
-                        </a>
-                        <a href="#"
-                            class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-brand-burgundy text-sm font-medium text-white">
-                            2
-                        </a>
-                        <a href="#"
-                            class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                            3
-                        </a>
+                        @endif
+
+                        @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
+                        @if ($page == $users->currentPage())
                         <span
-                            class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
-                            ...
+                            class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-brand-burgundy text-sm font-medium text-white">
+                            {{ $page }}
                         </span>
-                        <a href="#"
+                        @else
+                        <a href="{{ $url }}"
                             class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                            10
+                            {{ $page }}
                         </a>
-                        <a href="#"
+                        @endif
+                        @endforeach
+
+                        <!-- Next Page Link -->
+                        @if ($users->hasMorePages())
+                        <a href="{{ $users->nextPageUrl() }}"
                             class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
                             <i class="fas fa-chevron-right"></i>
                         </a>
+                        @else
+                        <span
+                            class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-400">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                        @endif
                     </nav>
                 </div>
             </div>
