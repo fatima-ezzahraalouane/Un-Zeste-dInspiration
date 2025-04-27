@@ -3,7 +3,6 @@
 namespace App\Repositories\Favorite;
 
 use App\Models\Favorite;
-use App\Repositories\Favorite\FavoriteRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests\Favorite\DeleteFavoriteRequest;
 use App\Http\Requests\Favorite\StoreFavoriteRequest;
