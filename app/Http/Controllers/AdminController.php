@@ -56,4 +56,13 @@ class AdminController extends Controller
 
         return back()->with('success', 'Utilisateur approuvé avec succès.');
     }
+
+    public function suspendUser(User $user)
+    {
+        $user->update([
+            'statut' => 'Suspendu'
+        ]);
+
+        return back()->with('success', 'Utilisateur suspendu avec succès.');
+    }
 }
