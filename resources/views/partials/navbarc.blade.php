@@ -3,14 +3,14 @@
         <div class="flex justify-between items-center h-20">
             <a href="#" class="flex items-center space-x-2">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-18 w-24">
-                <span class="playfair text-2xl font-bold text-brand-burgundy">
+                <!-- <span class="playfair text-2xl font-bold text-brand-burgundy">
                     Un Zeste d'Inspiration
-                </span>
+                </span> -->
             </a>
 
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Accueil</a>
-                <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Recettes</a>
+                <a href="{{ route('gourmand.accueil') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Accueil</a>
+                <a href="{{ route('gourmand.recette') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Recettes</a>
                 <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Blog</a>
                 <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Mes Favoris</a>
                 <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Profil</a>
