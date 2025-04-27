@@ -32,10 +32,17 @@ class AdminController extends Controller
             ->take(3)
             ->get();
 
+        $users = User::whereHas('role', function ($query) {
+            $query->whereIn('name_user', ['Chef', 'Gourmand']);
+        })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
         return view('admin.dashboard', compact(
             'user',
             'stats',
-            'categories', 'topChefs'
+            'categories',
+            'topChefs', 'users'
         ));
     }
 }
