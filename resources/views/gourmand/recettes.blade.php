@@ -207,167 +207,40 @@
             </form>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="recipes-grid">
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
+                @foreach($recipes as $recipe)
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
                     <div class="relative">
-                        <img src="https://i0.wp.com/mesbrouillonsdecuisine.fr/wp-content/uploads/2022/06/IMG_1978.jpg?resize=1080%2C1512&ssl=1"
-                            class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                            alt="Recette">
+                        <img src="{{ $recipe->image ?? 'https://via.placeholder.com/400x300' }}"
+                            class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" alt="{{ $recipe->title }}">
                         <button class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
                             <i class="fas fa-heart text-brand-gray text-xl"></i>
                         </button>
                     </div>
                     <div class="p-6">
                         <div class="flex items-center space-x-2 mb-3">
-                            <span class="bg-brand-coral text-white text-sm px-3 py-1 rounded-full">Entrée</span>
+                            <span class="bg-brand-coral text-white text-sm px-3 py-1 rounded-full">{{ $recipe->category->name ?? 'Sans catégorie' }}</span>
                             <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full flex items-center">
-                                <i class="fas fa-clock mr-1"></i> 20 min
+                                <i class="fas fa-clock mr-1"></i> {{ $recipe->preparation_time + $recipe->cooking_time }} min
                             </span>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Salade de Quinoa</h3>
-                        <p class="text-brand-gray mb-4">Une salade légère et rafraîchissante de quinoa avec des légumes
-                            frais.</p>
+                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">{{ $recipe->title }}</h3>
+                        <p class="text-brand-gray mb-4">{{ Str::limit($recipe->description, 90) }}</p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?img=8" class="w-8 h-8 rounded-full" alt="Auteur">
-                                <span class="text-sm text-brand-gray">Par Chef Laura</span>
+                                <img src="https://i.pravatar.cc/40?u={{ $recipe->chef->user->email ?? 'default' }}" class="w-8 h-8 rounded-full" alt="Chef">
+                                <span class="text-sm text-brand-gray">
+                                    Par {{ $recipe->chef->user->first_name ?? 'Chef' }} {{ $recipe->chef->user->last_name ?? '' }}
+                                </span>
                             </div>
-                            <button
-                                class="rounded-lg bg-brand-burgundy text-white px-4 py-2 text-sm font-medium hover:bg-brand-red flex items-center">
+                            <a href="#" class="rounded-lg bg-brand-burgundy text-white px-4 py-2 text-sm font-medium hover:bg-brand-red flex items-center">
                                 <i class="fas fa-eye mr-2"></i> Voir la recette
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
-                    <div class="relative">
-                        <img src="https://i0.wp.com/mesbrouillonsdecuisine.fr/wp-content/uploads/2022/06/IMG_1978.jpg?resize=1080%2C1512&ssl=1"
-                            class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                            alt="Recette">
-                        <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-burgundy text-xl"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="bg-brand-coral text-white text-sm px-3 py-1 rounded-full">Entrée</span>
-                            <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full flex items-center">
-                                <i class="fas fa-clock mr-1"></i> 20 min
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Salade de Quinoa</h3>
-                        <p class="text-brand-gray mb-4">Une salade légère et rafraîchissante de quinoa avec des légumes
-                            frais.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?img=8" class="w-8 h-8 rounded-full" alt="Auteur">
-                                <span class="text-sm text-brand-gray">Par Chef Laura</span>
-                            </div>
-                            <button
-                                class="rounded-lg bg-brand-burgundy text-white px-4 py-2 text-sm font-medium hover:bg-brand-red flex items-center">
-                                <i class="fas fa-eye mr-2"></i> Voir la recette
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
-                    <div class="relative">
-                        <img src="https://i0.wp.com/mesbrouillonsdecuisine.fr/wp-content/uploads/2022/06/IMG_1978.jpg?resize=1080%2C1512&ssl=1"
-                            class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                            alt="Recette">
-                        <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-burgundy text-xl"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="bg-brand-coral text-white text-sm px-3 py-1 rounded-full">Entrée</span>
-                            <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full flex items-center">
-                                <i class="fas fa-clock mr-1"></i> 20 min
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Salade de Quinoa</h3>
-                        <p class="text-brand-gray mb-4">Une salade légère et rafraîchissante de quinoa avec des légumes
-                            frais.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?img=8" class="w-8 h-8 rounded-full" alt="Auteur">
-                                <span class="text-sm text-brand-gray">Par Chef Laura</span>
-                            </div>
-                            <button
-                                class="rounded-lg bg-brand-burgundy text-white px-4 py-2 text-sm font-medium hover:bg-brand-red flex items-center">
-                                <i class="fas fa-eye mr-2"></i> Voir la recette
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
-                    <div class="relative">
-                        <img src="https://i0.wp.com/mesbrouillonsdecuisine.fr/wp-content/uploads/2022/06/IMG_1978.jpg?resize=1080%2C1512&ssl=1"
-                            class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                            alt="Recette">
-                        <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-burgundy text-xl"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="bg-brand-coral text-white text-sm px-3 py-1 rounded-full">Entrée</span>
-                            <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full flex items-center">
-                                <i class="fas fa-clock mr-1"></i> 20 min
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Salade de Quinoa</h3>
-                        <p class="text-brand-gray mb-4">Une salade légère et rafraîchissante de quinoa avec des légumes
-                            frais.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?img=8" class="w-8 h-8 rounded-full" alt="Auteur">
-                                <span class="text-sm text-brand-gray">Par Chef Laura</span>
-                            </div>
-                            <button
-                                class="rounded-lg bg-brand-burgundy text-white px-4 py-2 text-sm font-medium hover:bg-brand-red flex items-center">
-                                <i class="fas fa-eye mr-2"></i> Voir la recette
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
-                    <div class="relative">
-                        <img src="https://i0.wp.com/mesbrouillonsdecuisine.fr/wp-content/uploads/2022/06/IMG_1978.jpg?resize=1080%2C1512&ssl=1"
-                            class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
-                            alt="Recette">
-                        <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
-                            <i class="fas fa-heart text-brand-burgundy text-xl"></i>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center space-x-2 mb-3">
-                            <span class="bg-brand-coral text-white text-sm px-3 py-1 rounded-full">Entrée</span>
-                            <span class="bg-gray-100 text-gray-600 text-sm px-3 py-1 rounded-full flex items-center">
-                                <i class="fas fa-clock mr-1"></i> 20 min
-                            </span>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Salade de Quinoa</h3>
-                        <p class="text-brand-gray mb-4">Une salade légère et rafraîchissante de quinoa avec des légumes
-                            frais.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?img=8" class="w-8 h-8 rounded-full" alt="Auteur">
-                                <span class="text-sm text-brand-gray">Par Chef Laura</span>
-                            </div>
-                            <button
-                                class="rounded-lg bg-brand-burgundy text-white px-4 py-2 text-sm font-medium hover:bg-brand-red flex items-center">
-                                <i class="fas fa-eye mr-2"></i> Voir la recette
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
+
             <!-- Pagination Controls -->
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
                 <button id="prevPage"
