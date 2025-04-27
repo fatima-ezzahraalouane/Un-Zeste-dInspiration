@@ -451,6 +451,22 @@
             track.addEventListener('touchstart', () => clearInterval(slideInterval));
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categorySelect = document.getElementById('recipeCategory');
+            const tagSelect = document.getElementById('recipeTags');
+            const perPageSelect = document.getElementById('recipePagination');
+            const form = categorySelect.closest('form');
+
+            [categorySelect, tagSelect, perPageSelect].forEach(select => {
+                select.addEventListener('change', function() {
+                    form.submit();
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
