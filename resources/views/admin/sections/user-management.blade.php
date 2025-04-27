@@ -128,30 +128,33 @@
 
                         <td class="px-4 py-4 text-right text-sm">
                             <div class="flex justify-end space-x-2">
-                                @if(!$user->is_approved)
+                                @if(!$user->is_approved || $user->statut == 'Suspendu')
+                                <!-- Bouton pour Approuver ou Réactiver -->
                                 <form action="{{ route('admin.users.approve', $user) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="text-brand-burgundy hover:text-brand-red" title="Approuver">
+                                    <button class="text-brand-burgundy hover:text-brand-red" title="Approuver / Réactiver">
                                         <i class="fas fa-check"></i>
                                     </button>
                                 </form>
                                 @endif
 
-                                @if($user->statut !== 'Suspendu')
+                                @if($user->statut != 'Suspendu')
+                                <!-- Bouton pour Suspendre -->
                                 <form action="{{ route('admin.users.suspend', $user) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="text-brand-burgundy hover:text-brand-red" title="Suspendre">
+                                    <button class="text-brand-burgundy hover:text-brand-red" title="Suspendre">
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </form>
                                 @endif
 
+                                <!-- Bouton pour Supprimer (toujours présent) -->
                                 <form action="{{ route('admin.users.delete', $user) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-brand-burgundy hover:text-brand-red" title="Supprimer">
+                                    <button class="text-brand-burgundy hover:text-brand-red" title="Supprimer">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
