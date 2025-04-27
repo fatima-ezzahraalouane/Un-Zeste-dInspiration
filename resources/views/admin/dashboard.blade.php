@@ -169,7 +169,7 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-brand-gray">Total Recettes</p>
-                                <h3 class="text-3xl font-bold text-brand-dark mt-2">246</h3>
+                                <h3 class="text-3xl font-bold text-brand-dark mt-2">{{ $stats['recipes'] }}</h3>
                             </div>
                             <div class="bg-brand-peach/30 p-3 rounded-full">
                                 <i class="fas fa-utensils text-brand-burgundy text-xl"></i>
@@ -181,7 +181,7 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-brand-gray">Expériences Culinaires</p>
-                                <h3 class="text-3xl font-bold text-brand-dark mt-2">84</h3>
+                                <h3 class="text-3xl font-bold text-brand-dark mt-2">{{ $stats['experiences'] }}</h3>
                             </div>
                             <div class="bg-brand-peach/30 p-3 rounded-full">
                                 <i class="fas fa-cookie-bite text-brand-burgundy text-xl"></i>
@@ -193,7 +193,7 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-brand-gray">Total Chefs</p>
-                                <h3 class="text-3xl font-bold text-brand-dark mt-2">53</h3>
+                                <h3 class="text-3xl font-bold text-brand-dark mt-2">{{ $stats['chefs'] }}</h3>
                             </div>
                             <div class="bg-brand-peach/30 p-3 rounded-full">
                                 <i class="fas fa-users text-brand-burgundy text-xl"></i>
@@ -205,7 +205,7 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-brand-gray">Total Clients</p>
-                                <h3 class="text-3xl font-bold text-brand-dark mt-2">80</h3>
+                                <h3 class="text-3xl font-bold text-brand-dark mt-2">{{ $stats['gourmands'] }}</h3>
                             </div>
                             <div class="bg-brand-peach/30 p-3 rounded-full">
                                 <i class="fas fa-users text-brand-burgundy text-xl"></i>
