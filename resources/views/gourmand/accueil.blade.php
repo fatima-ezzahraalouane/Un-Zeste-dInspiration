@@ -183,9 +183,8 @@
                                     Par {{ $recipe->chef->user->last_name ?? 'Chef' }} {{ $recipe->chef->user->first_name ?? '' }}
                                 </span>
                             </div>
-                            <a href="#"
-                                class="px-4 py-2 bg-brand-burgundy text-white rounded-full text-sm hover:bg-brand-red transition-colors">
-                                Voir la recette
+                            <a href="{{ route('gourmand.recettes.show', $recipe->id) }}" class="rounded-lg bg-brand-burgundy text-white px-4 py-2 text-sm font-medium hover:bg-brand-red flex items-center">
+                                <i class="fas fa-eye mr-2"></i> Voir la recette
                             </a>
                         </div>
                     </div>
