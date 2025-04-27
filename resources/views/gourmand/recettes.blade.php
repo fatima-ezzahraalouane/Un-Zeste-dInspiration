@@ -148,60 +148,65 @@
             <!-- Search Bar + Pagination + Add Recipe Button -->
             <div
                 class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-4 md:p-6 bg-gray-100 shadow-md rounded-lg gap-4">
-                <!-- Search Bar -->
-                <div class="relative w-full md:w-2/5">
-                    <div class="flex flex-col sm:flex-row w-full gap-2">
-                        <div class="relative flex-grow">
-                            <i class="fas fa-search absolute left-4 top-3 text-brand-gray"></i>
-                            <input type="text" id="recipeSearchInput" placeholder="Rechercher une recette..."
-                                class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy transition-all shadow-sm">
+                <form method="GET" action="{{ route('gourmand.recettes') }}" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-4 md:p-6 bg-gray-100 shadow-md rounded-lg gap-4">
+                    <!-- Search Bar -->
+                    <div class="relative w-full md:w-2/5">
+                        <div class="flex flex-col sm:flex-row w-full gap-2">
+                            <div class="relative flex-grow">
+                                <i class="fas fa-search absolute left-4 top-3 text-brand-gray"></i>
+                                <input type="text" name="title" value="{{ request('title') }}" placeholder="Rechercher une recette..."
+                                    class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy transition-all shadow-sm">
+                            </div>
+                            <button type="submit"
+                                class="px-4 py-3 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all shadow-md">
+                                Rechercher
+                            </button>
                         </div>
-                        <button id="recipeSearchButton"
-                            class="px-4 py-3 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all shadow-md">
-                            Rechercher
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Filters -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full md:w-auto">
-                    <!-- Category Selector -->
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <label for="recipeCategory" class="text-brand-dark font-medium whitespace-nowrap">Catégorie
-                            :</label>
-                        <select id="recipeCategory"
-                            class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
-                            <option value="all">Toutes</option>
-                            <option value="entree">Entrée</option>
-                            <option value="plat">Plat Principal</option>
-                            <option value="dessert">Dessert</option>
-                        </select>
                     </div>
 
-                    <!-- Tags Selector -->
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <label for="recipeTags" class="text-brand-dark font-medium whitespace-nowrap">Tags :</label>
-                        <select id="recipeTags"
-                            class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
-                            <option value="all">Tous</option>
-                            <option value="vegan">Vegan</option>
-                            <option value="gluten-free">Sans Gluten</option>
-                            <option value="quick">Rapide</option>
-                        </select>
-                    </div>
+                    <!-- Filters -->
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full md:w-auto">
+                        <!-- Category Selector -->
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <label for="recipeCategory" class="text-brand-dark font-medium whitespace-nowrap">Catégorie :</label>
+                            <select name="category_id" id="recipeCategory"
+                                class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
+                                <option value="all">Toutes</option>
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                    <!-- Pagination Selector + Add Recipe Button -->
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <label for="recipePagination" class="text-brand-dark font-medium whitespace-nowrap">Afficher
-                            :</label>
-                        <select id="recipePagination"
-                            class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
-                            <option value="5">5 par page</option>
-                            <option value="10">10 par page</option>
-                            <option value="15">15 par page</option>
-                        </select>
+                        <!-- Tags Selector -->
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <label for="recipeTags" class="text-brand-dark font-medium whitespace-nowrap">Tags :</label>
+                            <select name="tag_id" id="recipeTags"
+                                class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
+                                <option value="all">Tous</option>
+                                @foreach($tags as $tag)
+                                <option value="{{ $tag->id }}" {{ request('tag_id') == $tag->id ? 'selected' : '' }}>
+                                    {{ $tag->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Pagination Selector -->
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <label for="recipePagination" class="text-brand-dark font-medium whitespace-nowrap">Afficher :</label>
+                            <select name="per_page" id="recipePagination"
+                                class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
+                                <option value="5" {{ request('per_page') == 5 ? 'selected' : '' }}>5 par page</option>
+                                <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10 par page</option>
+                                <option value="15" {{ request('per_page') == 15 ? 'selected' : '' }}>15 par page</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                </form>
+
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="recipes-grid">
                 <div
@@ -490,7 +495,7 @@
         });
 
         // Carousel functionality
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Carousel functionality
             let currentIndex = 0;
             const track = document.querySelector('.carousel-track');
