@@ -183,12 +183,9 @@
                         class="bg-white bg-opacity-70 backdrop-blur-md shadow-lg p-6 rounded-xl hover:shadow-2xl transition-all duration-300">
                         <h2 class="text-2xl font-bold text-brand-burgundy mb-4">📜 Instructions</h2>
                         <ol id="instructions-list" class="list-decimal list-inside text-brand-dark space-y-2">
-                            <li>Faire revenir la viande avec l’oignon</li>
-                            <li>Ajouter les épices, tomates et concentré. Faire revenir 5 min</li>
-                            <li>Ajouter l’eau et le céleri. Cuire 1h à feu doux</li>
-                            <li>Ajouter pois chiches, lentilles et cuire 30 min</li>
-                            <li>Verser la farine diluée et ajouter vermicelles/riz</li>
-                            <li>Cuire encore 10 min et servir chaud.</li>
+                            @foreach(explode(',', $recipe->instructions) as $instruction)
+                            <li>{{ trim($instruction) }}</li>
+                            @endforeach
                         </ol>
                     </div>
                 </div>
