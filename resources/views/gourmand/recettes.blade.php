@@ -224,12 +224,13 @@
                             </span>
                         </div>
                         <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">{{ $recipe->title }}</h3>
-                        <p class="text-brand-gray mb-4">{{ Str::limit($recipe->description, 90) }}</p>
+                        <p class="text-brand-gray mb-4">{{ Str::limit($recipe->description, 50) }}</p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
-                                <img src="https://i.pravatar.cc/40?u={{ $recipe->chef->user->email ?? 'default' }}" class="w-8 h-8 rounded-full" alt="Chef">
+                                <img src="{{ $recipe->chef->user->avatar ?? 'https://img.freepik.com/premium-vector/chef-restaurant-avatar-cartoon-illustration_1951-375.jpg?w=360' }}" alt="Chef"
+                                    class="w-8 h-8 rounded-full border-2 border-brand-coral">
                                 <span class="text-sm text-brand-gray">
-                                    Par {{ $recipe->chef->user->first_name ?? 'Chef' }} {{ $recipe->chef->user->last_name ?? '' }}
+                                    Par {{ $recipe->chef->user->last_name ?? 'Chef' }} {{ $recipe->chef->user->first_name ?? '' }}
                                 </span>
                             </div>
                             <a href="#" class="rounded-lg bg-brand-burgundy text-white px-4 py-2 text-sm font-medium hover:bg-brand-red flex items-center">
