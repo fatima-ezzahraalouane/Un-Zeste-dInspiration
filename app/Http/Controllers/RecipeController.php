@@ -8,6 +8,7 @@ use App\Http\Requests\Recipe\UpdateRecipeRequest;
 use App\Repositories\Recipe\RecipeRepositoryInterface;
 use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\Tag\TagRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Recipe;
 use App\Models\Chef;
@@ -67,6 +68,11 @@ class RecipeController extends Controller
         $categories = $this->categoryRepo->getAll();
         $tags = $this->tagRepo->all();
 
-        return view('gourmand.recettes', compact('recipes', 'categories', 'tags'));
+        $likedRecipes = [];
+        if (Auth::check() && Auth::user()->role->name_user === 'Gourmand' && Auth::user()->gourmand) {
+            $likedRecipes = Auth::user()->gourmand->favorites->pluck('id')->toArray();
+        }
+
+        return view('gourmand.recettes', compact('recipes', 'categories', 'tags', 'likedRecipes'));
     }
 }
