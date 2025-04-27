@@ -80,7 +80,7 @@ Route::middleware(['auth', 'check.role:Chef'])->prefix('chef')->group(function (
 // routes gourmand
 Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(function () {
     Route::get('/accueil', [GourmandController::class, 'index'])->name('gourmand.accueil');
-    Route::get('/recettes-top', [RecipeController::class, 'topForGourmand'])->name('recipes.top.gourmand');
+    Route::get('/recette', [RecipeController::class, 'show'])->name('gourmand.recette');
 
     // Routes pour Favoris
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
