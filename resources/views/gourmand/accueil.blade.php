@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     <title>Un Zeste d'Inspiration - Accueil Client</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -173,15 +174,13 @@
                         <h3 class="playfair text-xl font-bold text-brand-burgundy mb-2">
                             {{ $recipe->title }}
                         </h3>
-                        <p class="text-brand-gray mb-4">
-                            {{ \Illuminate\Support\Str::limit($recipe->description, 100) }}
-                        </p>
+                        <p class="text-brand-gray mb-4">{{ Str::limit($recipe->description, 50) }}</p>
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-2">
                                 <img src="{{ $recipe->chef->user->avatar ?? 'https://img.freepik.com/premium-vector/chef-restaurant-avatar-cartoon-illustration_1951-375.jpg?w=360' }}" alt="Chef"
                                     class="w-8 h-8 rounded-full border-2 border-brand-coral">
                                 <span class="text-sm text-brand-gray">
-                                    {{ $recipe->chef ? $recipe->chef->user->first_name . ' ' . $recipe->chef->user->last_name : 'Chef inconnu' }}
+                                    Par {{ $recipe->chef->user->last_name ?? 'Chef' }} {{ $recipe->chef->user->first_name ?? '' }}
                                 </span>
                             </div>
                             <a href="#"
