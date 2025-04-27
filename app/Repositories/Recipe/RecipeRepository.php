@@ -5,6 +5,9 @@ namespace App\Repositories\Recipe;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\Recipe\StoreRecipeRequest;
+use App\Http\Requests\Recipe\UpdateRecipeRequest;
+
 class RecipeRepository implements RecipeRepositoryInterface
 {
     public function index()
@@ -12,7 +15,7 @@ class RecipeRepository implements RecipeRepositoryInterface
         return Recipe::with('category', 'tags')->get();
     }
 
-    public function store(Request $request)
+    public function store(StoreRecipeRequest $request)
     {
         $recipe = Recipe::create($request->only([
             'title',
@@ -40,7 +43,7 @@ class RecipeRepository implements RecipeRepositoryInterface
         return Recipe::with('category', 'tags')->findOrFail($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateRecipeRequest $request, $id)
     {
         $recipe = Recipe::findOrFail($id);
         $recipe->update($request->only([
@@ -85,5 +88,32 @@ class RecipeRepository implements RecipeRepositoryInterface
             ->orderByDesc('favorited_by_count')
             ->take($limit)
             ->get();
+    }
+
+    public function search(Request $request)
+    {
+        $query = Recipe::with(['category', 'tags', 'chef.user']);
+
+        // Recherche par titre
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
+        // Filtrer par catégorie
+        if ($request->filled('category_id') && $request->category_id != 'all') {
+            $query->where('category_id', $request->category_id);
+        }
+
+        // Filtrer par tag
+        if ($request->filled('tag_id') && $request->tag_id != 'all') {
+            $query->whereHas('tags', function($q) use ($request) {
+                $q->where('tag_id', $request->tag_id);
+            });
+        }
+
+        // Choix de la pagination
+        $perPage = $request->input('per_page', 5);
+
+        return $query->paginate($perPage);
     }
 }
