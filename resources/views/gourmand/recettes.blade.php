@@ -273,7 +273,7 @@
     </section>
 
     <!-- Carousel Section -->
-    @include('components.carousel', ['recipes' => $recipes])
+    <div id="carousel-container"></div>
 
     <!-- Footer -->
     @include('partials.footerc')
@@ -324,8 +324,6 @@
             mobileMenu.classList.toggle('hidden');
         });
     </script>
-
-<script src="{{ asset('js/carousel.js') }}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -408,7 +406,20 @@
     <!-- Toastify JS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch(`{{ route('gourmand.carousel') }}`)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('carousel-container').innerHTML = html;
+                    // Puis lancer le carousel.js une fois le HTML injecté
+                    initCarousel();
+                })
+                .catch(error => console.error('Erreur chargement carousel:', error));
+        });
+    </script>
 
+    <script src="{{ asset('js/carousel.js') }}"></script>
 </body>
 
 </html>
