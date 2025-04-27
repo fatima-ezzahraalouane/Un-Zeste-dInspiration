@@ -10,6 +10,7 @@ use App\Models\Experience;
 use App\Models\User;
 use App\Models\Chef;
 use App\Models\Gourmand;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -24,9 +25,11 @@ class AdminController extends Controller
             'gourmands' => Gourmand::count(),
         ];
 
+        $categories = Category::withCount('recipes')->get();
+
         return view('admin.dashboard', compact(
             'user',
-            'stats'
+            'stats', 'categories'
         ));
     }
 }
