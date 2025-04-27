@@ -42,7 +42,8 @@ class RecipeController extends Controller
 
     public function show($id)
     {
-        return $this->recipeRepo->show($id);
+        $recipe = $this->recipeRepo->show($id);
+        return view('gourmand.recette-detail', compact('recipe'));
     }
 
     public function update(UpdateRecipeRequest $request, $id)
@@ -61,7 +62,7 @@ class RecipeController extends Controller
         $recipes = $this->recipeRepo->getMostLikedRecipes(5);
         return view('components.carousel', compact('recipes'));
     }
-    
+
 
     public function browse(Request $request)
     {
