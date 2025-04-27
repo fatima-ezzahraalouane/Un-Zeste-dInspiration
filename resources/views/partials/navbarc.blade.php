@@ -37,9 +37,12 @@
         <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Blog</a>
         <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Mes Favoris</a>
         <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Profil</a>
-        <a href="#"
-            class="block text-center shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full mt-4 hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-            Déconnexion
-        </a>
+        <form action="{{ route('logout') }}" method="POST" class="inline">
+            @csrf
+            <button type="submit"
+                class="shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full mt-4 hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                Déconnexion
+            </button>
+        </form>
     </div>
 </nav>
