@@ -10,7 +10,7 @@
 
             <div class="hidden md:flex items-center space-x-8">
                 <a href="{{ route('gourmand.accueil') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Accueil</a>
-                <a href="{{ route('gourmand.recette') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Recettes</a>
+                <a href="{{ route('gourmand.recettes') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Recettes</a>
                 <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Blog</a>
                 <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Mes Favoris</a>
                 <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Profil</a>
