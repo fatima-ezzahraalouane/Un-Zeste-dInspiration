@@ -20,4 +20,9 @@ class Theme extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
 }
