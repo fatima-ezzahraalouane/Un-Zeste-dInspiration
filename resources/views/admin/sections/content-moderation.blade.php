@@ -2,10 +2,6 @@
     <div class="flex justify-between items-center">
         <h1 class="playfair text-2xl md:text-3xl font-bold text-brand-burgundy">Modération de Contenu</h1>
         <div class="flex space-x-3">
-            <!-- <button
-                            class="bg-brand-peach text-brand-burgundy px-4 py-2 rounded-lg hover:bg-brand-burgundy hover:text-white transition-all">
-                            <i class="fas fa-filter mr-2"></i>Filtres
-                        </button> -->
         </div>
     </div>
 
@@ -20,37 +16,7 @@
         <button class="px-4 py-2 text-gray-500 hover:text-brand-burgundy">
             Rejetés
         </button>
-        <!-- <button class="px-4 py-2 text-gray-500 hover:text-brand-burgundy">
-                        Signalés
-                    </button> -->
     </div>
-
-    <!-- Search and Filters -->
-    <!-- <div class="flex flex-col md:flex-row justify-between space-y-3 md:space-y-0">
-                    <div class="relative">
-                        <input type="text" placeholder="Rechercher une recette..."
-                            class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent w-full md:w-80">
-                        <span class="absolute left-3 top-2.5 text-gray-400">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </div>
-                    <div class="flex space-x-3">
-                        <select
-                            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
-                            <option>Toutes les catégories</option>
-                            <option>Plats Principaux</option>
-                            <option>Desserts</option>
-                            <option>Entrées</option>
-                            <option>Boissons</option>
-                        </select>
-                        <select
-                            class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
-                            <option>Type de contenu</option>
-                            <option>Recettes</option>
-                            <option>Expériences culinaires</option>
-                        </select>
-                    </div>
-                </div> -->
 
     <!-- Content Moderation Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -85,10 +51,6 @@
                         class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition-all">
                         <i class="fas fa-times mr-1"></i> Rejeter
                     </button>
-                    <!-- <button
-                                    class="px-3 py-2 bg-brand-peach text-brand-burgundy rounded-lg hover:bg-brand-burgundy hover:text-white transition-all">
-                                    <i class="fas fa-eye"></i>
-                                </button> -->
                 </div>
             </div>
         </div>
@@ -124,10 +86,6 @@
                         class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition-all">
                         <i class="fas fa-times mr-1"></i> Rejeter
                     </button>
-                    <!-- <button
-                                    class="px-3 py-2 bg-brand-peach text-brand-burgundy rounded-lg hover:bg-brand-burgundy hover:text-white transition-all">
-                                    <i class="fas fa-eye"></i>
-                                </button> -->
                 </div>
             </div>
         </div>
@@ -164,10 +122,6 @@
                         class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-lg hover:bg-gray-300 transition-all">
                         <i class="fas fa-times mr-1"></i> Rejeter
                     </button>
-                    <!-- <button
-                                    class="px-3 py-2 bg-brand-peach text-brand-burgundy rounded-lg hover:bg-brand-burgundy hover:text-white transition-all">
-                                    <i class="fas fa-eye"></i>
-                                </button> -->
                 </div>
             </div>
         </div>
