@@ -13,13 +13,7 @@ class Theme extends Model
         'name',
         'image',
         'description',
-        'admin_id',
     ];
-
-    public function admin()
-    {
-        return $this->belongsTo(Admin::class);
-    }
 
     public function experiences()
     {
