@@ -17,4 +17,9 @@ class Experience extends Model
         'theme_id',
         'gourmand_id',
     ];
+
+    public function gourmand()
+    {
+        return $this->belongsTo(Gourmand::class);
+    }
 }
