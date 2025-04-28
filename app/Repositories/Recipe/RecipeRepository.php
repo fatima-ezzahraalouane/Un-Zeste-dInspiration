@@ -74,13 +74,6 @@ class RecipeRepository implements RecipeRepositoryInterface
         return true;
     }
 
-    // public function getMostLikedRecipes()
-    // {
-    //     return Recipe::withCount('favoritedBy')
-    //         ->orderByDesc('favorited_by_count')
-    //         ->get();
-    // }
-
     public function getMostLikedRecipes(int $limit)
     {
         return Recipe::with('chef.user')
