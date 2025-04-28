@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('complexity', ['Facile', 'Moyen', 'Difficile']);
             $table->text('ingredients');
             $table->text('instructions');
+            $table->foreignId('chef_id')->constrained('chefs')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });
