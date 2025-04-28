@@ -24,4 +24,9 @@ class Gourmand extends Model
     {
         return $this->belongsToMany(Recipe::class, 'favorites');
     }
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
 }
