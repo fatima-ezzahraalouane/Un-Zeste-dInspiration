@@ -172,7 +172,7 @@
                     </p>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-2">
-                            <img src="{{ $recipe->chef->user->avatar ?? 'https://img.freepik.com/premium-vector/chef-restaurant-avatar-cartoon-illustration_1951-375.jpg?w=360' }}" alt="Chef"
+                            <img src="{{ $recipe->chef->user->avatar ?? 'https://img.freepik.com/premium-vector/vector-chef-character-design_746655-2375.jpg?w=740' }}" alt="Chef"
                                 class="w-8 h-8 rounded-full border-2 border-brand-coral">
                             <span class="text-sm text-brand-gray">
                                 Par {{ $recipe->chef->user->last_name ?? 'Chef' }} {{ $recipe->chef->user->first_name ?? '' }}
