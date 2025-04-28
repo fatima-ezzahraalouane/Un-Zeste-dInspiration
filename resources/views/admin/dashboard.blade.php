@@ -122,16 +122,14 @@
             <!-- Statistics Section -->
             @include('admin.sections.statistics')
 
+            <!-- User Management Section (hidden by default) -->
+            @include('admin.sections.user-management')
 
-       <!-- User Management Section (hidden by default) -->
-       @include('admin.sections.user-management')
-
-       <!-- Content Moderation Section (hidden by default) -->
-       @include('admin.sections.content-moderation') 
+            <!-- Content Moderation Section (hidden by default) -->
+            @include('admin.sections.content-moderation') 
 
             <!-- Categories & Tags Section (hidden by default) -->
             @include('admin.sections.categories-tags')
-
         </main>
     </div>
 
