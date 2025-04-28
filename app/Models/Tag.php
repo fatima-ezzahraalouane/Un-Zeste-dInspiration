@@ -9,16 +9,11 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'admin_id'];
+    protected $fillable = ['name'];
 
     // tag peut être associé à plusieurs recettes
     public function recipes()
     {
         return $this->belongsToMany(Recipe::class, 'recipe_tag');
-    }
-
-    public function admin()
-    {
-        return $this->belongsTo(Admin::class);
     }
 }
