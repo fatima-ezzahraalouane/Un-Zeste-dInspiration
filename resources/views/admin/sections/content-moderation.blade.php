@@ -36,7 +36,7 @@
                     </span></p>
                 <div class="flex justify-between items-center mb-3">
                     <div class="text-sm text-gray-500">
-                        <i class="fas fa-utensils mr-1"></i> Dessert
+                        <i class="fas fa-utensils mr-1"></i> Recette
                     </div>
                     <div class="text-sm text-gray-500">
                         <i class="fas fa-clock mr-1"></i> 20 Mars 2025
@@ -71,7 +71,7 @@
                     </span></p>
                 <div class="flex justify-between items-center mb-3">
                     <div class="text-sm text-gray-500">
-                        <i class="fas fa-utensils mr-1"></i> Plat Principal
+                        <i class="fas fa-utensils mr-1"></i> Recette
                     </div>
                     <div class="text-sm text-gray-500">
                         <i class="fas fa-clock mr-1"></i> 19 Mars 2025
