@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'admin_id'];
 
     // catégorie a plusieurs recettes
     public function recipes()
