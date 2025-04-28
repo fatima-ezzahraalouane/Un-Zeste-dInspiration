@@ -34,6 +34,7 @@ class StoreRecipeRequest extends FormRequest
             'category_id'       => 'required|exists:categories,id',
             'tags'              => 'nullable|array',
             'tags.*'            => 'exists:tags,id',
+            'statut'            => 'nullable|in:En attente,Approuver,Rejeter',
         ];
     }
 
@@ -48,6 +49,7 @@ class StoreRecipeRequest extends FormRequest
             'complexity.in' => 'La complexité doit être Facile, Moyen ou Difficile.',
             'category_id.exists' => 'La catégorie sélectionnée est invalide.',
             'tags.*.exists' => 'Un ou plusieurs tags sont invalides.',
+            'statut.in' => 'Le statut doit être En attente, Approuver ou Rejeter.',
         ];
     }
 }
