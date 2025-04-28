@@ -16,4 +16,9 @@ class Category extends Model
     {
         return $this->hasMany(Recipe::class);
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }
