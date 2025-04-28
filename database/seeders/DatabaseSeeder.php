@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RecipeTagSeeder::class);
         $this->call(FavoriteSeeder::class);
         $this->call(ThemeSeeder::class);
+        $this->call(ExperienceSeeder::class);
     }
 }
