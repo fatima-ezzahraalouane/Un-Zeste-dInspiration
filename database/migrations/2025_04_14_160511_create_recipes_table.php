@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('image')->nullable();
             $table->text('description');
+            $table->enum('statut', ['En attente', 'Approuver', 'Rejeter'])->default('En attente');
             $table->integer('preparation_time');
             $table->integer('cooking_time');    
             $table->integer('servings');         
