@@ -16,4 +16,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(Recipe::class, 'recipe_tag');
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }
