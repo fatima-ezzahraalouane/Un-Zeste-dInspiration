@@ -22,4 +22,9 @@ class Experience extends Model
     {
         return $this->belongsTo(Gourmand::class);
     }
+
+    public function theme()
+    {
+        return $this->belongsTo(Theme::class);
+    }
 }
