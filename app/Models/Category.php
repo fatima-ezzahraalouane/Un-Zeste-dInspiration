@@ -9,16 +9,11 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'admin_id'];
+    protected $fillable = ['name'];
 
     // catégorie a plusieurs recettes
     public function recipes()
     {
         return $this->hasMany(Recipe::class);
-    }
-
-    public function admin()
-    {
-        return $this->belongsTo(Admin::class);
     }
 }
