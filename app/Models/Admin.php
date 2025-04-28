@@ -28,4 +28,9 @@ class Admin extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 }
