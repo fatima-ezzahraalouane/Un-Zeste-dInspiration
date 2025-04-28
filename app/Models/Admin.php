@@ -23,4 +23,9 @@ class Admin extends Model
     {
         return $this->hasMany(Theme::class);
     }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }
