@@ -83,7 +83,7 @@
                 @foreach($topChefs as $index => $chef)
                 <div class="flex items-center p-3 {{ $index == 0 ? 'bg-brand-peach/70' : 'bg-gray-100' }} rounded-lg">
                     <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
-                        <img src="{{ $chef->user->avatar ?? 'https://img.freepik.com/premium-vector/chef-restaurant-avatar-cartoon-illustration_1951-375.jpg?w=360' }}"
+                        <img src="{{ $chef->user->avatar ?? 'https://img.freepik.com/premium-vector/vector-chef-character-design_746655-2375.jpg?w=740' }}"
                             alt="Chef" class="w-full h-full object-cover rounded-full border-2 border-brand-coral" />
                     </div>
                     <div class="flex-1">
