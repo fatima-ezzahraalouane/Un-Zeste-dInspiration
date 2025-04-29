@@ -31,7 +31,7 @@ class ThemeSeeder extends Seeder
             ],
             [
                 'name' => 'Cuisine Végétarienne',
-                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqErJ__EoSrkvcntiJJSQrrtzhZDLyaOw5Iw&s',
+                'image' => 'https://m1.zeste.ca/serdy-m-dia-inc/image/upload/f_auto/fl_lossy/q_auto:eco/x_0,y_93,w_5000,h_2812,c_crop/w_1200,h_630,c_scale/v1608657295/foodlavie/prod/dossiers/cuisine-vegetarienne-1-3356821c',
                 'description' => 'Des plats sains, gourmands et sans viande.'
             ],
         ];
