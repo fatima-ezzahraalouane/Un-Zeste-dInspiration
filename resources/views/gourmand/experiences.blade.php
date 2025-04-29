@@ -198,127 +198,34 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="experiences-grid">
-                <!-- Luxury Experience Card -->
+                @foreach ($experiences as $experience)
                 <div class="luxury-card">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Expérience Culinaire"
+                    <img src="{{ $experience->image }}" alt="{{ $experience->title }}"
                         class="w-full h-56 object-cover">
                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-brand-burgundy">Dîner Étoilé</h3>
-                        <p class="text-sm text-brand-gray mt-2">Une expérience gastronomique inoubliable, accompagnée de
-                            vins fins et d'une ambiance luxueuse.</p>
-                        <!-- Container for Profile + "Lire la suite" Link -->
+                        <h3 class="text-2xl font-semibold text-brand-burgundy">{{ $experience->title }}</h3>
+                        <p class="text-sm text-brand-gray mt-2">{{ Str::limit($experience->description, 100) }}</p>
+
                         <div class="flex justify-between items-center mt-4">
-                            <!-- Profile Section (Left) -->
                             <div class="flex items-center">
-                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
+                                <img src="{{ $experience->gourmand->user->avatar ?? 'https://i.pravatar.cc/40' }}"
+                                    alt="Auteur"
                                     class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
-                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
+                                <span class="text-brand-gray ml-3 font-large">
+                                    {{ $experience->gourmand->user->first_name ?? 'Gourmand' }}
+                                </span>
                             </div>
 
-                            <!-- Lire la suite (Right) -->
                             <a href="#"
-                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
-                                suite →</a>
+                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">
+                                Lire la suite →
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="luxury-card">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Expérience Culinaire"
-                        class="w-full h-56 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-brand-burgundy">Atelier Chocolat</h3>
-                        <p class="text-sm text-brand-gray mt-2">Apprenez l'art du chocolat avec un maître chocolatier et
-                            créez vos propres douceurs exquises.</p>
-                        <!-- Container for Profile + "Lire la suite" Link -->
-                        <div class="flex justify-between items-center mt-4">
-                            <!-- Profile Section (Left) -->
-                            <div class="flex items-center">
-                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
-                                    class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
-                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
-                            </div>
-
-                            <!-- Lire la suite (Right) -->
-                            <a href="#"
-                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
-                                suite →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="luxury-card">
-                    <img src="https://images.unsplash.com/photo-1560717845-968823efbee1" alt="Expérience Culinaire"
-                        class="w-full h-56 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-brand-burgundy">Brunch Royal</h3>
-                        <p class="text-sm text-brand-gray mt-2">Un brunch haut de gamme avec des mets raffinés et un
-                            service d'exception.</p>
-                        <!-- Container for Profile + "Lire la suite" Link -->
-                        <div class="flex justify-between items-center mt-4">
-                            <!-- Profile Section (Left) -->
-                            <div class="flex items-center">
-                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
-                                    class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
-                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
-                            </div>
-
-                            <!-- Lire la suite (Right) -->
-                            <a href="#"
-                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
-                                suite →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="luxury-card">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Expérience Culinaire"
-                        class="w-full h-56 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-brand-burgundy">Atelier Chocolat</h3>
-                        <p class="text-sm text-brand-gray mt-2">Apprenez l'art du chocolat avec un maître chocolatier et
-                            créez vos propres douceurs exquises.</p>
-                        <!-- Container for Profile + "Lire la suite" Link -->
-                        <div class="flex justify-between items-center mt-4">
-                            <!-- Profile Section (Left) -->
-                            <div class="flex items-center">
-                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
-                                    class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
-                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
-                            </div>
-
-                            <!-- Lire la suite (Right) -->
-                            <a href="#"
-                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
-                                suite →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="luxury-card">
-                    <img src="https://images.unsplash.com/photo-1560717845-968823efbee1" alt="Expérience Culinaire"
-                        class="w-full h-56 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-brand-burgundy">Brunch Royal</h3>
-                        <p class="text-sm text-brand-gray mt-2">Un brunch haut de gamme avec des mets raffinés et un
-                            service d'exception.</p>
-                        <!-- Container for Profile + "Lire la suite" Link -->
-                        <div class="flex justify-between items-center mt-4">
-                            <!-- Profile Section (Left) -->
-                            <div class="flex items-center">
-                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
-                                    class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
-                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
-                            </div>
-
-                            <!-- Lire la suite (Right) -->
-                            <a href="#"
-                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
-                                suite →</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
+            
             <!-- Pagination Controls -->
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
                 <button id="prevPage"
