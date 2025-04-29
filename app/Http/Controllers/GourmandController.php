@@ -7,6 +7,7 @@ use App\Repositories\Recipe\RecipeRepositoryInterface;
 use App\Models\Recipe;
 use App\Models\Chef;
 use App\Models\User;
+use App\Models\Experience;
 use Illuminate\Support\Facades\Auth;
 
 class GourmandController extends Controller
@@ -24,7 +25,7 @@ class GourmandController extends Controller
 
         $stats = [
             'recipes' => Recipe::count(),
-            'experiences' => 0,
+            'experiences' => Experience::count(),
             'chefs' => Chef::count(),
             'members' => User::whereHas('role', function ($q) {
                 $q->where('name_user', 'Gourmand');
