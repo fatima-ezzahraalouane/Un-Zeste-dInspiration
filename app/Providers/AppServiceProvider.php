@@ -16,6 +16,8 @@ use App\Repositories\Favorite\FavoriteRepository;
 use App\Repositories\Favorite\FavoriteRepositoryInterface;
 use App\Repositories\Theme\ThemeRepositoryInterface;
 use App\Repositories\Theme\ThemeRepository;
+use App\Repositories\Experience\ExperienceRepository;
+use App\Repositories\Experience\ExperienceRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(TagRepositoryInterface::class, TagRepository::class);
         $this->app->bind(FavoriteRepositoryInterface::class, FavoriteRepository::class);
         $this->app->bind(ThemeRepositoryInterface::class, ThemeRepository::class);
+        $this->app->bind(ExperienceRepositoryInterface::class, ExperienceRepository::class);
 
     }
 
