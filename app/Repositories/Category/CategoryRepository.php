@@ -14,23 +14,20 @@ class CategoryRepository implements CategoryRepositoryInterface
 
     public function store(Request $request)
     {
-        return Category::create([
-            'name' => $request->name,
-        ]);
+        return Category::create($request->validated());
     }
 
     public function update(Request $request, int $id)
     {
         $category = Category::findOrFail($id);
-        $category->update([
-            'name' => $request->name,
-        ]);
+        $category->update($request->validated());
         return $category;
     }
 
     public function delete(int $id)
     {
-        return Category::destroy($id);
+        $category = Category::findOrFail($id);
+        return $category->delete();
     }
 
     public function findById(int $id)
