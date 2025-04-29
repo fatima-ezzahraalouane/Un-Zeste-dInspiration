@@ -20,22 +20,14 @@ class ThemeRepository implements ThemeRepositoryInterface
 
     public function store(StoreThemeRequest $request)
     {
-        return Theme::create([
-            'name' => $request->name,
-            'image' => $request->image,
-            'description' => $request->description,
-        ]);
+        return Theme::create($request->validated());
     }
 
     public function update(UpdateThemeRequest $request, $id)
     {
         $theme = Theme::findOrFail($id);
 
-        $theme->update([
-            'name' => $request->name,
-            'image' => $request->image,
-            'description' => $request->description,
-        ]);
+        $theme->update($request->validated());
 
         return $theme;
     }
