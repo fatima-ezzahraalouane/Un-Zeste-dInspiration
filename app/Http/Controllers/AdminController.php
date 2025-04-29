@@ -20,7 +20,7 @@ class AdminController extends Controller
 
         $stats = [
             'recipes' => Recipe::count(),
-            'experiences' => 0,
+            'experiences' => Experience::count(),
             'chefs' => Chef::count(),
             'gourmands' => Gourmand::count(),
         ];
