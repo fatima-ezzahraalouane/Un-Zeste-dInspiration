@@ -14,6 +14,8 @@ use App\Repositories\Tag\TagRepository;
 use App\Repositories\Tag\TagRepositoryInterface;
 use App\Repositories\Favorite\FavoriteRepository;
 use App\Repositories\Favorite\FavoriteRepositoryInterface;
+use App\Repositories\Theme\ThemeRepositoryInterface;
+use App\Repositories\Theme\ThemeRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
