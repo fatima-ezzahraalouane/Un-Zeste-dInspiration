@@ -98,4 +98,5 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
 
     // Route pour blog
     Route::get('/blog', [ThemeController::class, 'index'])->name('gourmand.blog.index');
+    Route::get('/blog/{theme}', [ThemeController::class, 'show'])->name('gourmand.blog.show');
 });
