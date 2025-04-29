@@ -322,45 +322,53 @@
         <div class="bg-white p-4 sm:p-8 rounded-lg shadow-lg w-full max-w-lg mx-auto">
             <h2 class="text-xl sm:text-2xl font-bold text-brand-burgundy mb-4">Ajouter une Expérience</h2>
 
-            <form id="experienceForm">
+            <form method="POST" action="{{ route('experiences.store') }}">
+                @csrf
+
                 <!-- Title -->
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Titre</label>
-                <input type="text" id="title" name="title" required placeholder="Nom de l'expérience"
+                <input type="text" name="title" required placeholder="Nom de l'expérience"
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3">
 
                 <!-- Description -->
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
-                <textarea id="description" name="description" required placeholder="Décrivez votre expérience..."
+                <textarea name="description" required placeholder="Décrivez votre expérience..."
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3"
                     rows="3"></textarea>
 
                 <!-- Image URL -->
                 <label class="block text-sm font-semibold text-gray-700 mb-1">URL de l'Image</label>
-                <input type="url" id="imageUrl" name="imageUrl" required placeholder="https://example.com/image.jpg"
+                <input type="url" name="image" required placeholder="https://example.com/image.jpg"
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3">
 
                 <!-- Theme Selection -->
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Thème</label>
-                <select id="theme" name="theme" required
+                <select name="theme_id" required
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-4">
                     <option value="" disabled selected>Choisissez un thème</option>
-                    <option value="Gastronomie">Gastronomie</option>
-                    <option value="Pâtisserie">Pâtisserie</option>
-                    <option value="Vins & Spiritueux">Vins & Spiritueux</option>
+                    @foreach ($themes as $theme)
+                    <option value="{{ $theme->id }}">{{ $theme->name }}</option>
+                    @endforeach
                 </select>
+
+                <!-- Hidden fields -->
+                <input type="hidden" name="gourmand_id" value="{{ auth()->user()->gourmand->id }}">
+                <input type="hidden" name="statut" value="En attente">
 
                 <!-- Buttons -->
                 <div class="flex flex-col sm:flex-row justify-end gap-3 sm:space-x-4">
                     <button type="button" id="closeModal"
-                        class="order-2 sm:order-1 w-full sm:w-auto px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-all">Annuler</button>
+                        class="order-2 sm:order-1 w-full sm:w-auto px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-all">
+                        Annuler
+                    </button>
                     <button type="submit"
-                        class="order-1 sm:order-2 w-full sm:w-auto px-6 py-2 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all">Ajouter</button>
+                        class="order-1 sm:order-2 w-full sm:w-auto px-6 py-2 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all">
+                        Ajouter
+                    </button>
                 </div>
             </form>
         </div>
     </div>
-
-
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
