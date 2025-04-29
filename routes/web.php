@@ -10,6 +10,7 @@ use App\Http\Controllers\GourmandController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\VisiteurController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ThemeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,4 +95,7 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     // Routes pour Favoris
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::post('/favorites/delete', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+
+    // Route pour blog
+    Route::get('/blog', [ThemeController::class, 'index'])->name('gourmand.blog.index');
 });
