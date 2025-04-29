@@ -89,7 +89,7 @@
     </section>
 
     <!-- Blog Home Section -->
-    <section id="blog-articles" class="py-12 bg-white shadow-lg rounded-lg mt-[-4rem] z-20 relative">
+    <section id="blog-articles" class="py-12 bg-white mt-[-4rem] z-20 relative">
         <div class="max-w-7xl mx-auto px-6">
             <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mb-10">Thèmes Culinaires</h1>
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
