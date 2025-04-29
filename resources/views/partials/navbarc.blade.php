@@ -11,7 +11,7 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a href="{{ route('gourmand.accueil') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Accueil</a>
                 <a href="{{ route('gourmand.recettes') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Recettes</a>
-                <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Blog</a>
+                <a href="{{ route('gourmand.blog') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Blog</a>
                 <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Mes Favoris</a>
                 <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Profil</a>
                 <form action="{{ route('logout') }}" method="POST" class="inline">
@@ -34,7 +34,7 @@
     <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg rounded-lg mt-2 mx-4 p-4 mb-4">
         <a href="{{ route('gourmand.accueil') }}" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Accueil</a>
         <a href="{{ route('gourmand.recettes') }}" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Recettes</a>
-        <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Blog</a>
+        <a href="{{ route('gourmand.blog') }}" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Blog</a>
         <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Mes Favoris</a>
         <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Profil</a>
         <form action="{{ route('logout') }}" method="POST" class="inline">
