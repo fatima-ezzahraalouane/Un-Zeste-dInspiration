@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <title>Un Zeste d'Inspiration - Expériences Culinaires</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-burgundy': '#793E37',
+                        'brand-red': '#974344',
+                        'brand-coral': '#B55D51',
+                        'brand-peach': '#FFF0ED',
+                        'brand-dark': '#4C4C4C',
+                        'brand-gray': '#878787',
+                        primary: '#793E37',
+                        secondary: '#974344',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .luxury-card {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .luxury-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            padding: 10px;
+        }
+
+        .carousel-content {
+            position: relative;
+            bottom: 136px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Media queries for responsiveness */
+        @media (min-width: 640px) {
+            .carousel-item {
+                min-width: 100%;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .carousel-item {
+                min-width: 50%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .carousel-item {
+                min-width: 33.3333%;
+            }
+        }
+
+        /* Add touch support for swiping */
+        .carousel-container {
+            touch-action: pan-y;
+        }
+
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.1) 50%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) rotate(45deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="poppins bg-brand-peach text-brand-dark">
+    <!-- Navbar -->
+    @include('partials.navbarc')
+
+    <!-- Hero Section -->
+    <section class="relative h-[70vh] bg-cover bg-center flex items-center justify-center"
+        style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-burgundy/70 to-brand-red/70"></div>
+        <div class="relative text-center text-white px-4 z-10 max-w-2xl mt-4">
+            <h1 class="playfair text-5xl font-bold mb-4">Explorez l'Excellence Culinaire</h1>
+            <p class="text-lg leading-relaxed">Découvrez des expériences culinaires raffinées, des plats exquis et des
+                histoires inspirantes de passionnés de gastronomie.</p>
+            <a href="#experiences"
+                class="mt-6 inline-block px-6 py-3 bg-white text-brand-burgundy font-semibold rounded-full hover:bg-brand-burgundy hover:text-white transition-all duration-300">
+                Découvrir Plus</a>
+        </div>
+    </section>
+
+    <!-- Culinary Experiences Section -->
+    <section id="experiences" class="py-12 bg-white shadow-lg rounded-lg mt-[-4rem] z-20 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mb-10">Expériences
+                Culinaires
+            </h1>
+            <!-- Search Bar + Pagination + Add Experience Button -->
+            <div
+                class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-4 md:p-6 bg-gray-100 shadow-md rounded-lg gap-4">
+                <!-- Search Bar -->
+                <div class="relative w-full md:w-2/5">
+                    <div class="flex flex-col sm:flex-row w-full gap-2">
+                        <div class="relative flex-grow">
+                            <i class="fas fa-search absolute left-4 top-3 text-brand-gray"></i>
+                            <input type="text" id="searchInput" placeholder="Rechercher une expérience..."
+                                class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy transition-all shadow-sm">
+                        </div>
+                        <button id="searchButton"
+                            class="px-4 py-3 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all shadow-md">
+                            Rechercher
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pagination Selector + Add Button -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full md:w-auto">
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <label for="pagination" class="text-brand-dark font-medium whitespace-nowrap">Afficher :</label>
+                        <select id="pagination"
+                            class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-brand-burgundy shadow-sm transition-all flex-grow">
+                            <option value="5">5 par page</option>
+                            <option value="10">10 par page</option>
+                            <option value="15">15 par page</option>
+                        </select>
+                    </div>
+
+                    <!-- Add Experience Button -->
+                    <button id="openModal"
+                        class="w-full sm:w-auto px-6 py-3 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all shadow-md">
+                        <i class="fas fa-plus mr-2"></i> Ajouter une expérience
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="experiences-grid">
+                <!-- Luxury Experience Card -->
+                <div class="luxury-card">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Expérience Culinaire"
+                        class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-brand-burgundy">Dîner Étoilé</h3>
+                        <p class="text-sm text-brand-gray mt-2">Une expérience gastronomique inoubliable, accompagnée de
+                            vins fins et d'une ambiance luxueuse.</p>
+                        <!-- Container for Profile + "Lire la suite" Link -->
+                        <div class="flex justify-between items-center mt-4">
+                            <!-- Profile Section (Left) -->
+                            <div class="flex items-center">
+                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
+                                    class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
+                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
+                            </div>
+
+                            <!-- Lire la suite (Right) -->
+                            <a href="#"
+                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
+                                suite →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="luxury-card">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Expérience Culinaire"
+                        class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-brand-burgundy">Atelier Chocolat</h3>
+                        <p class="text-sm text-brand-gray mt-2">Apprenez l'art du chocolat avec un maître chocolatier et
+                            créez vos propres douceurs exquises.</p>
+                        <!-- Container for Profile + "Lire la suite" Link -->
+                        <div class="flex justify-between items-center mt-4">
+                            <!-- Profile Section (Left) -->
+                            <div class="flex items-center">
+                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
+                                    class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
+                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
+                            </div>
+
+                            <!-- Lire la suite (Right) -->
+                            <a href="#"
+                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
+                                suite →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="luxury-card">
+                    <img src="https://images.unsplash.com/photo-1560717845-968823efbee1" alt="Expérience Culinaire"
+                        class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-brand-burgundy">Brunch Royal</h3>
+                        <p class="text-sm text-brand-gray mt-2">Un brunch haut de gamme avec des mets raffinés et un
+                            service d'exception.</p>
+                        <!-- Container for Profile + "Lire la suite" Link -->
+                        <div class="flex justify-between items-center mt-4">
+                            <!-- Profile Section (Left) -->
+                            <div class="flex items-center">
+                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
+                                    class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
+                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
+                            </div>
+
+                            <!-- Lire la suite (Right) -->
+                            <a href="#"
+                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
+                                suite →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="luxury-card">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Expérience Culinaire"
+                        class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-brand-burgundy">Atelier Chocolat</h3>
+                        <p class="text-sm text-brand-gray mt-2">Apprenez l'art du chocolat avec un maître chocolatier et
+                            créez vos propres douceurs exquises.</p>
+                        <!-- Container for Profile + "Lire la suite" Link -->
+                        <div class="flex justify-between items-center mt-4">
+                            <!-- Profile Section (Left) -->
+                            <div class="flex items-center">
+                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
+                                    class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
+                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
+                            </div>
+
+                            <!-- Lire la suite (Right) -->
+                            <a href="#"
+                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
+                                suite →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="luxury-card">
+                    <img src="https://images.unsplash.com/photo-1560717845-968823efbee1" alt="Expérience Culinaire"
+                        class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-brand-burgundy">Brunch Royal</h3>
+                        <p class="text-sm text-brand-gray mt-2">Un brunch haut de gamme avec des mets raffinés et un
+                            service d'exception.</p>
+                        <!-- Container for Profile + "Lire la suite" Link -->
+                        <div class="flex justify-between items-center mt-4">
+                            <!-- Profile Section (Left) -->
+                            <div class="flex items-center">
+                                <img src="https://i.pravatar.cc/40?img=1" alt="Auteur"
+                                    class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
+                                <span class="text-brand-gray ml-3 font-large">Jean Dupont</span>
+                            </div>
+
+                            <!-- Lire la suite (Right) -->
+                            <a href="#"
+                                class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">Lire la
+                                suite →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination Controls -->
+            <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
+                <button id="prevPage"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</button>
+                <button
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">1</button>
+                <button
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">2</button>
+                <button
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">3</button>
+
+
+                <div id="pageNumbers" class="flex space-x-2"></div>
+
+                <button id="nextPage"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 relative">
+            <h2 class="playfair text-4xl font-bold text-brand-burgundy text-center mb-12">Les Expériences les Plus
+                Commentées</h2>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <img src="https://www.stefanofaita.com/wp-content/uploads/2022/04/pizzamargherita1.jpg"
+                            alt="Expérience Culinaire" class="w-full h-80 object-cover rounded-lg">
+                        <div class="carousel-content">
+                            <h3 class="text-xl font-bold">Titre de l'Expérience</h3>
+                            <p>Une description courte de l'expérience culinaire..</p>
+                            <a href="detail-experience.html"
+                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Lire
+                                la suite</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Salade Gourmet"
+                            class="w-full h-80 object-cover rounded-lg">
+                        <div class="carousel-content">
+                            <h3 class="text-xl font-bold">Salade Gourmet aux Agrumes</h3>
+                            <p>Un mélange frais et savoureux de fruits et légumes.</p>
+                            <a href="experience-details.html"
+                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Lire
+                                la suite</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1560717845-968823efbee1" alt="Saumon Grillé"
+                            class="w-full h-80 object-cover rounded-lg">
+                        <div class="carousel-content">
+                            <h3 class="text-xl font-bold">Saumon Grillé aux Herbes</h3>
+                            <p>Un plat sain et délicieux aux arômes méditerranéens.</p>
+                            <a href="experience-details.html"
+                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Lire
+                                la suite</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307"
+                            alt="Tarte aux Fruits Rouges" class="w-full h-80 object-cover rounded-lg">
+                        <div class="carousel-content">
+                            <h3 class="text-xl font-bold">Tarte aux Fruits Rouges</h3>
+                            <p>Une tarte délicieuse garnie de fruits rouges frais.</p>
+                            <a href="experience-details.html"
+                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Lire
+                                la suite</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    @include('partials.footerc')
+
+    <!-- Modal -->
+    <div id="experienceModal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 hidden z-50">
+        <div class="bg-white p-4 sm:p-8 rounded-lg shadow-lg w-full max-w-lg mx-auto">
+            <h2 class="text-xl sm:text-2xl font-bold text-brand-burgundy mb-4">Ajouter une Expérience</h2>
+
+            <form id="experienceForm">
+                <!-- Title -->
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Titre</label>
+                <input type="text" id="title" name="title" required placeholder="Nom de l'expérience"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3">
+
+                <!-- Description -->
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+                <textarea id="description" name="description" required placeholder="Décrivez votre expérience..."
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3"
+                    rows="3"></textarea>
+
+                <!-- Image URL -->
+                <label class="block text-sm font-semibold text-gray-700 mb-1">URL de l'Image</label>
+                <input type="url" id="imageUrl" name="imageUrl" required placeholder="https://example.com/image.jpg"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3">
+
+                <!-- Theme Selection -->
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Thème</label>
+                <select id="theme" name="theme" required
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-4">
+                    <option value="" disabled selected>Choisissez un thème</option>
+                    <option value="Gastronomie">Gastronomie</option>
+                    <option value="Pâtisserie">Pâtisserie</option>
+                    <option value="Vins & Spiritueux">Vins & Spiritueux</option>
+                </select>
+
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row justify-end gap-3 sm:space-x-4">
+                    <button type="button" id="closeModal"
+                        class="order-2 sm:order-1 w-full sm:w-auto px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-all">Annuler</button>
+                    <button type="submit"
+                        class="order-1 sm:order-2 w-full sm:w-auto px-6 py-2 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all">Ajouter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialisation des animations
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Toggle mobile menu
+        document.getElementById('burger-menu').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carousel functionality
+            let currentIndex = 0;
+            const track = document.querySelector('.carousel-track');
+            const slides = document.querySelectorAll('.carousel-item');
+            const totalSlides = slides.length;
+            let visibleSlides = 1; // Default for mobile
+
+            // Determine visible slides based on screen width
+            function updateVisibleSlides() {
+                if (window.innerWidth >= 1024) {
+                    visibleSlides = 3;
+                } else if (window.innerWidth >= 768) {
+                    visibleSlides = 2;
+                } else {
+                    visibleSlides = 1;
+                }
+                updateCarousel();
+            }
+
+            // Update carousel position
+            function updateCarousel() {
+                const maxIndex = totalSlides - visibleSlides;
+                if (currentIndex > maxIndex) {
+                    currentIndex = maxIndex;
+                }
+                if (currentIndex < 0) {
+                    currentIndex = 0;
+                }
+
+                const slidePercentage = 100 / visibleSlides;
+                track.style.transform = `translateX(-${currentIndex * slidePercentage}%)`;
+            }
+
+            // Auto slide functionality
+            function autoSlide() {
+                currentIndex = (currentIndex + 1) % (totalSlides - visibleSlides + 1);
+                updateCarousel();
+            }
+
+            // Touch support for mobile swiping
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            track.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            track.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                if (touchEndX < touchStartX - 50) { // Swiped left
+                    currentIndex = Math.min(totalSlides - visibleSlides, currentIndex + 1);
+                    updateCarousel();
+                }
+                if (touchEndX > touchStartX + 50) { // Swiped right
+                    currentIndex = Math.max(0, currentIndex - 1);
+                    updateCarousel();
+                }
+            }
+
+            // Handle window resize
+            window.addEventListener('resize', updateVisibleSlides);
+
+            // Initialize
+            updateVisibleSlides();
+
+            // Set auto slide interval - adjust timing as needed
+            const slideInterval = setInterval(autoSlide, 5000);
+
+            // Pause auto-sliding when user interacts with swipe
+            track.addEventListener('touchstart', () => clearInterval(slideInterval));
+        });
+    </script>
+
+    <!-- JavaScript for Modal & Form -->
+    <script>
+        const modal = document.getElementById("experienceModal");
+        const openModalBtn = document.getElementById("openModal");
+        const closeModalBtn = document.getElementById("closeModal");
+        const experienceForm = document.getElementById("experienceForm");
+
+        // Open Modal
+        openModalBtn.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+        });
+
+        // Close Modal
+        closeModalBtn.addEventListener("click", () => {
+            modal.classList.add("hidden");
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.classList.add("hidden");
+            }
+        });
+
+        // Form Submission (for now, just logs the values)
+        experienceForm.addEventListener("submit", (event) => {
+            event.preventDefault(); // Prevents actual submission
+            const formData = {
+                title: document.getElementById("title").value,
+                description: document.getElementById("description").value,
+                imageUrl: document.getElementById("imageUrl").value,
+                theme: document.getElementById("theme").value
+            };
+
+            console.log("New Experience Data:", formData);
+            alert("Expérience ajoutée avec succès !");
+            modal.classList.add("hidden");
+            experienceForm.reset();
+        });
+    </script>
+</body>
+
+</html>
