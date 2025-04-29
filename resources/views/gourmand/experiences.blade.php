@@ -155,7 +155,7 @@
     </section>
 
     <!-- Culinary Experiences Section -->
-    <section id="experiences" class="py-12 bg-white shadow-lg rounded-lg mt-[-4rem] z-20 relative">
+    <section id="experiences" class="py-12 bg-white mt-[-4rem] z-20 relative">
         <div class="max-w-7xl mx-auto px-6">
             <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mb-10">Expériences
                 Culinaires
@@ -225,7 +225,7 @@
                 </div>
                 @endforeach
             </div>
-            
+
             <!-- Pagination Controls -->
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
                 <button id="prevPage"
