@@ -19,14 +19,18 @@ class ExperienceRepository implements ExperienceRepositoryInterface
             $query->where('title', 'like', '%' . $request->title . '%');
         }
 
-        $perPage = $request->input('per_page', 6);
+        $perPage = $request->input('per_page', 5);
 
         return $query->paginate($perPage);
     }
 
     public function store(StoreExperienceRequest $request)
     {
-        return Experience::create($request->validated());
+        $data = $request->validated();
+        $data['gourmand_id'] = auth()->user()->gourmand->id;
+        $data['statut'] = 'En attente';
+        
+        return Experience::create($data);
     }
 
     public function update(UpdateExperienceRequest $request, $id)
