@@ -15,23 +15,20 @@ class TagRepository implements TagRepositoryInterface
 
     public function store(Request $request)
     {
-        return Tag::create([
-            'name' => $request->name,
-        ]);
+        return Tag::create($request->validated());
     }
 
     public function update(Request $request, $id)
     {
         $tag = Tag::findOrFail($id);
-        $tag->update([
-            'name' => $request->name,
-        ]);
+        $tag->update($request->validated());
         return $tag;
     }
 
     public function destroy($id)
     {
-        return Tag::destroy($id);
+        $tag = Tag::findOrFail($id);
+        return $tag->delete();
     }
 
     public function findById($id)
