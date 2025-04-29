@@ -74,8 +74,8 @@
 
     <!-- Hero Section -->
     <section class="relative h-[70vh] bg-cover bg-center flex items-center justify-center"
-    style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');">
-    <div class="absolute inset-0 bg-gradient-to-b from-brand-burgundy/70 to-brand-red/70"></div>
+        style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-burgundy/70 to-brand-red/70"></div>
         <div class="relative text-center text-white px-4 z-10 max-w-2xl mt-4">
             <h1 class="playfair text-5xl font-bold mb-4">Le Blog Culinaire</h1>
             <p class="text-lg leading-relaxed">Inspirez-vous d’histoires gourmandes, de conseils de chefs, et de
@@ -92,57 +92,20 @@
     <section id="blog-articles" class="py-12 bg-white shadow-lg rounded-lg mt-[-4rem] z-20 relative">
         <div class="max-w-7xl mx-auto px-6">
             <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mb-10">Thèmes Culinaires</h1>
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <!-- Example Theme Card -->
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Thème Culinaire"
-                        class="w-full h-48 object-cover">
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
+                @foreach($themes as $theme)
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
+                    <img src="{{ $theme->image }}" alt="{{ $theme->name }}" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Cuisine Italienne</h3>
-                        <p class="text-brand-gray mb-4">Découvrez les saveurs authentiques de l'Italie avec nos recettes
-                            traditionnelles.</p>
-                        <a href="culinary-experiences.html"
-                            class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Explorer</a>
+                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">{{ $theme->name }}</h3>
+                        <p class="text-brand-gray mb-4">{{ Str::limit($theme->description, 80) }}</p>
+                        <a href="{{ route('gourmand.experiences', ['theme' => $theme->id]) }}"
+                            class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
+                            Explorer
+                        </a>
                     </div>
                 </div>
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Thème Culinaire"
-                        class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Cuisine Italienne</h3>
-                        <p class="text-brand-gray mb-4">Découvrez les saveurs authentiques de l'Italie avec nos recettes
-                            traditionnelles.</p>
-                        <a href="culinary-experiences.html"
-                            class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Explorer</a>
-                    </div>
-                </div>
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Thème Culinaire"
-                        class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Cuisine Italienne</h3>
-                        <p class="text-brand-gray mb-4">Découvrez les saveurs authentiques de l'Italie avec nos recettes
-                            traditionnelles.</p>
-                        <a href="culinary-experiences.html"
-                            class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Explorer</a>
-                    </div>
-                </div>
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="Thème Culinaire"
-                        class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Cuisine Italienne</h3>
-                        <p class="text-brand-gray mb-4">Découvrez les saveurs authentiques de l'Italie avec nos recettes
-                            traditionnelles.</p>
-                        <a href="culinary-experiences.html"
-                            class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Explorer</a>
-                    </div>
-                </div>
-                <!-- Repeat similar cards as needed -->
+                @endforeach
             </div>
             <!-- Pagination Controls -->
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
