@@ -17,19 +17,7 @@ class RecipeRepository implements RecipeRepositoryInterface
 
     public function store(StoreRecipeRequest $request)
     {
-        $recipe = Recipe::create($request->only([
-            'title',
-            'image',
-            'description',
-            'preparation_time',
-            'cooking_time',
-            'servings',
-            'complexity',
-            'ingredients',
-            'instructions',
-            'category_id',
-            'chef_id' => auth()->user()->chef->id
-        ]));
+        $recipe = Recipe::create($request->validated());
 
         if ($request->has('tags')) {
             $recipe->tags()->sync($request->tags);
@@ -46,18 +34,7 @@ class RecipeRepository implements RecipeRepositoryInterface
     public function update(UpdateRecipeRequest $request, $id)
     {
         $recipe = Recipe::findOrFail($id);
-        $recipe->update($request->only([
-            'title',
-            'image',
-            'description',
-            'preparation_time',
-            'cooking_time',
-            'servings',
-            'complexity',
-            'ingredients',
-            'instructions',
-            'category_id'
-        ]));
+        $recipe->update($request->validated());
 
         if ($request->has('tags')) {
             $recipe->tags()->sync($request->tags);
