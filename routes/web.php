@@ -97,6 +97,6 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     Route::post('/favorites/delete', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 
     // Route pour blog
-    Route::get('/blog', [ThemeController::class, 'index'])->name('gourmand.blog.index');
-    Route::get('/blog/{theme}', [ThemeController::class, 'show'])->name('gourmand.blog.show');
+    Route::get('/blog', [ThemeController::class, 'index'])->name('gourmand.blog');
+    Route::get('/experiences/{theme}', [ExperienceController::class, 'index'])->name('gourmand.experiences');
 });
