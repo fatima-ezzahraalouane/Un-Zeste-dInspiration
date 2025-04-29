@@ -109,17 +109,26 @@
             </div>
             <!-- Pagination Controls -->
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
-                <button id="prevPage"
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">1</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">2</button>
+                @if ($themes->onFirstPage())
+                    <span class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Précédent</span>
+                @else
+                    <a href="{{ $themes->previousPageUrl() }}"
+                       class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</a>
+                @endif
 
-                <div id="pageNumbers" class="flex space-x-2"></div>
+                @foreach ($themes->getUrlRange(1, $themes->lastPage()) as $page => $url)
+                    <a href="{{ $url }}"
+                       class="px-4 py-2 rounded-lg {{ $themes->currentPage() == $page ? 'bg-brand-red' : 'bg-brand-burgundy' }} text-white hover:bg-brand-red transition-all">
+                        {{ $page }}
+                    </a>
+                @endforeach
 
-                <button id="nextPage"
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</button>
+                @if ($themes->hasMorePages())
+                    <a href="{{ $themes->nextPageUrl() }}"
+                       class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</a>
+                @else
+                    <span class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Suivant</span>
+                @endif
             </div>
         </div>
     </section>
