@@ -204,11 +204,11 @@
                         class="w-full h-56 object-cover">
                     <div class="p-6">
                         <h3 class="text-2xl font-semibold text-brand-burgundy">{{ $experience->title }}</h3>
-                        <p class="text-sm text-brand-gray mt-2">{{ Str::limit($experience->description, 100) }}</p>
+                        <p class="text-sm text-brand-gray mt-2">{{ Str::limit($experience->description, 50) }}</p>
 
                         <div class="flex justify-between items-center mt-4">
                             <div class="flex items-center">
-                                <img src="{{ $experience->gourmand->user->avatar ?? 'https://i.pravatar.cc/40' }}"
+                                <img src="{{ $experience->gourmand->user->avatar ?? 'https://atomic.site/wp-content/uploads/2019/02/Avatar.png' }}"
                                     alt="Auteur"
                                     class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
                                 <span class="text-brand-gray ml-3 font-large">
@@ -228,20 +228,28 @@
 
             <!-- Pagination Controls -->
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
-                <button id="prevPage"
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">1</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">2</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">3</button>
+                @if ($experiences->onFirstPage())
+                <button disabled
+                    class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Précédent</button>
+                @else
+                <a href="{{ $experiences->previousPageUrl() }}"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</a>
+                @endif
 
+                @foreach ($experiences->getUrlRange(1, $experiences->lastPage()) as $page => $url)
+                <a href="{{ $url }}"
+                    class="px-4 py-2 rounded-lg {{ $page == $experiences->currentPage() ? 'bg-brand-red' : 'bg-brand-burgundy' }} text-white hover:bg-brand-red transition-all">
+                    {{ $page }}
+                </a>
+                @endforeach
 
-                <div id="pageNumbers" class="flex space-x-2"></div>
-
-                <button id="nextPage"
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</button>
+                @if ($experiences->hasMorePages())
+                <a href="{{ $experiences->nextPageUrl() }}"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</a>
+                @else
+                <button disabled
+                    class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Suivant</button>
+                @endif
             </div>
         </div>
     </section>
