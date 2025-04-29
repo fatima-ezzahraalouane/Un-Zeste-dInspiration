@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Experience\ExperienceRepositoryInterface;
 use App\Repositories\Theme\ThemeRepositoryInterface;
 use App\Models\Theme;
+use App\Http\Requests\Experience\StoreExperienceRequest;
 
 class ExperienceController extends Controller
 {
@@ -23,5 +24,12 @@ class ExperienceController extends Controller
         $experiences = $this->experienceRepo->browse($request, $theme);
 
         return view('gourmand.experiences', compact('theme', 'experiences'));
+    }
+
+    public function store(StoreExperienceRequest $request)
+    {
+        $this->experienceRepo->store($request);
+
+        return redirect()->back()->with('success', 'Votre expérience a été soumise pour validation.');
     }
 }
