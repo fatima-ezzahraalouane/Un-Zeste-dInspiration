@@ -55,7 +55,7 @@ class ExperienceSeeder extends Seeder
             ],
             [
                 'title' => 'Baguette Artisanale',
-                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1j4fo6OKV7l8IH8AsJ_wpqI1OqoWApu6PDw&s',
+                'image' => 'https://img.cuisineaz.com/1024x576/2019/11/17/i150952-comment-reconnaitre-une-vraie-baguette-artisanale.jpeg',
                 'description' => 'Secrets pour réussir une baguette comme un boulanger.',
                 'theme_id' => 2,
                 'gourmand_id' => 1,
