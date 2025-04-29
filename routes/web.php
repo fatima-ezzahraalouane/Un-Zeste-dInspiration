@@ -11,6 +11,7 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\VisiteurController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\ExperienceController;
 
 /*
 |--------------------------------------------------------------------------
