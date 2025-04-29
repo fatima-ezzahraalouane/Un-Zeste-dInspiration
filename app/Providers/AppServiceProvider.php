@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(RecipeRepositoryInterface::class, RecipeRepository::class);
         $this->app->bind(TagRepositoryInterface::class, TagRepository::class);
         $this->app->bind(FavoriteRepositoryInterface::class, FavoriteRepository::class);
+        $this->app->bind(ThemeRepositoryInterface::class, ThemeRepository::class);
 
     }
 
