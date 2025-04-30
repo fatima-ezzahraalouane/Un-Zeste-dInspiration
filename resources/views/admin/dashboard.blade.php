@@ -218,7 +218,7 @@
             });
         });
     </script>
-    <script>
+    <!-- <script>
         const ctx = document.getElementById('categoryChart').getContext('2d');
 
         const categoryLabels = {!!json_encode($categories -> pluck('name')) !!};
@@ -235,7 +235,6 @@
                         '#B55D51',
                         '#974344',
                         '#4C4C4C',
-                        // ajoute d'autres couleurs si tu as plus de catégories
                     ],
                     borderWidth: 0,
                     hoverOffset: 4
@@ -263,7 +262,7 @@
                 cutout: '70%'
             }
         });
-    </script>
+    </script> -->
 
 
 </body>
