@@ -219,7 +219,7 @@
                                 </span>
                             </div>
 
-                            <a href="{{ route('experiences.show', $experience->id) }}"
+                            <a href="{{ route('gourmand.experiences.show', $experience->id) }}"
                                 class="text-brand-gold hover:text-brand-burgundy transition-all font-semibold">
                                 Lire la suite →
                             </a>
