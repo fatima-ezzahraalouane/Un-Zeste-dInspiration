@@ -100,4 +100,7 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     // Route pour blog
     Route::get('/blog', [ThemeController::class, 'index'])->name('gourmand.blog');
     Route::get('/experiences/{theme}', [ExperienceController::class, 'index'])->name('gourmand.experiences');
+
+    // Route pour experience
+    Route::post('/experiences', [ExperienceController::class, 'store'])->name('experiences.store');
 });
