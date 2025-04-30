@@ -34,6 +34,11 @@ class ExperienceRepository implements ExperienceRepositoryInterface
         return Experience::create($data);
     }
 
+    public function show($id)
+    {
+        return Experience::with('theme')->findOrFail($id);
+    }
+
     public function update(UpdateExperienceRequest $request, $id)
     {
         $experience = Experience::findOrFail($id);
