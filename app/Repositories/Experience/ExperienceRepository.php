@@ -27,9 +27,10 @@ class ExperienceRepository implements ExperienceRepositoryInterface
     public function store(StoreExperienceRequest $request)
     {
         $data = $request->validated();
+    
         $data['gourmand_id'] = auth()->user()->gourmand->id;
         $data['statut'] = 'En attente';
-        
+    
         return Experience::create($data);
     }
 
