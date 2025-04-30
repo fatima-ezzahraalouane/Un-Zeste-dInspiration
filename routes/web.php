@@ -103,5 +103,5 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
 
     // Route pour experience
     Route::post('/experiences', [ExperienceController::class, 'store'])->name('experiences.store');
-    Route::get('/experiences/{id}', [ExperienceController::class, 'show'])->name('experiences.show');
+    Route::get('/experiences/detail/{id}', [ExperienceController::class, 'show'])->name('gourmand.experiences.show');
 });
