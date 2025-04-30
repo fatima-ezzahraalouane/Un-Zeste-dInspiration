@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Category;
 
+use App\Http\Requests\Category\StoreCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -12,12 +14,12 @@ class CategoryRepository implements CategoryRepositoryInterface
         return Category::all();
     }
 
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
         return Category::create($request->validated());
     }
 
-    public function update(Request $request, int $id)
+    public function update(UpdateCategoryRequest $request, int $id)
     {
         $category = Category::findOrFail($id);
         $category->update($request->validated());
