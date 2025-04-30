@@ -35,4 +35,10 @@ class ExperienceController extends Controller
     
         return redirect()->back()->with('success', 'Votre expérience a été soumise pour validation et sera approuvée par un administrateur.');
     }
+
+    public function show($id)
+    {
+        $experience = $this->experienceRepo->show($id);
+        return view('gourmand.experience-detail', compact('experience'));
+    }
 }
