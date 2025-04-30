@@ -158,7 +158,7 @@
     <section id="experiences" class="py-12 bg-white mt-[-4rem] z-20 relative">
         <div class="max-w-7xl mx-auto px-6">
             <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mb-10">Expériences
-                Culinaires
+                en {{ $theme->name }}
             </h1>
             <!-- Search Bar + Pagination + Add Experience Button -->
             <form method="GET" action="{{ route('gourmand.experiences', ['theme' => $theme->id]) }}"
@@ -215,7 +215,7 @@
                                     alt="Auteur"
                                     class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
                                 <span class="text-brand-gray ml-3 font-large">
-                                    {{ $experience->gourmand->user->first_name ?? 'Gourmand' }}
+                                    {{ $experience->gourmand->user->first_name ?? 'Gourmand' }} {{ $experience->gourmand->user->last_name ?? 'Gourmand' }}
                                 </span>
                             </div>
 
@@ -351,10 +351,6 @@
                     @endforeach
                 </select>
 
-                <!-- Hidden fields -->
-                <input type="hidden" name="gourmand_id" value="{{ auth()->user()->gourmand->id }}">
-                <input type="hidden" name="statut" value="En attente">
-
                 <!-- Buttons -->
                 <div class="flex flex-col sm:flex-row justify-end gap-3 sm:space-x-4">
                     <button type="button" id="closeModal"
@@ -486,22 +482,6 @@
             if (event.target === modal) {
                 modal.classList.add("hidden");
             }
-        });
-
-        // Form Submission (for now, just logs the values)
-        experienceForm.addEventListener("submit", (event) => {
-            event.preventDefault(); // Prevents actual submission
-            const formData = {
-                title: document.getElementById("title").value,
-                description: document.getElementById("description").value,
-                imageUrl: document.getElementById("imageUrl").value,
-                theme: document.getElementById("theme").value
-            };
-
-            console.log("New Experience Data:", formData);
-            alert("Expérience ajoutée avec succès !");
-            modal.classList.add("hidden");
-            experienceForm.reset();
         });
     </script>
 </body>
