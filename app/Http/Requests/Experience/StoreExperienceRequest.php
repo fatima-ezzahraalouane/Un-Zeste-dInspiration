@@ -25,9 +25,7 @@ class StoreExperienceRequest extends FormRequest
             'title' => 'required|string|max:255',
             'image' => 'required|string|max:255',
             'description' => 'required|string',
-            'statut' => 'in:En attente,Approuver,Rejeter',
             'theme_id' => 'required|exists:themes,id',
-            'gourmand_id' => 'required|exists:gourmands,id',
         ];
     }
 }
