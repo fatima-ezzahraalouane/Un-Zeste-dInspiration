@@ -11,6 +11,7 @@ interface ExperienceRepositoryInterface
 {
     public function browse(Request $request, Theme $theme);
     public function store(StoreExperienceRequest $request);
+    public function show($id);
     public function update(UpdateExperienceRequest $request, $id);
     public function destroy($id);
 }
