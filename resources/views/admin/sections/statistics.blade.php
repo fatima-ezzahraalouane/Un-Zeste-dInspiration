@@ -57,7 +57,7 @@
     <!-- Charts Section -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Distribution par catégorie -->
-        <div class="bg-white rounded-xl shadow-md p-6">
+        <!-- <div class="bg-white rounded-xl shadow-md p-6">
             <h3 class="playfair text-xl font-bold text-brand-burgundy mb-4">Distribution par Catégorie</h3>
             <div class="h-64 relative">
                 <canvas id="categoryChart"></canvas>
@@ -71,6 +71,33 @@
                     <span class="text-sm">
                         {{ $category->name }} ({{ $category->recipes_count }})
                     </span>
+                </div>
+                @endforeach
+            </div>
+        </div> -->
+
+        <!-- Top 3 Gourmands les plus actifs -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <h3 class="playfair text-xl font-bold text-brand-burgundy mb-4">Top 3 Gourmands les plus actifs</h3>
+            <div class="space-y-4">
+                @foreach($topGourmands as $index => $gourmand)
+                <div class="flex items-center p-3 {{ $index == 0 ? 'bg-brand-peach/70' : 'bg-gray-100' }} rounded-lg">
+                    <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden mr-4">
+                        <img src="{{ $gourmand->user->avatar ?? 'https://atomic.site/wp-content/uploads/2019/02/Avatar.png' }}"
+                            alt="Chef" class="w-full h-full object-cover rounded-full border-2 border-brand-coral" />
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-semibold">{{ $gourmand->user->first_name ?? 'Gourmand' }} {{ $gourmand->user->last_name ?? '' }}</h4>
+                        <p class="text-sm text-brand-gray">{{ $gourmand->approved_experiences_count }} recettes publiées</p>
+                    </div>
+                    <div class="
+                        @if($index == 0) bg-brand-burgundy 
+                        @elseif($index == 1) bg-brand-coral 
+                        @else bg-brand-red 
+                        @endif
+                        text-white px-3 py-1 rounded-full text-sm">
+                        {{ $index + 1 }}<sup>{{ $index == 0 ? 'er' : 'e' }}</sup>
+                    </div>
                 </div>
                 @endforeach
             </div>
@@ -88,7 +115,7 @@
                     </div>
                     <div class="flex-1">
                         <h4 class="font-semibold">{{ $chef->user->last_name ?? 'Chef' }} {{ $chef->user->first_name ?? '' }}</h4>
-                        <p class="text-sm text-brand-gray">{{ $chef->recipes_count }} recettes publiées</p>
+                        <p class="text-sm text-brand-gray">{{ $chef->approved_recipes_count }} recettes publiées</p>
                     </div>
                     <div class="
                         @if($index == 0) bg-brand-burgundy 
