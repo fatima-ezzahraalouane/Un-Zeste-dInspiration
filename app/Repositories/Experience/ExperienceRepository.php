@@ -36,7 +36,7 @@ class ExperienceRepository implements ExperienceRepositoryInterface
 
     public function show($id)
     {
-        return Experience::with('theme')->findOrFail($id);
+        return Experience::with(['theme', 'gourmand.user'])->findOrFail($id);
     }
 
     public function update(UpdateExperienceRequest $request, $id)
