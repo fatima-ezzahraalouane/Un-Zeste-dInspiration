@@ -22,12 +22,10 @@ class UpdateExperienceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'sometimes|required|string|max:255',
-            'image' => 'sometimes|required|string|max:255',
-            'description' => 'sometimes|required|string',
-            'statut' => 'sometimes|in:En attente,Approuver,Rejeter',
-            'theme_id' => 'sometimes|required|exists:themes,id',
-            'gourmand_id' => 'sometimes|required|exists:gourmands,id',
+            'title' => 'required|string|max:255',
+            'image' => 'required|string',
+            'description' => 'required|string',
+            'theme_id' => 'required|exists:themes,id',
         ];
     }
 }
