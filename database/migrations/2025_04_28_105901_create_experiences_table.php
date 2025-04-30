@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image');
+            $table->text('image');
             $table->text('description');
             $table->enum('statut', ['En attente', 'Approuver', 'Rejeter'])->default('En attente');
             $table->foreignId('theme_id')->constrained('themes')->onDelete('cascade');
