@@ -109,9 +109,12 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
 
     // Routes pour les commentaires (gourmand)
     Route::prefix('commentaires')->name('commentaires.')->group(function () {
-        Route::get('/', [CommentController::class, 'index'])->name('index'); // Affiche tous les commentaires (pour tests/admin/debug)
-        Route::post('/store', [CommentController::class, 'store'])->name('store'); // Ajouter un commentaire
-        Route::put('/{id}/update', [CommentController::class, 'update'])->name('update'); // Modifier un commentaire
-        Route::delete('/{id}/delete', [CommentController::class, 'destroy'])->name('destroy'); // Supprimer un commentaire
+        Route::get('/', [CommentController::class, 'index'])->name('index');
+        Route::post('/store', [CommentController::class, 'store'])->name('store');
+        Route::put('/{id}/update', [CommentController::class, 'update'])->name('update');
+        Route::delete('/{id}/delete', [CommentController::class, 'destroy'])->name('destroy');
     });
+
+    // Routes pour profil
+    Route::get('/profil', [GourmandController::class, 'show'])->name('gourmand.profil');
 });
