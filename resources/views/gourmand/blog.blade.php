@@ -93,7 +93,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mb-10">Thèmes Culinaires</h1>
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
-                @foreach($themes as $theme)
+                @forelse($themes as $theme)
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
                     <img src="{{ $theme->image }}" alt="{{ $theme->name }}" class="w-full h-48 object-cover">
                     <div class="p-6">
@@ -105,29 +105,31 @@
                         </a>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                <p class="col-span-3 text-center text-brand-gray text-lg">Aucune thème trouvée.</p>
+                @endforelse
             </div>
             <!-- Pagination Controls -->
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
                 @if ($themes->onFirstPage())
-                    <span class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Précédent</span>
+                <span class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Précédent</span>
                 @else
-                    <a href="{{ $themes->previousPageUrl() }}"
-                       class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</a>
+                <a href="{{ $themes->previousPageUrl() }}"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</a>
                 @endif
 
                 @foreach ($themes->getUrlRange(1, $themes->lastPage()) as $page => $url)
-                    <a href="{{ $url }}"
-                       class="px-4 py-2 rounded-lg {{ $themes->currentPage() == $page ? 'bg-brand-red' : 'bg-brand-burgundy' }} text-white hover:bg-brand-red transition-all">
-                        {{ $page }}
-                    </a>
+                <a href="{{ $url }}"
+                    class="px-4 py-2 rounded-lg {{ $themes->currentPage() == $page ? 'bg-brand-red' : 'bg-brand-burgundy' }} text-white hover:bg-brand-red transition-all">
+                    {{ $page }}
+                </a>
                 @endforeach
 
                 @if ($themes->hasMorePages())
-                    <a href="{{ $themes->nextPageUrl() }}"
-                       class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</a>
+                <a href="{{ $themes->nextPageUrl() }}"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</a>
                 @else
-                    <span class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Suivant</span>
+                <span class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Suivant</span>
                 @endif
             </div>
         </div>
