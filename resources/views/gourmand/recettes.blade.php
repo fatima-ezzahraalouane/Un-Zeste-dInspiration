@@ -207,7 +207,7 @@
             </form>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="recipes-grid">
-                @foreach($recipes as $recipe)
+                @forelse($recipes as $recipe)
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
                     <div class="relative">
                         <img src="{{ $recipe->image ?? 'https://via.placeholder.com/400x300' }}"
@@ -242,7 +242,9 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                <p class="col-span-3 text-center text-brand-gray text-lg">Aucune recette trouvée.</p>
+                @endforelse
             </div>
 
             <!-- Pagination Controls -->
