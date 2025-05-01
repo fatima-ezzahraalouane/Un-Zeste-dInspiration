@@ -34,14 +34,12 @@ class FavoriteController extends Controller
     public function store(StoreFavoriteRequest $request)
     {
         $this->favoriteRepo->store($request);
-
-        return redirect()->back()->with('success', 'Recette retirée des favoris.');
+        return redirect()->back()->with('success', 'Recette ajoutée aux favoris.');
     }
 
     public function destroy(DeleteFavoriteRequest $request)
     {
         $this->favoriteRepo->destroy($request);
-
         return redirect()->back()->with('success', 'Recette retirée des favoris.');
     }
 }
