@@ -212,7 +212,7 @@
                         <div class="flex justify-between items-center mt-4">
                             <div class="flex items-center">
                                 <img src="{{ $experience->gourmand->user->avatar ?? 'https://atomic.site/wp-content/uploads/2019/02/Avatar.png' }}"
-                                    alt="Auteur"
+                                    alt="Gourmand"
                                     class="w-10 h-10 rounded-full border border-gray-300 shadow-sm">
                                 <span class="text-brand-gray ml-3 font-large">
                                     {{ $experience->gourmand->user->first_name ?? 'Gourmand' }} {{ $experience->gourmand->user->last_name ?? 'Gourmand' }}
