@@ -22,9 +22,9 @@ class UpdateExperienceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'image' => 'required|string',
-            'description' => 'required|string',
+            'title' => 'sometimes|string|max:255',
+            'image' => 'sometimes|string',
+            'description' => 'sometimes|string',
             'theme_id' => 'required|exists:themes,id',
         ];
     }
