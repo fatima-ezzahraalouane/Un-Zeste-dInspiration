@@ -23,7 +23,7 @@ class UpdateRecipeRequest extends FormRequest
     {
         return [
             'title'             => 'sometimes|required|string|max:255',
-            'image'             => 'nullable|string',
+            'image'             => 'sometimes|string',
             'description'       => 'sometimes|required|string',
             'preparation_time'  => 'sometimes|required|integer|min:1',
             'cooking_time'      => 'sometimes|required|integer|min:1',
