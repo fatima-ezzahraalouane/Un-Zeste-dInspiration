@@ -13,7 +13,7 @@
                 <a href="{{ route('gourmand.recettes') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Recettes</a>
                 <a href="{{ route('gourmand.blog') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Blog</a>
                 <a href="{{ route('gourmand.mesfavoris') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Mes Favoris</a>
-                <a href="#" class="text-brand-dark hover:text-brand-coral transition-colors">Profil</a>
+                <a href="{{ route('gourmand.profil') }}" class="text-brand-dark hover:text-brand-coral transition-colors">Profil</a>
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf
                     <button type="submit"
@@ -36,7 +36,7 @@
         <a href="{{ route('gourmand.recettes') }}" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Recettes</a>
         <a href="{{ route('gourmand.blog') }}" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Blog</a>
         <a href="{{ route('gourmand.mesfavoris') }}" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Mes Favoris</a>
-        <a href="#" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Profil</a>
+        <a href="{{ route('gourmand.profil') }}" class="block text-brand-dark hover:text-brand-coral transition-colors mb-2">Profil</a>
         <form action="{{ route('logout') }}" method="POST" class="inline">
             @csrf
             <button type="submit"
