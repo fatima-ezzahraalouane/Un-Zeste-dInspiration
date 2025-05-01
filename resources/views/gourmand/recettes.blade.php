@@ -9,6 +9,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <script>
         tailwind.config = {
             theme: {
@@ -146,6 +148,15 @@
         <div class="max-w-7xl mx-auto px-6">
             <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mb-10">Explorer les Recettes</h1>
 
+            @if (session('success'))
+            <div id="success-alert" class="flex justify-end">
+                <div class="mb-6 px-4 py-3 bg-green-100 text-green-800 rounded shadow font-medium flex items-center gap-2">
+                    <i class="fas fa-check-circle"></i>
+                    {{ session('success') }}
+                </div>
+            </div>
+            @endif
+
             <!-- Search Bar + Pagination + Add Recipe Button -->
             <form method="GET" action="{{ route('gourmand.recettes') }}" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 p-4 md:p-6 bg-gray-100 shadow-md rounded-lg gap-4">
                 <!-- Search Bar -->
@@ -212,12 +223,27 @@
                     <div class="relative">
                         <img src="{{ $recipe->image ?? 'https://via.placeholder.com/400x300' }}"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" alt="{{ $recipe->title }}">
-                        <button
-                            class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md toggle-favorite"
-                            data-recipe-id="{{ $recipe->id }}">
-                            <i class="fas fa-heart text-xl {{ in_array($recipe->id, $likedRecipes) ? 'text-brand-burgundy' : 'text-brand-gray' }}"></i>
-                        </button>
-
+                        @if(in_array($recipe->id, $likedRecipes))
+                        <!-- Formulaire de suppression -->
+                        <form method="POST" action="{{ route('favorites.destroy') }}"
+                            class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                            @csrf
+                            <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+                            <button type="submit" title="Retirer des favoris">
+                                <i class="fas fa-heart text-xl text-brand-burgundy"></i>
+                            </button>
+                        </form>
+                        @else
+                        <!-- Formulaire d'ajout -->
+                        <form method="POST" action="{{ route('favorites.store') }}"
+                            class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                            @csrf
+                            <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+                            <button type="submit" title="Ajouter aux favoris">
+                                <i class="fas fa-heart text-xl text-brand-gray"></i>
+                            </button>
+                        </form>
+                        @endif
                     </div>
                     <div class="p-6">
                         <div class="flex items-center space-x-2 mb-3">
@@ -344,77 +370,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.toggle-favorite').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-
-                    const recipeId = this.dataset.recipeId;
-                    const icon = this.querySelector('i');
-                    const isFavorite = icon.classList.contains('text-brand-burgundy');
-
-                    const url = isFavorite ?
-                        "{{ route('favorites.destroy') }}" :
-                        "{{ route('favorites.store') }}";
-
-                    fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            },
-                            body: JSON.stringify({
-                                recipe_id: recipeId
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (isFavorite) {
-                                icon.classList.remove('text-brand-burgundy');
-                                icon.classList.add('text-brand-gray');
-
-                                // ✅ Toast pour Retirer
-                                Toastify({
-                                    text: "Recette retirée des favoris ❌",
-                                    duration: 3000,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    backgroundColor: "#f87171",
-                                }).showToast();
-                            } else {
-                                icon.classList.remove('text-brand-gray');
-                                icon.classList.add('text-brand-burgundy');
-
-                                // ✅ Toast pour Ajouter
-                                Toastify({
-                                    text: "Recette ajoutée aux favoris ✅",
-                                    duration: 3000,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    backgroundColor: "#34d399",
-                                }).showToast();
-                            }
-                        })
-                        .catch(error => console.error('Erreur favori:', error));
-                });
-            });
-        });
-    </script>
-
-    <!-- Toastify CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
-    <!-- Toastify JS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
             fetch(`{{ route('gourmand.carousel') }}`)
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('carousel-container').innerHTML = html;
-                    // Puis lancer le carousel.js une fois le HTML injecté
                     initCarousel();
                 })
                 .catch(error => console.error('Erreur chargement carousel:', error));
@@ -422,6 +381,15 @@
     </script>
 
     <script src="{{ asset('js/carousel.js') }}"></script>
+
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.remove();
+            }
+        }, 2000);
+    </script>
 </body>
 
 </html>
