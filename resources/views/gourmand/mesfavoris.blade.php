@@ -133,7 +133,8 @@
 
             @if (session('success'))
             <div id="success-alert" class="flex justify-end">
-                <div class="mb-6 px-4 py-3 bg-green-100 text-green-800 rounded shadow font-medium">
+                <div class="mb-2 px-4 py-3 bg-green-100 text-green-800 rounded shadow font-medium">
+                    <i class="fas fa-check-circle"></i>
                     {{ session('success') }}
                 </div>
             </div>
@@ -223,7 +224,6 @@
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('carousel-container').innerHTML = html;
-                    // pour lancer le carousel.js une fois le HTML injecté
                     initCarousel();
                 })
                 .catch(error => console.error('Erreur chargement carousel:', error));
