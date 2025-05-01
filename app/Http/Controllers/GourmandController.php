@@ -9,6 +9,7 @@ use App\Models\Chef;
 use App\Models\User;
 use App\Models\Experience;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Gourmand\UpdateProfileRequest;
 
 class GourmandController extends Controller
 {
@@ -49,5 +50,27 @@ class GourmandController extends Controller
         }
 
         return view('gourmand.profile', compact('gourmand'));
+    }
+
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $gourmand = $user->gourmand;
+
+        // Mise à jour des données utilisateur
+        $user->update([
+            'first_name' => $request->first_name,
+            'last_name'  => $request->last_name,
+            'email'      => $request->email,
+        ]);
+
+        // Mise à jour des données gourmand
+        $gourmand->update([
+            'adresse'    => $request->adresse,
+            'biographie' => $request->biographie,
+        ]);
+
+        return redirect()->route('gourmand.profile')->with('success', 'Profil mis à jour avec succès.');
     }
 }
