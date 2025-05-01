@@ -201,7 +201,7 @@
             </form>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="experiences-grid">
-                @foreach ($experiences as $experience)
+                @forelse ($experiences as $experience)
                 <div class="luxury-card">
                     <img src="{{ $experience->image }}" alt="{{ $experience->title }}"
                         class="w-full h-56 object-cover">
@@ -226,7 +226,9 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+                @empty
+                <p class="col-span-3 text-center text-brand-gray text-lg">Aucune expérience trouvée.</p>
+                @endforelse
             </div>
 
             <!-- Pagination Controls -->
