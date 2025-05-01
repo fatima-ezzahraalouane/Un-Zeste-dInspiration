@@ -280,8 +280,12 @@
 
                                 <div class="flex justify-end mt-2">
                                     <button type="submit"
-                                        class="px-4 py-1 text-sm bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-all">
+                                        class="px-4 py-1 mr-2 text-sm bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-all">
                                         Sauvegarder
+                                    </button>
+                                    <button type="button" onclick="toggleEditForm({{ $comment->id }})"
+                                        class="px-4 py-1 text-sm bg-gray-300 text-brand-dark rounded-full hover:bg-gray-400 transition-all">
+                                        Annuler
                                     </button>
                                 </div>
                             </form>
@@ -321,7 +325,6 @@
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('carousel-container').innerHTML = html;
-                    // Puis lancer le carousel.js une fois le HTML injecté
                     initCarousel();
                 })
                 .catch(error => console.error('Erreur chargement carousel:', error));
