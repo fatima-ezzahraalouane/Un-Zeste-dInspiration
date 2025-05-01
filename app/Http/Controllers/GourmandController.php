@@ -39,4 +39,15 @@ class GourmandController extends Controller
 
         return view('gourmand.accueil', compact('recipes', 'stats', 'likedRecipes'));
     }
+
+    public function profil()
+    {
+        $gourmand = Auth::user()->gourmand;
+
+        if (!$gourmand) {
+            abort(403, 'Accès non autorisé.');
+        }
+
+        return view('gourmand.profil', compact('gourmand'));
+    }
 }
