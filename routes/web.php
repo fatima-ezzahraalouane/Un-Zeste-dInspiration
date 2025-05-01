@@ -94,6 +94,7 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     Route::get('/recettes/{id}', [RecipeController::class, 'show'])->name('gourmand.recettes.show');
 
     // Routes pour Favoris
+    Route::get('/mesfavoris', [FavoriteController::class, 'index'])->name('gourmand.mesfavoris');
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::post('/favorites/delete', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 
