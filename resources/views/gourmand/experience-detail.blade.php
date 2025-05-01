@@ -162,17 +162,98 @@
     <!-- Comments Section -->
     <section class="py-12 bg-brand-peach">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl playfair font-bold text-brand-burgundy mb-6">Commentaires</h2>
-            <div class="mb-6">
-                <textarea id="new-comment" rows="4"
-                    class="w-full px-4 py-2 rounded-lg border border-brand-gray focus:outline-none focus:ring-2 focus:ring-brand-burgundy/50"
-                    placeholder="Ajouter un commentaire..."></textarea>
-                <button onclick="addComment()"
-                    class="mt-4 px-6 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">Ajouter
-                    Commentaire</button>
+
+            @if (session('success'))
+            <div id="success-alert" class="flex justify-end">
+                <div class="mb-6 px-4 py-3 bg-green-100 text-green-800 rounded shadow font-medium flex items-center gap-2">
+                    <i class="fas fa-check-circle"></i>
+                    {{ session('success') }}
+                </div>
             </div>
-            <div id="comments-section">
-                <!-- Comments will be dynamically added here -->
+            @endif
+
+            <h2 class="text-3xl playfair font-bold text-brand-burgundy mb-6">Commentaires</h2>
+
+            <!-- Formulaire d'ajout -->
+            <form method="POST" action="{{ route('commentaires.store') }}">
+                @csrf
+                <input type="hidden" name="commentable_type" value="App\Models\Experience">
+                <input type="hidden" name="commentable_id" value="{{ $experience->id }}">
+
+                <textarea name="content" rows="4"
+                    class="w-full px-4 py-2 rounded-lg border border-brand-gray focus:outline-none focus:ring-2 focus:ring-brand-burgundy/50"
+                    placeholder="Ajouter un commentaire...">{{ old('content') }}</textarea>
+
+                @error('content')
+                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror
+
+                <button type="submit"
+                    class="mt-4 px-6 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                    Ajouter Commentaire
+                </button>
+            </form>
+
+            <!-- Liste des commentaires -->
+            <div id="comments-section" class="mt-10 space-y-6">
+                @foreach ($experience->comments as $comment)
+                <div class="bg-white rounded-lg p-4 shadow">
+                    <div class="flex items-start gap-4">
+                        <!-- Avatar -->
+                        <img src="{{ $comment->gourmand->user->avatar ?? 'https://atomic.site/wp-content/uploads/2019/02/Avatar.png' }}"
+                            alt="Avatar Gourmand"
+                            class="w-10 h-10 rounded-full border-2 border-brand-coral object-cover">
+
+                        <div class="flex-1">
+                            <!-- Nom + Date + Actions -->
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-semibold text-brand-burgundy">
+                                        {{ $comment->gourmand->user->first_name }} {{ $comment->gourmand->user->last_name }}
+                                    </h4>
+                                    <span class="text-sm text-brand-gray">
+                                        {{ $comment->created_at->diffForHumans() }}
+                                    </span>
+                                </div>
+
+                                @if ($comment->gourmand_id === auth()->user()->gourmand->id)
+                                <div class="flex gap-3">
+                                    <form method="POST" action="{{ route('commentaires.destroy', $comment->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="text-sm text-red-500 hover:underline">Supprimer</button>
+                                    </form>
+                                    <button type="button" onclick="toggleEditForm({{ $comment->id }})"
+                                        class="text-sm text-brand-burgundy hover:underline">Modifier</button>
+                                </div>
+                                @endif
+                            </div>
+
+                            <!-- Contenu -->
+                            <p class="text-brand-gray" id="comment-content-{{ $comment->id }}">{{ $comment->content }}</p>
+
+                            <!-- Formulaire de modification -->
+                            <form method="POST" action="{{ route('commentaires.update', $comment->id) }}"
+                                id="edit-form-{{ $comment->id }}" class="hidden mt-3">
+                                @csrf
+                                @method('PUT')
+                                <textarea name="content" rows="2"
+                                    class="w-full px-4 py-2 border rounded-lg border-brand-gray focus:outline-none focus:ring-2 focus:ring-brand-burgundy/50 text-sm">{{ old('content', $comment->content) }}</textarea>
+                                @error('content')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+
+                                <div class="flex justify-end mt-2">
+                                    <button type="submit"
+                                        class="px-4 py-1 text-sm bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-all">
+                                        Sauvegarder
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -272,6 +353,30 @@
         }
 
         setInterval(autoSlide, 5000);
+    </script>
+
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 2000);
+    </script>
+    <script>
+        function toggleEditForm(id) {
+            const form = document.getElementById(`edit-form-${id}`);
+            const content = document.getElementById(`comment-content-${id}`);
+            if (form.classList.contains('hidden')) {
+                form.classList.remove('hidden');
+                content.classList.add('hidden');
+            } else {
+                form.classList.add('hidden');
+                content.classList.remove('hidden');
+            }
+        }
     </script>
 </body>
 
