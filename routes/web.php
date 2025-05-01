@@ -115,6 +115,6 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
         Route::delete('/{id}/delete', [CommentController::class, 'destroy'])->name('destroy');
     });
 
-    // Routes pour profil
-    Route::get('/profil', [GourmandController::class, 'show'])->name('gourmand.profil');
+    // Route pour profil
+    Route::get('/profil', [GourmandController::class, 'profil'])->name('gourmand.profil');
 });
