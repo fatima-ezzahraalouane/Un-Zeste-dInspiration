@@ -18,6 +18,19 @@ class FavoriteController extends Controller
         $this->favoriteRepo = $favoriteRepo;
     }
 
+    public function index()
+    {
+        $gourmand = auth()->user()->gourmand;
+
+        if (!$gourmand) {
+            abort(403, 'Accès non autorisé.');
+        }
+
+        $recipes = $gourmand->favorites()->paginate(5);
+
+        return view('gourmand.mesfavoris', compact('recipes'));
+    }
+
     public function store(StoreFavoriteRequest $request)
     {
         $this->favoriteRepo->store($request);
