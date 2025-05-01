@@ -240,21 +240,24 @@
                             class="w-10 h-10 rounded-full border-2 border-brand-coral object-cover">
 
                         <div class="flex-1">
-                            <!-- Nom + Actions -->
+                            <!-- Nom + Date + Actions -->
                             <div class="flex justify-between items-center mb-2">
-                                <h4 class="font-semibold text-brand-burgundy">
-                                    {{ $comment->gourmand->user->first_name }} {{ $comment->gourmand->user->last_name }}
-                                </h4>
+                                <div class="flex items-center gap-2">
+                                    <h4 class="font-semibold text-brand-burgundy">
+                                        {{ $comment->gourmand->user->first_name }} {{ $comment->gourmand->user->last_name }}
+                                    </h4>
+                                    <span class="text-sm text-brand-gray">
+                                        {{ $comment->created_at->diffForHumans() }}
+                                    </span>
+                                </div>
+
                                 @if ($comment->gourmand_id === auth()->user()->gourmand->id)
                                 <div class="flex gap-3">
-                                    <!-- Bouton Supprimer -->
                                     <form method="POST" action="{{ route('commentaires.destroy', $comment->id) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button class="text-sm text-red-500 hover:underline">Supprimer</button>
                                     </form>
-
-                                    <!-- Bouton Modifier -->
                                     <button type="button" onclick="toggleEditForm({{ $comment->id }})"
                                         class="text-sm text-brand-burgundy hover:underline">Modifier</button>
                                 </div>
