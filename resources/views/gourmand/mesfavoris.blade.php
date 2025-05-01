@@ -128,44 +128,67 @@
 
     <!-- Favorites Section -->
     <section class="py-12 bg-white shadow-lg rounded-lg">
-        <div class="max-w-7xl mx-auto px-6">
-            <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mt-14 mb-8">Mes Recettes Préférées
-            </h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favorites-grid">
-                <!-- Example Favorite Recipe Card -->
-                <div
-                    class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
-                    <img src="https://i0.wp.com/mesbrouillonsdecuisine.fr/wp-content/uploads/2022/06/IMG_1978.jpg?resize=1080%2C1512&ssl=1"
-                        alt="Recette" class="w-full h-48 object-cover">
+    <div class="max-w-7xl mx-auto px-6">
+        <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mt-14 mb-8">Mes Recettes Préférées</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favorites-grid">
+            @forelse ($recipes as $recipe)
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
+                    <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">Salade de Quinoa</h3>
-                        <p class="text-brand-gray mb-4">Une salade légère et rafraîchissante de quinoa avec des légumes
-                            frais.</p>
+                        <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">{{ $recipe->title }}</h3>
+                        <p class="text-brand-gray mb-4">{{ Str::limit($recipe->description, 50) }}</p>
                         <div class="flex justify-between items-center">
-                            <a href="recipe-details.html"
-                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Voir
-                                la Recette</a>
-                            <button onclick="removeFavorite(this)" class="text-brand-red text-sm"><i
-                                    class="fas fa-trash-alt"></i> Supprimer</button>
+                            <a href="{{ route('gourmand.recettes.show', $recipe->id) }}"
+                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">
+                                Voir la Recette
+                            </a>
+                            <form method="POST" action="{{ route('favorites.destroy') }}">
+                                @csrf
+                                <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+                                <button type="submit" class="text-brand-red text-sm hover:text-red-700">
+                                    <i class="fas fa-trash-alt"></i> Supprimer
+                                </button>
+                            </form>
                         </div>
                     </div>
-            </div>
-            <!-- Pagination Controls -->
-            <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
-                <button id="prevPage"
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">1</button>
-                <button
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">2</button>
-
-                <div id="pageNumbers" class="flex space-x-2"></div>
-
-                <button id="nextPage"
-                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</button>
-            </div>
+                </div>
+            @empty
+                <p class="col-span-3 text-center text-brand-gray text-lg">Aucune recette enregistrée en favoris.</p>
+            @endforelse
         </div>
-    </section>
+
+        {{-- Pagination --}}
+        @if ($recipes->hasPages())
+            <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
+                {{-- Previous Page Link --}}
+                @if ($recipes->onFirstPage())
+                    <button disabled class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Précédent</button>
+                @else
+                    <a href="{{ $recipes->previousPageUrl() }}"
+                        class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</a>
+                @endif
+
+                {{-- Pagination Elements --}}
+                @foreach ($recipes->getUrlRange(1, $recipes->lastPage()) as $page => $url)
+                    <a href="{{ $url }}"
+                        class="px-4 py-2 rounded-lg {{ $page == $recipes->currentPage() ? 'bg-brand-red' : 'bg-brand-burgundy' }} text-white hover:bg-brand-red transition-all">
+                        {{ $page }}
+                    </a>
+                @endforeach
+
+                {{-- Next Page Link --}}
+                @if ($recipes->hasMorePages())
+                    <a href="{{ $recipes->nextPageUrl() }}"
+                        class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</a>
+                @else
+                    <button disabled class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Suivant</button>
+                @endif
+            </div>
+        @endif
+    </div>
+</section>
+
 
     <!-- Carousel Section -->
     <div id="carousel-container"></div>
@@ -187,12 +210,6 @@
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Remove favorite recipe
-        function removeFavorite(button) {
-            const card = button.closest('.group');
-            card.remove();
-        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
