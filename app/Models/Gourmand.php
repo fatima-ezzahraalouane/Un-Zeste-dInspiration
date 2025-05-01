@@ -29,4 +29,9 @@ class Gourmand extends Model
     {
         return $this->hasMany(Experience::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
