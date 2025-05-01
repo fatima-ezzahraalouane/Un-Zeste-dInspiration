@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('recipes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image')->nullable();
+            $table->text('image');
             $table->text('description');
             $table->enum('statut', ['En attente', 'Approuver', 'Rejeter'])->default('En attente');
             $table->integer('preparation_time');
