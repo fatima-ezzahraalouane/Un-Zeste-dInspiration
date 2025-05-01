@@ -9,7 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['content', 'gourmand_id'];
+    protected $fillable = ['content', 'commentable_id', 'commentable_type', 'gourmand_id'];
 
     public function gourmand()
     {
