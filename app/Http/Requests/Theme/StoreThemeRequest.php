@@ -23,7 +23,7 @@ class StoreThemeRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'image' => 'required|url|max:255',
+            'image' => 'required|string',
             'description' => 'required|string',
         ];
     }
