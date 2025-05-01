@@ -22,7 +22,7 @@ class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contenu' => 'required|string',
+            'content' => 'required|string',
             'commentable_id' => 'required|integer',
             'commentable_type' => 'required|string|in:App\\Models\\Recipe,App\\Models\\Experience',
         ];
