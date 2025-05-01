@@ -11,52 +11,58 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
                 <p class="text-brand-gray text-sm">Nom</p>
-                <p class="font-medium">Alouane</p>
+                <p class="font-medium">{{ $gourmand->user->last_name }}</p>
             </div>
             <div>
                 <p class="text-brand-gray text-sm">Prénom</p>
-                <p class="font-medium">Fatima-Ezzahra</p>
+                <p class="font-medium">{{ $gourmand->user->first_name }}</p>
             </div>
             <div>
                 <p class="text-brand-gray text-sm">Email</p>
-                <p class="font-medium">fatimaezzahra@email.com</p>
+                <p class="font-medium">{{ $gourmand->user->email }}</p>
             </div>
             <div>
                 <p class="text-brand-gray text-sm">Localisation</p>
-                <p class="font-medium">Safi, Maroc</p>
+                <p class="font-medium">{{ $gourmand->adresse ?? 'Non renseignée' }}</p>
             </div>
         </div>
         <div>
             <p class="text-brand-gray text-sm">À propos de moi</p>
-            <p class="font-medium">Passionnée de cuisine depuis mon plus jeune âge,
-                j'aime particulièrement expérimenter avec les saveurs méditerranéennes et asiatiques.
-                Je partage ici mes découvertes culinaires.</p>
+            <p class="font-medium">{{ $gourmand->biographie ?? 'Aucune biographie disponible.' }}</p>
         </div>
     </div>
 
     <!-- Edit Mode -->
-    <form id="edit-profile" class="hidden space-y-6">
+    <form id="edit-profile" class="hidden space-y-6" method="POST" action="{{ route('gourmand.profile.update') }}">
+        @csrf
+        @method('PUT')
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
                 <label class="block text-brand-gray text-sm mb-1" for="last-name">Nom</label>
-                <input type="text" id="last-name" value="Alouane" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
+                <input type="text" id="last-name" name="last_name" value="{{ $gourmand->user->last_name }}"
+                    class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
             </div>
             <div>
                 <label class="block text-brand-gray text-sm mb-1" for="first-name">Prénom</label>
-                <input type="text" id="first-name" value="Fatima-Ezzahra" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
+                <input type="text" id="first-name" name="first_name" value="{{ $gourmand->user->first_name }}"
+                    class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
             </div>
             <div>
                 <label class="block text-brand-gray text-sm mb-1" for="email">Email</label>
-                <input type="email" id="email" value="fatimaezzahra@email.com" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
+                <input type="email" id="email" name="email" value="{{ $gourmand->user->email }}"
+                    class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
             </div>
             <div>
-                <label class="block text-brand-gray text-sm mb-1" for="location">Localisation</label>
-                <input type="text" id="location" value="Safi, Maroc" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
+                <label class="block text-brand-gray text-sm mb-1" for="adresse">Localisation</label>
+                <input type="text" id="adresse" name="adresse" value="{{ $gourmand->adresse }}"
+                    class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
             </div>
         </div>
         <div>
-            <label class="block text-brand-gray text-sm mb-1" for="about">À propos de moi</label>
-            <textarea id="about" rows="4" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">Passionnée de cuisine depuis mon plus jeune âge, j'aime particulièrement expérimenter avec les saveurs méditerranéennes et asiatiques. Je partage ici mes découvertes culinaires et mes recettes préférées.</textarea>
+            <label class="block text-brand-gray text-sm mb-1" for="biographie">À propos de moi</label>
+            <textarea id="biographie" name="biographie" rows="4"
+                class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">{{ $gourmand->biographie }}</textarea>
         </div>
         <div class="flex justify-end space-x-4 pt-4">
             <button type="button" id="cancel-edit" class="px-4 py-2 border border-brand-burgundy text-brand-burgundy rounded hover:bg-brand-peach transition-colors">Annuler</button>
