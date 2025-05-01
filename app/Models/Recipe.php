@@ -45,4 +45,9 @@ class Recipe extends Model
     {
         return $this->belongsTo(Chef::class);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
