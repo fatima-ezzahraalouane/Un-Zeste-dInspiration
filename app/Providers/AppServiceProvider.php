@@ -18,6 +18,8 @@ use App\Repositories\Theme\ThemeRepositoryInterface;
 use App\Repositories\Theme\ThemeRepository;
 use App\Repositories\Experience\ExperienceRepository;
 use App\Repositories\Experience\ExperienceRepositoryInterface;
+use App\Repositories\Comment\CommentRepository;
+use App\Repositories\Comment\CommentRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(FavoriteRepositoryInterface::class, FavoriteRepository::class);
         $this->app->bind(ThemeRepositoryInterface::class, ThemeRepository::class);
         $this->app->bind(ExperienceRepositoryInterface::class, ExperienceRepository::class);
+        $this->app->bind(CommentRepositoryInterface::class, CommentRepository::class);
 
     }
 
