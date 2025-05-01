@@ -85,10 +85,6 @@
                 content: "0";
             }
         }
-
-        .count-up::after {
-            animation: countUp 2s ease-out forwards;
-        }
     </style>
 </head>
 
@@ -158,17 +154,39 @@
                 Recettes Populaires
             </h2>
 
+            @if (session('success'))
+            <div id="success-alert" class="flex justify-end mb-6">
+                <div class="px-4 py-3 bg-green-100 text-green-800 rounded shadow font-medium">
+                    {{ session('success') }}
+                </div>
+            </div>
+            @endif
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach ($recipes as $index => $recipe)
                 <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
                     <div class="relative">
                         <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}"
                             class="w-full h-64 object-cover">
-                        <button
-                            class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md toggle-favorite"
-                            data-recipe-id="{{ $recipe->id }}">
-                            <i class="fas fa-heart text-xl {{ in_array($recipe->id, $likedRecipes) ? 'text-brand-burgundy' : 'text-brand-gray' }}"></i>
-                        </button>
+                        @if(in_array($recipe->id, $likedRecipes))
+                        <form method="POST" action="{{ route('favorites.destroy') }}"
+                            class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                            @csrf
+                            <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+                            <button type="submit" title="Retirer des favoris">
+                                <i class="fas fa-heart text-xl text-brand-burgundy"></i>
+                            </button>
+                        </form>
+                        @else
+                        <form method="POST" action="{{ route('favorites.store') }}"
+                            class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                            @csrf
+                            <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+                            <button type="submit" title="Ajouter aux favoris">
+                                <i class="fas fa-heart text-xl text-brand-gray"></i>
+                            </button>
+                        </form>
+                        @endif
                     </div>
                     <div class="p-6">
                         <h3 class="playfair text-xl font-bold text-brand-burgundy mb-2">
@@ -243,97 +261,21 @@
             once: true,
         });
 
-        // Animation des statistiques de comptage
-        document.querySelectorAll('.count-up').forEach(stat => {
-            let count = 0;
-            const updateCount = () => {
-                const target = +stat.getAttribute('data-count');
-                const increment = target / 200;
-
-                if (count < target) {
-                    count += increment;
-                    stat.textContent = Math.ceil(count) + '+';
-                    setTimeout(updateCount, 10);
-                } else {
-                    stat.textContent = target + '+';
-                }
-            };
-            updateCount();
-        });
-
         // Toggle mobile menu
         document.getElementById('burger-menu').addEventListener('click', () => {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
     </script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.toggle-favorite').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-
-                    const recipeId = this.dataset.recipeId;
-                    const icon = this.querySelector('i');
-                    const isFavorite = icon.classList.contains('text-brand-burgundy');
-
-                    const url = isFavorite ?
-                        "{{ route('favorites.destroy') }}" :
-                        "{{ route('favorites.store') }}";
-
-                    fetch(url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            },
-                            body: JSON.stringify({
-                                recipe_id: recipeId
-                            })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (isFavorite) {
-                                icon.classList.remove('text-brand-burgundy');
-                                icon.classList.add('text-brand-gray');
-
-                                // ✅ Toast pour Retirer
-                                Toastify({
-                                    text: "Recette retirée des favoris ❌",
-                                    duration: 3000,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    backgroundColor: "#f87171",
-                                }).showToast();
-                            } else {
-                                icon.classList.remove('text-brand-gray');
-                                icon.classList.add('text-brand-burgundy');
-
-                                // ✅ Toast pour Ajouter
-                                Toastify({
-                                    text: "Recette ajoutée aux favoris ✅",
-                                    duration: 3000,
-                                    close: true,
-                                    gravity: "top",
-                                    position: "right",
-                                    backgroundColor: "#34d399",
-                                }).showToast();
-                            }
-                        })
-                        .catch(error => console.error('Erreur favori:', error));
-                });
-            });
-        });
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.remove();
+            }
+        }, 2000);
     </script>
-
-    <!-- Toastify CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
-    <!-- Toastify JS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-
 </body>
 
 </html>
