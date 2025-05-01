@@ -128,11 +128,17 @@
 
     <!-- Favorites Section -->
     <section class="py-12 bg-white shadow-lg rounded-lg">
-    <div class="max-w-7xl mx-auto px-6">
-        <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mt-14 mb-8">Mes Recettes Préférées</h1>
+        <div class="max-w-7xl mx-auto px-6">
+            <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mt-14 mb-8">Mes Recettes Préférées</h1>
+            
+            @if (session('success'))
+            <div class="mb-6 px-4 py-3 rounded bg-green-100 text-green-800 font-medium shadow">
+                {{ session('success') }}
+            </div>
+            @endif
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favorites-grid">
-            @forelse ($recipes as $recipe)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favorites-grid">
+                @forelse ($recipes as $recipe)
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
                     <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}" class="w-full h-48 object-cover">
                     <div class="p-6">
@@ -153,41 +159,41 @@
                         </div>
                     </div>
                 </div>
-            @empty
+                @empty
                 <p class="col-span-3 text-center text-brand-gray text-lg">Aucune recette enregistrée en favoris.</p>
-            @endforelse
-        </div>
+                @endforelse
+            </div>
 
-        {{-- Pagination --}}
-        @if ($recipes->hasPages())
+            {{-- Pagination --}}
+            @if ($recipes->hasPages())
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
                 {{-- Previous Page Link --}}
                 @if ($recipes->onFirstPage())
-                    <button disabled class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Précédent</button>
+                <button disabled class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Précédent</button>
                 @else
-                    <a href="{{ $recipes->previousPageUrl() }}"
-                        class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</a>
+                <a href="{{ $recipes->previousPageUrl() }}"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</a>
                 @endif
 
                 {{-- Pagination Elements --}}
                 @foreach ($recipes->getUrlRange(1, $recipes->lastPage()) as $page => $url)
-                    <a href="{{ $url }}"
-                        class="px-4 py-2 rounded-lg {{ $page == $recipes->currentPage() ? 'bg-brand-red' : 'bg-brand-burgundy' }} text-white hover:bg-brand-red transition-all">
-                        {{ $page }}
-                    </a>
+                <a href="{{ $url }}"
+                    class="px-4 py-2 rounded-lg {{ $page == $recipes->currentPage() ? 'bg-brand-red' : 'bg-brand-burgundy' }} text-white hover:bg-brand-red transition-all">
+                    {{ $page }}
+                </a>
                 @endforeach
 
                 {{-- Next Page Link --}}
                 @if ($recipes->hasMorePages())
-                    <a href="{{ $recipes->nextPageUrl() }}"
-                        class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</a>
+                <a href="{{ $recipes->nextPageUrl() }}"
+                    class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</a>
                 @else
-                    <button disabled class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Suivant</button>
+                <button disabled class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Suivant</button>
                 @endif
             </div>
-        @endif
-    </div>
-</section>
+            @endif
+        </div>
+    </section>
 
 
     <!-- Carousel Section -->
