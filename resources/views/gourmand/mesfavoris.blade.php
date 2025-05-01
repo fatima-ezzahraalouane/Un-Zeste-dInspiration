@@ -130,10 +130,12 @@
     <section class="py-12 bg-white shadow-lg rounded-lg">
         <div class="max-w-7xl mx-auto px-6">
             <h1 class="text-4xl playfair font-bold text-brand-burgundy text-center mt-14 mb-8">Mes Recettes Préférées</h1>
-            
+
             @if (session('success'))
-            <div class="mb-6 px-4 py-3 rounded bg-green-100 text-green-800 font-medium shadow">
-                {{ session('success') }}
+            <div id="success-alert" class="flex justify-end">
+                <div class="mb-6 px-4 py-3 bg-green-100 text-green-800 rounded shadow font-medium">
+                    {{ session('success') }}
+                </div>
             </div>
             @endif
 
@@ -167,7 +169,7 @@
             {{-- Pagination --}}
             @if ($recipes->hasPages())
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
-                {{-- Previous Page Link --}}
+
                 @if ($recipes->onFirstPage())
                 <button disabled class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Précédent</button>
                 @else
@@ -175,7 +177,6 @@
                     class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Précédent</a>
                 @endif
 
-                {{-- Pagination Elements --}}
                 @foreach ($recipes->getUrlRange(1, $recipes->lastPage()) as $page => $url)
                 <a href="{{ $url }}"
                     class="px-4 py-2 rounded-lg {{ $page == $recipes->currentPage() ? 'bg-brand-red' : 'bg-brand-burgundy' }} text-white hover:bg-brand-red transition-all">
@@ -183,7 +184,6 @@
                 </a>
                 @endforeach
 
-                {{-- Next Page Link --}}
                 @if ($recipes->hasMorePages())
                 <a href="{{ $recipes->nextPageUrl() }}"
                     class="px-4 py-2 rounded-lg bg-brand-burgundy text-white hover:bg-brand-red transition-all">Suivant</a>
@@ -223,7 +223,7 @@
                 .then(response => response.text())
                 .then(html => {
                     document.getElementById('carousel-container').innerHTML = html;
-                    // Puis lancer le carousel.js une fois le HTML injecté
+                    // pour lancer le carousel.js une fois le HTML injecté
                     initCarousel();
                 })
                 .catch(error => console.error('Erreur chargement carousel:', error));
@@ -231,6 +231,16 @@
     </script>
 
     <script src="{{ asset('js/carousel.js') }}"></script>
+
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.remove();
+            }
+        }, 1500);
+    </script>
+
 </body>
 
 </html>
