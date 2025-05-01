@@ -27,4 +27,9 @@ class Experience extends Model
     {
         return $this->belongsTo(Theme::class);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
