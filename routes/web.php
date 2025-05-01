@@ -116,5 +116,5 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     });
 
     // Route pour profil
-    Route::get('/profil', [GourmandController::class, 'profil'])->name('gourmand.profil');
+    Route::get('/profile', [GourmandController::class, 'profile'])->name('gourmand.profile');
 });
