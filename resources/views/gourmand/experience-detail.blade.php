@@ -134,7 +134,7 @@
                 <!-- Auteur -->
                 <div class="flex items-center space-x-2">
                     <i class="fas fa-user text-brand-burgundy"></i>
-                    <span>Auteur : <span class="font-semibold text-brand-dark"> {{ $experience->gourmand->user->first_name ?? 'Inconnu' }}  {{ $experience->gourmand->user->last_name }}</span></span>
+                    <span>Auteur : <span class="font-semibold text-brand-dark"> {{ $experience->gourmand->user->first_name ?? 'Inconnu' }} {{ $experience->gourmand->user->last_name }}</span></span>
                 </div>
 
                 <!-- Date -->
@@ -244,46 +244,6 @@
             duration: 800,
             once: true,
         });
-
-        // Fonction pour ajouter un commentaire avec nom et photo de profil
-        function addComment() {
-            const commentText = document.getElementById('new-comment').value;
-            const userName = "Utilisateur"; // Remplacer par le nom de l'utilisateur
-            const userImage = "https://i.pravatar.cc/40"; // Remplacer par l'URL de l'image de profil de l'utilisateur
-
-            if (commentText.trim() === "") return;
-
-            const commentSection = document.getElementById('comments-section');
-            const commentDiv = document.createElement('div');
-            commentDiv.className = "bg-white rounded-lg shadow-md p-4 mb-4";
-            commentDiv.innerHTML = `
-                <div class="flex items-center mb-2">
-                    <img src="${userImage}" alt="${userName}" class="w-10 h-10 rounded-full mr-3">
-                    <span class="text-brand-burgundy font-semibold">${userName}</span>
-                </div>
-                <p class="text-brand-gray mb-2">${commentText}</p>
-                <button class="text-brand-red text-sm mr-2" onclick="editComment(this)">Modifier</button>
-                <button class="text-brand-red text-sm" onclick="deleteComment(this)">Supprimer</button>
-            `;
-            commentSection.appendChild(commentDiv);
-            document.getElementById('new-comment').value = '';
-        }
-
-        // Fonction pour modifier un commentaire
-        function editComment(button) {
-            const commentDiv = button.parentNode;
-            const commentText = commentDiv.querySelector('p').innerText;
-            const newText = prompt("Modifier le commentaire:", commentText);
-            if (newText !== null && newText.trim() !== "") {
-                commentDiv.querySelector('p').innerText = newText;
-            }
-        }
-
-        // Fonction pour supprimer un commentaire
-        function deleteComment(button) {
-            const commentDiv = button.parentNode;
-            commentDiv.remove();
-        }
 
         // Toggle mobile menu
         document.getElementById('burger-menu').addEventListener('click', () => {
