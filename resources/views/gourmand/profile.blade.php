@@ -200,26 +200,16 @@
             document.getElementById('edit-profile').classList.add('hidden');
             document.getElementById('view-profile').classList.remove('hidden');
         });
-
-        // Form submission handler
-        document.getElementById('edit-profile').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Here you would typically handle the form submission via AJAX
-            // For demo purposes, we'll just toggle back to view mode
-            document.getElementById('edit-profile').classList.add('hidden');
-            document.getElementById('view-profile').classList.remove('hidden');
-
-            // Show success message
-            const successMessage = document.createElement('div');
-            successMessage.className = 'fixed top-20 right-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-md';
-            successMessage.innerHTML = '<div class="flex items-center"><i class="fas fa-check-circle mr-2"></i> Vos informations ont été mises à jour avec succès !</div>';
-            document.body.appendChild(successMessage);
-
-            // Remove the message after 3 seconds
-            setTimeout(() => {
-                successMessage.remove();
-            }, 3000);
-        });
+    </script>
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 2000);
     </script>
 </body>
 
