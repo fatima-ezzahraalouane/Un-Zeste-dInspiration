@@ -235,7 +235,7 @@
                 <div class="bg-white rounded-lg p-4 shadow">
                     <div class="flex items-start gap-4">
                         <!-- Avatar -->
-                        <img src="{{ $comment->gourmand->user->avatar ?? 'https://img.freepik.com/premium-vector/vector-chef-character-design_746655-2375.jpg?w=740' }}"
+                        <img src="{{ $comment->gourmand->user->avatar ?? 'https://atomic.site/wp-content/uploads/2019/02/Avatar.png' }}"
                             alt="Avatar Gourmand"
                             class="w-10 h-10 rounded-full border-2 border-brand-coral object-cover">
 
@@ -353,7 +353,6 @@
             }
         }
     </script>
-
 </body>
 
 </html>
