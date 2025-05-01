@@ -17,7 +17,7 @@ class CommentRepository implements CommentRepositoryInterface
     public function store(StoreCommentRequest $request)
     {
         return Comment::create([
-            'contenu' => $request->contenu,
+            'content' => $request->content,
             'commentable_id' => $request->commentable_id,
             'commentable_type' => $request->commentable_type,
             'gourmand_id' => Auth::user()->gourmand->id,
@@ -30,7 +30,7 @@ class CommentRepository implements CommentRepositoryInterface
         if ($comment->gourmand_id !== Auth::user()->gourmand->id) {
             abort(403);
         }
-        $comment->update(['contenu' => $request->contenu]);
+        $comment->update(['content' => $request->content]);
         return $comment;
     }
 
