@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
+
 use App\Repositories\Auth\AuthRepositoryInterface;
 use App\Repositories\Auth\AuthRepository;
 use App\Repositories\Category\CategoryRepository;
@@ -44,6 +47,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Carbon::setLocale('fr');
     }
 }
