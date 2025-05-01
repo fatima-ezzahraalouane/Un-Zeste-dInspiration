@@ -40,7 +40,7 @@ class GourmandController extends Controller
         return view('gourmand.accueil', compact('recipes', 'stats', 'likedRecipes'));
     }
 
-    public function profil()
+    public function profile()
     {
         $gourmand = Auth::user()->gourmand;
 
@@ -48,6 +48,6 @@ class GourmandController extends Controller
             abort(403, 'Accès non autorisé.');
         }
 
-        return view('gourmand.profil', compact('gourmand'));
+        return view('gourmand.profile', compact('gourmand'));
     }
 }
