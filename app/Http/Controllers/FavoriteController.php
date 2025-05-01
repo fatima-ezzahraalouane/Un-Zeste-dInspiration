@@ -35,13 +35,13 @@ class FavoriteController extends Controller
     {
         $this->favoriteRepo->store($request);
 
-        return response()->json(['message' => 'Recette ajoutée aux favoris.']);
+        return redirect()->back()->with('success', 'Recette retirée des favoris.');
     }
 
     public function destroy(DeleteFavoriteRequest $request)
     {
         $this->favoriteRepo->destroy($request);
 
-        return response()->json(['message' => 'Recette retirée des favoris.']);
+        return redirect()->back()->with('success', 'Recette retirée des favoris.');
     }
 }
