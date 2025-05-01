@@ -12,6 +12,7 @@ use App\Http\Controllers\VisiteurController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,4 +106,12 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     // Route pour experience
     Route::post('/experiences', [ExperienceController::class, 'store'])->name('experiences.store');
     Route::get('/experiences/detail/{id}', [ExperienceController::class, 'show'])->name('gourmand.experiences.show');
+
+    // Routes pour les commentaires (gourmand)
+    Route::prefix('commentaires')->name('commentaires.')->group(function () {
+        Route::get('/', [CommentController::class, 'index'])->name('index'); // Affiche tous les commentaires (pour tests/admin/debug)
+        Route::post('/store', [CommentController::class, 'store'])->name('store'); // Ajouter un commentaire
+        Route::put('/{id}/update', [CommentController::class, 'update'])->name('update'); // Modifier un commentaire
+        Route::delete('/{id}/delete', [CommentController::class, 'destroy'])->name('destroy'); // Supprimer un commentaire
+    });
 });
