@@ -238,7 +238,7 @@
             if (alert) {
                 alert.remove();
             }
-        }, 1500);
+        }, 2000);
     </script>
 
 </body>
