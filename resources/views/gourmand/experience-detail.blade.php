@@ -244,13 +244,13 @@
                                 @enderror
 
                                 <div class="flex justify-end mt-2">
-                                    <button type="submit"
-                                        class="px-4 py-1 mr-2 text-sm bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-all">
-                                        Sauvegarder
-                                    </button>
                                     <button type="button" onclick="toggleEditForm({{ $comment->id }})"
-                                        class="px-4 py-1 text-sm bg-gray-300 text-brand-dark rounded-full hover:bg-gray-400 transition-all">
+                                        class="px-4 py-1 mr-2 text-sm bg-gray-300 text-brand-dark rounded-full hover:bg-gray-400 transition-all">
                                         Annuler
+                                    </button>
+                                    <button type="submit"
+                                        class="px-4 py-1 text-sm bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-all">
+                                        Sauvegarder
                                     </button>
                                 </div>
                             </form>
