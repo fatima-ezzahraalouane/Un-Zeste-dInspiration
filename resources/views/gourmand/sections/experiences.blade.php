@@ -32,8 +32,8 @@
                         </button>
                     </form>
                 </div>
-                <div class="absolute bottom-0 left-0 {{ $experience->statut === 'Approuvé' ? 'bg-brand-burgundy' : 'bg-gray-600' }} text-white px-3 py-1 text-xs">
-                    {{ $experience->statut === 'Approuvé' ? 'Publié' : 'Brouillon' }}
+                <div class="absolute bottom-0 left-0 {{ $experience->statut === 'Approuver' ? 'bg-brand-burgundy' : 'bg-gray-600' }} text-white px-3 py-1 text-xs">
+                    {{ $experience->statut === 'Approuver' ? 'Publié' : 'Brouillon' }}
                 </div>
             </div>
             <div class="p-4">
@@ -47,33 +47,52 @@
                     </span>
                 </div>
                 <a href="{{ route('gourmand.experiences.show', $experience->id) }}" class="text-brand-burgundy hover:text-brand-coral text-sm font-medium">
-                    {{ $experience->statut === 'Approuvé' ? 'Voir l\'expérience' : 'Éditer le brouillon' }}
+                    {{ $experience->statut === 'Approuver' ? 'Voir l\'expérience' : 'Éditer le brouillon' }}
                     <i class="fas fa-arrow-right ml-1"></i>
                 </a>
             </div>
         </div>
         @empty
-        <p class="text-brand-gray col-span-3">Aucune expérience trouvée.</p>
+        <p class="text-brand-gray col-span-3 text-center">Aucune expérience trouvée.</p>
         @endforelse
     </div>
 
-
     <!-- Pagination -->
+    @if ($experiences->count())
     <div class="flex justify-center mt-8">
         <nav class="flex items-center space-x-1">
-            <a href="#" class="px-3 py-1 rounded border border-gray-300 text-brand-gray hover:bg-brand-peach hover:text-brand-burgundy transition-colors">
+            @if ($experiences->onFirstPage())
+            <span class="px-3 py-1 rounded border border-gray-300 text-brand-gray opacity-50">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+            @else
+            <a href="{{ $experiences->previousPageUrl() }}" class="px-3 py-1 rounded border border-gray-300 text-brand-gray hover:bg-brand-peach hover:text-brand-burgundy transition-colors">
                 <i class="fas fa-chevron-left"></i>
             </a>
-            <a href="#" class="px-3 py-1 rounded border border-gray-300 bg-brand-burgundy text-white">1</a>
-            <a href="#" class="px-3 py-1 rounded border border-gray-300 text-brand-gray hover:bg-brand-peach hover:text-brand-burgundy transition-colors">2</a>
-            <a href="#" class="px-3 py-1 rounded border border-gray-300 text-brand-gray hover:bg-brand-peach hover:text-brand-burgundy transition-colors">3</a>
-            <span class="px-3 py-1 text-brand-gray">...</span>
-            <a href="#" class="px-3 py-1 rounded border border-gray-300 text-brand-gray hover:bg-brand-peach hover:text-brand-burgundy transition-colors">4</a>
-            <a href="#" class="px-3 py-1 rounded border border-gray-300 text-brand-gray hover:bg-brand-peach hover:text-brand-burgundy transition-colors">
+            @endif
+
+            @foreach ($experiences->getUrlRange(1, $experiences->lastPage()) as $page => $url)
+            @if ($page == $experiences->currentPage())
+            <span class="px-3 py-1 rounded border border-gray-300 bg-brand-burgundy text-white">{{ $page }}</span>
+            @else
+            <a href="{{ $url }}" class="px-3 py-1 rounded border border-gray-300 text-brand-gray hover:bg-brand-peach hover:text-brand-burgundy transition-colors">
+                {{ $page }}
+            </a>
+            @endif
+            @endforeach
+
+            @if ($experiences->hasMorePages())
+            <a href="{{ $experiences->nextPageUrl() }}" class="px-3 py-1 rounded border border-gray-300 text-brand-gray hover:bg-brand-peach hover:text-brand-burgundy transition-colors">
                 <i class="fas fa-chevron-right"></i>
             </a>
+            @else
+            <span class="px-3 py-1 rounded border border-gray-300 text-brand-gray opacity-50">
+                <i class="fas fa-chevron-right"></i>
+            </span>
+            @endif
         </nav>
     </div>
+    @endif
 </section>
 
 <!-- Modal -->
