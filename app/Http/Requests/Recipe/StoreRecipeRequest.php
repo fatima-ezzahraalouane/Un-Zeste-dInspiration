@@ -23,7 +23,7 @@ class StoreRecipeRequest extends FormRequest
     {
         return [
             'title'             => 'required|string|max:255',
-            'image'             => 'required|string',
+            'image'             => 'required|url',
             'description'       => 'required|string',
             'preparation_time'  => 'required|integer|min:1',
             'cooking_time'      => 'required|integer|min:1',
