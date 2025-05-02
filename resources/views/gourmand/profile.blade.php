@@ -207,6 +207,15 @@
                 setTimeout(() => alert.remove(), 500);
             }
         }, 2000);
+
+    //     setTimeout(() => {
+    //     const alert = document.getElementById('error-message');
+    //     if (alert) {
+    //         alert.style.transition = 'opacity 0.5s ease';
+    //         alert.style.opacity = '0';
+    //         setTimeout(() => alert.remove(), 500);
+    //     }
+    // }, 4000);
     </script>
     <script>
         const modal = document.getElementById("experienceModal");
