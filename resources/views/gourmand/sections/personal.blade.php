@@ -1,4 +1,15 @@
 <section id="personal-section" class="bg-white rounded-lg p-6 mb-8 shadow-xl">
+
+    @if (session('success'))
+        <div id="success-alert" class="flex justify-end">
+            <div
+                class="mt-2 fixed top-20 right-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-md">
+                <i class="fas fa-check-circle"></i>
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+
     <div class="flex justify-between items-center mb-6">
         <h2 class="playfair text-2xl font-bold text-brand-burgundy">Informations Personnelles</h2>
         <button id="edit-profile-btn" class="text-brand-burgundy hover:text-brand-coral">
@@ -65,8 +76,10 @@
                 class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">{{ $gourmand->biographie }}</textarea>
         </div>
         <div class="flex justify-end space-x-4 pt-4">
-            <button type="button" id="cancel-edit" class="px-4 py-2 border border-brand-burgundy text-brand-burgundy rounded hover:bg-brand-peach transition-colors">Annuler</button>
-            <button type="submit" class="px-4 py-2 bg-brand-burgundy text-white rounded hover:bg-brand-coral transition-colors">Enregistrer</button>
+            <button type="button" id="cancel-edit"
+                class="px-4 py-2 border border-brand-burgundy text-brand-burgundy rounded hover:bg-brand-peach transition-colors">Annuler</button>
+            <button type="submit"
+                class="px-4 py-2 bg-brand-burgundy text-white rounded hover:bg-brand-coral transition-colors">Enregistrer</button>
         </div>
     </form>
 </section>
