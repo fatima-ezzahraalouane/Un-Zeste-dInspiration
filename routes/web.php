@@ -117,4 +117,5 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
 
     // Route pour profil
     Route::get('/profile', [GourmandController::class, 'profile'])->name('gourmand.profile');
+    Route::put('/profile/update', [GourmandController::class, 'updateProfile'])->name('gourmand.profile.update');
 });
