@@ -21,9 +21,17 @@
             <div class="relative">
                 <img src="{{ $experience->image }}" alt="{{ $experience->title }}" class="w-full h-40 object-cover">
                 <div class="absolute top-2 right-2 flex space-x-2">
-                    <button class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-burgundy hover:bg-white transition-all">
+                    @if ($experience->statut !== 'Approuver')
+                    <button class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-burgundy hover:bg-white transition-all"
+                        data-experience-id="{{ $experience->id }}"
+                        data-experience-title="{{ $experience->title }}"
+                        data-experience-description="{{ $experience->description }}"
+                        data-experience-image="{{ $experience->image }}"
+                        data-experience-theme="{{ $experience->theme_id }}"
+                        onclick="openEditModal(this)">
                         <i class="fas fa-edit"></i>
                     </button>
+                    @endif
                     <form action="{{ route('experiences.destroy', $experience->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -46,10 +54,12 @@
                         {{ $experience->theme->name ?? 'Sans thème' }}
                     </span>
                 </div>
+                @if ($experience->statut === 'Approuver')
                 <a href="{{ route('gourmand.experiences.show', $experience->id) }}" class="text-brand-burgundy hover:text-brand-coral text-sm font-medium">
-                    {{ $experience->statut === 'Approuver' ? 'Voir l\'expérience' : 'Éditer le brouillon' }}
+                    Voir l'expérience
                     <i class="fas fa-arrow-right ml-1"></i>
                 </a>
+                @endif
             </div>
         </div>
         @empty
@@ -140,6 +150,52 @@
                     class="order-1 sm:order-2 w-full sm:w-auto px-6 py-2 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all">
                     Ajouter
                 </button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Modal de modification -->
+<div id="editExperienceModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 hidden z-50">
+    <div class="bg-white p-4 sm:p-8 rounded-lg shadow-lg w-full max-w-lg mx-auto">
+        <h2 class="text-xl sm:text-2xl font-bold text-brand-burgundy mb-4">Modifier l'Expérience</h2>
+
+        <form id="editExperienceForm" method="POST">
+            @csrf
+            @method('PUT')
+
+            <input type="hidden" id="edit-experience-id" name="experience_id">
+
+            <!-- Title -->
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Titre</label>
+            <input type="text" id="edit-title" name="title" required
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3">
+
+            <!-- Description -->
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+            <textarea id="edit-description" name="description" required rows="3"
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3"></textarea>
+
+            <!-- Image URL -->
+            <label class="block text-sm font-semibold text-gray-700 mb-1">URL de l'Image</label>
+            <input type="url" id="edit-image" name="image" required
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3">
+
+            <!-- Theme -->
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Thème</label>
+            <select id="edit-theme-id" name="theme_id" required
+                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-4">
+                <option value="" disabled>Choisissez un thème</option>
+                @foreach ($themes as $theme)
+                <option value="{{ $theme->id }}">{{ $theme->name }}</option>
+                @endforeach
+            </select>
+
+            <div class="flex justify-end gap-3">
+                <button type="button" id="closeEditModal"
+                    class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">Annuler</button>
+                <button type="submit"
+                    class="px-6 py-2 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red">Modifier</button>
             </div>
         </form>
     </div>
