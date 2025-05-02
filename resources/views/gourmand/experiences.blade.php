@@ -232,6 +232,7 @@
             </div>
 
             <!-- Pagination Controls -->
+            @if ($experiences->count())
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
                 @if ($experiences->onFirstPage())
                 <button disabled
@@ -256,6 +257,7 @@
                     class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 cursor-not-allowed">Suivant</button>
                 @endif
             </div>
+            @endif
         </div>
     </section>
 
