@@ -88,7 +88,7 @@
                     </div>
                     <div class="flex-1">
                         <h4 class="font-semibold">{{ $gourmand->user->first_name ?? 'Gourmand' }} {{ $gourmand->user->last_name ?? '' }}</h4>
-                        <p class="text-sm text-brand-gray">{{ $gourmand->approved_experiences_count }} recettes publiées</p>
+                        <p class="text-sm text-brand-gray">{{ $gourmand->approved_experiences_count }} expériences publiées</p>
                     </div>
                     <div class="
                         @if($index == 0) bg-brand-burgundy 
