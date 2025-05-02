@@ -44,10 +44,15 @@
         <div>
             <p class="text-brand-gray text-sm">Spécialités</p>
             <div class="flex flex-wrap gap-2 mt-1">
-                <span class="bg-brand-peach text-brand-burgundy px-3 py-1 rounded-full text-sm">Pâtisserie</span>
-                <span class="bg-brand-peach text-brand-burgundy px-3 py-1 rounded-full text-sm">Cuisine asiatique</span>
-                <span class="bg-brand-peach text-brand-burgundy px-3 py-1 rounded-full text-sm">Plats végétariens</span>
-                <span class="bg-brand-peach text-brand-burgundy px-3 py-1 rounded-full text-sm">Desserts</span>
+                @if (!empty($chef->specialite))
+                @foreach (explode(',', $chef->specialite) as $specialite)
+                <span class="bg-brand-peach text-brand-burgundy px-3 py-1 rounded-full text-sm">
+                    {{ trim($specialite) }}
+                </span>
+                @endforeach
+                @else
+                <p class="text-sm text-brand-gray italic">Aucune spécialité renseignée.</p>
+                @endif
             </div>
         </div>
     </div>
