@@ -42,7 +42,7 @@ class ChefController extends Controller
                 ->get(),
         ];
 
-        return view('chef.dashboard', compact('chef', 'stats'));
+        return view('chef.dashboard', compact('chef', 'stats', 'categories', 'tags', 'recipes'));
     }
 
     public function updateProfile(UpdateProfileRequest $request)
