@@ -41,4 +41,10 @@ class ExperienceController extends Controller
         $experience = $this->experienceRepo->show($id);
         return view('gourmand.experience-detail', compact('experience'));
     }
+
+    public function destroy($id)
+    {
+        $this->experienceRepo->destroy($id);
+        return redirect()->back()->with('success', 'Votre expérience a été supprimée avec succès.');
+    }
 }
