@@ -7,7 +7,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-brand-dark text-sm">Expériences</p>
-                    <p class="text-3xl font-bold text-brand-burgundy">12</p>
+                    <p class="text-3xl font-bold text-brand-burgundy">{{ $stats['experiences'] }}</p>
                 </div>
                 <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-burgundy">
                     <i class="fas fa-utensils text-xl"></i>
@@ -18,21 +18,10 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-brand-dark text-sm">Commentaires</p>
-                    <p class="text-3xl font-bold text-brand-burgundy">47</p>
+                    <p class="text-3xl font-bold text-brand-burgundy">{{ $stats['comments'] }}</p>
                 </div>
                 <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-burgundy">
                     <i class="fas fa-comment-alt text-xl"></i>
-                </div>
-            </div>
-        </div>
-        <div class="bg-brand-peach p-4 rounded-lg">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-brand-dark text-sm">Favoris</p>
-                    <p class="text-3xl font-bold text-brand-burgundy">23</p>
-                </div>
-                <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-burgundy">
-                    <i class="fas fa-heart text-xl"></i>
                 </div>
             </div>
         </div>
@@ -51,26 +40,17 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
+                    @forelse ($stats['popularExperiences'] as $exp)
                     <tr class="hover:bg-brand-peach/20 transition-colors">
-                        <td class="px-4 py-3 text-sm text-brand-dark">Tarte aux fraises maison</td>
-                        <td class="px-4 py-3 text-sm text-center text-brand-dark">12</td>
-                        <td class="px-4 py-3 text-sm text-right text-brand-dark">12 mars 2025</td>
+                        <td class="px-4 py-3 text-sm text-brand-dark">{{ $exp->title }}</td>
+                        <td class="px-4 py-3 text-sm text-center text-brand-dark">{{ $exp->comments_count }}</td>
+                        <td class="px-4 py-3 text-sm text-right text-brand-dark">{{ $exp->created_at->format('d M Y') }}</td>
                     </tr>
-                    <tr class="hover:bg-brand-peach/20 transition-colors">
-                        <td class="px-4 py-3 text-sm text-brand-dark">Curry vert thaïlandais</td>
-                        <td class="px-4 py-3 text-sm text-center text-brand-dark">9</td>
-                        <td class="px-4 py-3 text-sm text-right text-brand-dark">28 février 2025</td>
+                    @empty
+                    <tr>
+                        <td colspan="3" class="px-4 py-3 text-center text-brand-gray">Aucune expérience populaire.</td>
                     </tr>
-                    <tr class="hover:bg-brand-peach/20 transition-colors">
-                        <td class="px-4 py-3 text-sm text-brand-dark">Gâteau au chocolat sans gluten</td>
-                        <td class="px-4 py-3 text-sm text-center text-brand-dark">7</td>
-                        <td class="px-4 py-3 text-sm text-right text-brand-dark">15 janvier 2025</td>
-                    </tr>
-                    <tr class="hover:bg-brand-peach/20 transition-colors">
-                        <td class="px-4 py-3 text-sm text-brand-dark">Salade César revisitée</td>
-                        <td class="px-4 py-3 text-sm text-center text-brand-dark">5</td>
-                        <td class="px-4 py-3 text-sm text-right text-brand-dark">5 février 2025</td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
