@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Profil - Un Zeste d'Inspiration</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    <title>Un Zeste d'Inspiration - Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -278,6 +279,52 @@
             document.getElementById('edit-profile').classList.add('hidden');
             document.getElementById('view-profile').classList.remove('hidden');
         });
+    </script>
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
+            }
+        }, 2000);
+    </script>
+    <script>
+        const specialtiesList = document.getElementById('specialties-list');
+        const hiddenInput = document.getElementById('specialties-hidden');
+        const inputField = document.getElementById('specialty-input');
+        const addBtn = document.getElementById('add-specialty-btn');
+
+        // Ajouter une spécialité
+        addBtn.addEventListener('click', () => {
+            const value = inputField.value.trim();
+            if (value !== '') {
+                // Créer le chip
+                const chip = document.createElement('div');
+                chip.className = 'chip bg-brand-peach text-brand-burgundy px-3 py-1 rounded-full text-sm flex items-center';
+                chip.innerHTML = `${value} <button type="button" class="ml-2 text-xs remove-specialty">&times;</button>`;
+                specialtiesList.appendChild(chip);
+                inputField.value = '';
+
+                updateHiddenField();
+            }
+        });
+
+        // Supprimer une spécialité
+        specialtiesList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-specialty')) {
+                e.target.parentElement.remove();
+                updateHiddenField();
+            }
+        });
+
+        // Met à jour le champ caché avec la liste des spécialités
+        function updateHiddenField() {
+            const chips = specialtiesList.querySelectorAll('.chip');
+            const values = Array.from(chips).map(chip => chip.firstChild.textContent.trim());
+            hiddenInput.value = values.join(',');
+        }
     </script>
 </body>
 
