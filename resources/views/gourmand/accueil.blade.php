@@ -155,8 +155,9 @@
             </h2>
 
             @if (session('success'))
-            <div id="success-alert" class="flex justify-end mb-6">
-                <div class="px-4 py-3 bg-green-100 text-green-800 rounded shadow font-medium">
+            <div id="success-alert" class="flex justify-end">
+                <div class="mt-2 fixed top-20 right-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-md">
+                    <i class="fas fa-check-circle"></i>
                     {{ session('success') }}
                 </div>
             </div>
