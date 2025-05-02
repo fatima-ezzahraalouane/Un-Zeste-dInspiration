@@ -19,8 +19,8 @@ class AdminController extends Controller
         $user = Auth::user();
 
         $stats = [
-            'recipes' => Recipe::count(),
-            'experiences' => Experience::count(),
+            'recipes' => Recipe::where('statut', 'Approuver')->count(),
+            'experiences' => Experience::where('statut', 'Approuver')->count(),
             'chefs' => Chef::count(),
             'gourmands' => Gourmand::count(),
         ];
@@ -28,14 +28,14 @@ class AdminController extends Controller
         $categories = Category::withCount('recipes')->get();
 
         $topChefs = Chef::withCount(['recipes as approved_recipes_count' => function ($query) {
-            $query->where('statut', 'approuver');
+            $query->where('statut', 'Approuver');
         }])
             ->orderByDesc('approved_recipes_count')
             ->take(3)
             ->get();
 
         $topGourmands = Gourmand::withCount(['experiences as approved_experiences_count' => function ($query) {
-            $query->where('statut', 'approuver');
+            $query->where('statut', 'Approuver');
         }])
             ->orderByDesc('approved_experiences_count')
             ->take(3)
