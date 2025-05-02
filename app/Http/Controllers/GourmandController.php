@@ -8,6 +8,7 @@ use App\Models\Recipe;
 use App\Models\Chef;
 use App\Models\User;
 use App\Models\Experience;
+use App\Models\Theme;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Gourmand\UpdateProfileRequest;
 
@@ -49,7 +50,10 @@ class GourmandController extends Controller
             abort(403, 'Accès non autorisé.');
         }
 
-        return view('gourmand.profile', compact('gourmand'));
+        $themes = Theme::all();
+        $experiences = $gourmand->experiences()->latest()->get();
+
+        return view('gourmand.profile', compact('gourmand', 'themes', 'experiences'));
     }
 
     public function updateProfile(UpdateProfileRequest $request)
