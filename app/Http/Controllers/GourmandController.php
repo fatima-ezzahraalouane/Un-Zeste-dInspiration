@@ -51,8 +51,11 @@ class GourmandController extends Controller
         }
 
         $themes = Theme::all();
-        $experiences = $gourmand->experiences()->latest()->get();
-
+        $experiences = $gourmand->experiences()
+        ->with('theme')
+        ->latest()
+        ->paginate(5);
+        
         return view('gourmand.profile', compact('gourmand', 'themes', 'experiences'));
     }
 
