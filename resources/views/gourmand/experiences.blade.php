@@ -462,7 +462,6 @@
         });
     </script>
 
-    <!-- JavaScript for Modal & Form -->
     <script>
         const modal = document.getElementById("experienceModal");
         const openModalBtn = document.getElementById("openModal");
