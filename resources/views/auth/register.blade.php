@@ -91,7 +91,7 @@
 
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-brand-gray mb-2">Prénom</label>
+                        <label class="block text-brand-gray mb-2">Prénom <span class="text-red-500 font-bold">*</span></label>
                         <input type="text" name="first_name"
                             class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                             placeholder="Votre prénom"
@@ -100,7 +100,7 @@
                             data-parsley-pattern-message="Le prénom ne peut contenir que des lettres et des tirets">
                     </div>
                     <div>
-                        <label class="block text-brand-gray mb-2">Nom</label>
+                        <label class="block text-brand-gray mb-2">Nom <span class="text-red-500 font-bold">*</span></label>
                         <input type="text" name="last_name"
                             class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                             placeholder="Votre nom"
@@ -111,7 +111,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-brand-gray mb-2">Email</label>
+                    <label class="block text-brand-gray mb-2">Email <span class="text-red-500 font-bold">*</span></label>
                     <input type="email" name="email"
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                         placeholder="Votre adresse e-mail"
@@ -121,7 +121,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-brand-gray mb-2">Mot de passe</label>
+                    <label class="block text-brand-gray mb-2">Mot de passe <span class="text-red-500 font-bold">*</span></label>
                     <input type="password" name="password"
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                         placeholder="Votre mot de passe"
@@ -133,14 +133,14 @@
                 </div>
 
                 <div>
-                    <label class="block text-brand-gray mb-2">Confirmer le mot de passe</label>
+                    <label class="block text-brand-gray mb-2">Confirmer le mot de passe <span class="text-red-500 font-bold">*</span></label>
                     <input type="password" name="password_confirmation"
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                         placeholder="Confirmez votre mot de passe" required data-parsley-equalto="[name='password']">
                 </div>
 
                 <div>
-                    <label class="block text-brand-gray mb-2">Rôle</label>
+                    <label class="block text-brand-gray mb-2">Rôle <span class="text-red-500 font-bold">*</span></label>
                     <select name="role" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20" required>
                         <option value="">Sélectionnez un rôle</option>
                         <option value="Gourmand">Gourmand</option>
