@@ -101,7 +101,7 @@
                     <div class="flex flex-col items-center p-6 border-b border-gray-200">
                         <div class="relative group mb-4">
                             <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-brand-burgundy">
-                                <img src="https://intranet.youcode.ma/storage/users/profile/1384-1728486655.JPG" alt="Photo de profil" class="w-full h-full object-cover">
+                                <img src="{{ $chef->user->avatar ?? 'https://img.freepik.com/premium-vector/vector-chef-character-design_746655-2375.jpg?w=740' }}" alt="Photo de profil" class="w-full h-full object-cover">
                             </div>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                                 <label for="profile-picture" class="w-24 h-24 rounded-full bg-black/50 flex items-center justify-center cursor-pointer">
@@ -110,8 +110,12 @@
                                 </label>
                             </div>
                         </div>
-                        <h1 class="playfair text-xl font-bold text-brand-burgundy">Chef Fatima-Ezzahra</h1>
-                        <p class="text-brand-gray text-sm">Membre depuis Janvier 2025</p>
+                        <h1 class="playfair text-xl font-bold text-brand-burgundy">
+                            {{ $chef->user->last_name }} {{ $chef->user->first_name }}
+                        </h1>
+                        <p class="text-brand-gray text-sm">
+                            Membre depuis {{ \Carbon\Carbon::parse($chef->user->created_at)->translatedFormat('F Y') }}
+                        </p>
                     </div>
 
                     <div class="p-4">
