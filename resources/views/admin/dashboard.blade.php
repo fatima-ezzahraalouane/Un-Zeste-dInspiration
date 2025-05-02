@@ -117,6 +117,15 @@
             </div>
         </aside>
 
+        @if (session('success'))
+        <div id="success-alert" class="flex justify-end">
+            <div class="mt-2 fixed top-20 right-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-md">
+                <i class="fas fa-check-circle"></i>
+                {{ session('success') }}
+            </div>
+        </div>
+        @endif
+
         <!-- Main Content -->
         <main class="flex-1 p-4 md:p-8">
             <!-- Statistics Section -->
@@ -126,7 +135,7 @@
             @include('admin.sections.user-management')
 
             <!-- Content Moderation Section (hidden by default) -->
-            @include('admin.sections.content-moderation') 
+            @include('admin.sections.content-moderation')
 
             <!-- Categories & Tags Section (hidden by default) -->
             @include('admin.sections.categories-tags')
@@ -218,53 +227,16 @@
             });
         });
     </script>
-    <!-- <script>
-        const ctx = document.getElementById('categoryChart').getContext('2d');
-
-        const categoryLabels = {!!json_encode($categories -> pluck('name')) !!};
-        const categoryData = {!!json_encode($categories -> pluck('recipes_count')) !!};
-
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: categoryLabels,
-                datasets: [{
-                    data: categoryData,
-                    backgroundColor: [
-                        '#793E37',
-                        '#B55D51',
-                        '#974344',
-                        '#4C4C4C',
-                    ],
-                    borderWidth: 0,
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                const label = context.label || '';
-                                const value = context.parsed || 0;
-                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                const percentage = Math.round((value * 100) / total);
-                                return `${label}: ${value} (${percentage}%)`;
-                            }
-                        }
-                    }
-                },
-                cutout: '70%'
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('success-alert');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
             }
-        });
-    </script> -->
-
-
+        }, 2000);
+    </script>
 </body>
 
 </html>
