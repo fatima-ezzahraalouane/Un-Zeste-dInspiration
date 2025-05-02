@@ -45,7 +45,7 @@
                         <td class="px-4 py-4">
                             <div class="flex items-center">
                                 <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
-                                    <img src="{{ $chef->user->avatar ?? 'https://img.freepik.com/premium-vector/vector-chef-character-design_746655-2375.jpg?w=740' }}" alt="User" class="w-full h-full object-cover rounded-full border-2 border-brand-coral" />
+                                    <img src="{{ $user->avatar ?? 'https://atomic.site/wp-content/uploads/2019/02/Avatar.png' }}" alt="User" class="w-full h-full object-cover rounded-full border-2 border-brand-coral" />
                                 </div>
                                 <div>
                                     <div class="font-medium">{{ $user->last_name }} {{ $user->first_name }}</div>
