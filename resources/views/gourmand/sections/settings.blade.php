@@ -24,19 +24,19 @@
                         <label class="block text-brand-gray text-sm mb-1" for="current-password">
                             Mot de passe actuel <span class="text-red-500">*</span>
                         </label>
-                        <input type="password" name="current_password" id="current-password" required class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
+                        <input type="password" name="current_password" id="current-password" placeholder="••••••••" required class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
                     </div>
                     <div>
                         <label class="block text-brand-gray text-sm mb-1" for="new-password">
                             Nouveau mot de passe <span class="text-red-500">*</span>
                         </label>
-                        <input type="password" name="new_password" id="new-password" required class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
+                        <input type="password" name="new_password" id="new-password" placeholder="••••••••" required class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
                     </div>
                     <div>
                         <label class="block text-brand-gray text-sm mb-1" for="confirm-password">
                             Confirmer le mot de passe <span class="text-red-500">*</span>
                         </label>
-                        <input type="password" name="new_password_confirmation" id="confirm-password" required class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
+                        <input type="password" name="new_password_confirmation" id="confirm-password" placeholder="••••••••" required class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
                     </div>
 
                     <button type="submit" class="px-4 py-2 bg-brand-burgundy text-white rounded hover:bg-brand-coral transition-colors">
