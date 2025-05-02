@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
+use App\Models\Chef;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\Chef\UpdateProfileRequest;
 
 class ChefController extends Controller
 {
@@ -40,5 +43,29 @@ class ChefController extends Controller
         ];
 
         return view('chef.dashboard', compact('chef', 'stats'));
+    }
+
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $chef = $user->chef;
+
+        // Mise à jour des données utilisateur
+        $user->update([
+            'first_name' => $request->first_name,
+            'last_name'  => $request->last_name,
+            'email'      => $request->email,
+            'avatar'     => $request->avatar,
+        ]);
+
+        // Mise à jour des données chef
+        $chef->update([
+            'adresse'    => $request->adresse,
+            'biographie' => $request->biographie,
+            'specialite' => $request->specialite,
+        ]);
+
+        return redirect()->route('chef.dashboard')->with('success', 'Profil mis à jour avec succès.');
     }
 }
