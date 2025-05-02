@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Experience\UpdateExperienceRequest;
 use Illuminate\Http\Request;
 use App\Repositories\Experience\ExperienceRepositoryInterface;
 use App\Repositories\Theme\ThemeRepositoryInterface;
@@ -40,6 +41,12 @@ class ExperienceController extends Controller
     {
         $experience = $this->experienceRepo->show($id);
         return view('gourmand.experience-detail', compact('experience'));
+    }
+
+    public function update(UpdateExperienceRequest $request, $id)
+    {
+        $this->experienceRepo->update($request, $id);
+        return redirect()->back()->with('success', 'Votre expérience a été mise à jour avec succès.');
     }
 
     public function destroy($id)
