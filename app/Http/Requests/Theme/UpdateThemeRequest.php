@@ -22,9 +22,9 @@ class UpdateThemeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|string|max:255',
-            'image' => 'sometimes|string',
-            'description' => 'sometimes|string',
+            'name' => 'sometimes|required|string|max:255',
+            'image' => 'sometimes|required|url',
+            'description' => 'sometimes|required|string',
         ];
     }
 }
