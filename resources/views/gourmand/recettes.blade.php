@@ -274,6 +274,7 @@
             </div>
 
             <!-- Pagination Controls -->
+            @if ($recipes->count())
             <div class="flex justify-center mt-10 space-x-2" id="pagination-controls">
                 @if ($recipes->onFirstPage())
                 <span
@@ -296,7 +297,7 @@
                     class="px-4 py-2 rounded-lg bg-gray-300 text-gray-600 transition-all cursor-not-allowed">Suivant</span>
                 @endif
             </div>
-
+            @endif
         </div>
     </section>
 
