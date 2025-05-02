@@ -52,6 +52,14 @@ class AuthRepository implements AuthRepositoryInterface
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
 
+            if ($user->statut === 'Suspendu') {
+                Auth::logout();
+                return [
+                    'success' => false,
+                    'error' => 'Votre compte a été suspendu par l’administrateur.',
+                ];
+            }
+
             if ($user->statut === 'Inactif' || !$user->is_approved) {
                 Auth::logout();
                 return [
