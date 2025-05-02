@@ -106,7 +106,7 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     // Route pour experience
     Route::post('/experiences', [ExperienceController::class, 'store'])->name('experiences.store');
     Route::get('/experiences/detail/{id}', [ExperienceController::class, 'show'])->name('gourmand.experiences.show');
-    Route::put('/experiences/{id}', [ExperienceController::class, 'update'])->name('experiences.update');
+    Route::put('/experiences/{id}/update', [ExperienceController::class, 'update'])->name('experiences.update');
     Route::delete('/experiences/{id}', [ExperienceController::class, 'destroy'])->name('experiences.destroy');
 
     // Routes pour les commentaires (gourmand)
