@@ -86,7 +86,7 @@
                 @endif
 
                 <div>
-                    <label class="block text-brand-gray mb-2">Email</label>
+                    <label class="block text-brand-gray mb-2">Email <span class="text-red-500 font-bold">*</span></label>
                     <input type="email" name="email"
                         required required data-parsley-type="email"
                         data-parsley-trigger="blur"
@@ -94,7 +94,7 @@
                         placeholder="Votre adresse e-mail">
                 </div>
                 <div>
-                    <label class="block text-brand-gray mb-2">Mot de passe</label>
+                    <label class="block text-brand-gray mb-2">Mot de passe <span class="text-red-500 font-bold">*</span></label>
                     <input type="password" name="password"
                         required data-parsley-minlength="8"
                         data-parsley-trigger="blur"
