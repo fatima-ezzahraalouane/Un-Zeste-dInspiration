@@ -23,7 +23,7 @@ class StoreExperienceRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'image' => 'required|string',
+            'image' => 'required|url',
             'description' => 'required|string',
             'theme_id' => 'required|exists:themes,id',
         ];
