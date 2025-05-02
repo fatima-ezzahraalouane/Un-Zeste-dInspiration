@@ -102,19 +102,22 @@
                     <div class="flex flex-col items-center p-6 border-b border-gray-200">
                         <div class="relative group mb-4">
                             <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-brand-burgundy">
-                                <img src="https://intranet.youcode.ma/storage/users/profile/1384-1728486655.JPG" alt="Photo de profil" class="w-full h-full object-cover">
+                                <img src="{{ $gourmand->user->avatar ?? 'https://atomic.site/wp-content/uploads/2019/02/Avatar.png' }}" alt="Photo de profil" class="w-full h-full object-cover">
                             </div>
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                                 <label for="profile-picture" class="w-24 h-24 rounded-full bg-black/50 flex items-center justify-center cursor-pointer">
                                     <i class="fas fa-camera text-white text-xl"></i>
-                                    <input type="file" id="profile-picture" class="hidden">
+                                    <input type="url" id="profile-picture" class="hidden" name="avatar">
                                 </label>
                             </div>
                         </div>
-                        <h1 class="playfair text-xl font-bold text-brand-burgundy">Fatima-Ezzahra Alouane</h1>
-                        <p class="text-brand-gray text-sm">Membre depuis Janvier 2025</p>
+                        <h1 class="playfair text-xl font-bold text-brand-burgundy">
+                            {{ $gourmand->user->first_name }} {{ $gourmand->user->last_name }}
+                        </h1>
+                        <p class="text-brand-gray text-sm">
+                            Membre depuis {{ \Carbon\Carbon::parse($gourmand->user->created_at)->translatedFormat('F Y') }}
+                        </p>
                     </div>
-
                     <div class="p-4">
                         <div id="tab-personal" onclick="changeTab('personal')" class="profile-tab active flex items-center p-3 mb-2 cursor-pointer rounded">
                             <i class="fas fa-user-circle w-6 text-center"></i>
