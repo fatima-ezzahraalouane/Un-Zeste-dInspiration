@@ -214,6 +214,29 @@
             }
         }, 2000);
     </script>
+    <script>
+        const modal = document.getElementById("experienceModal");
+        const openModalBtn = document.getElementById("openModal");
+        const closeModalBtn = document.getElementById("closeModal");
+        const experienceForm = document.getElementById("experienceForm");
+
+        // Open Modal
+        openModalBtn.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+        });
+
+        // Close Modal
+        closeModalBtn.addEventListener("click", () => {
+            modal.classList.add("hidden");
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.classList.add("hidden");
+            }
+        });
+    </script>
 </body>
 
 </html>
