@@ -13,6 +13,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +82,7 @@ Route::middleware(['auth', 'check.role:Admin'])->prefix('admin')->group(function
 
 // routes chef
 Route::middleware(['auth', 'check.role:Chef'])->prefix('chef')->group(function () {
-    Route::get('/dashboard', [ChefController::class, 'index'])->name('chef.dashboard');
+    Route::get('/dashboard', [ChefController::class, 'profile'])->name('chef.dashboard');
 });
 
 
@@ -120,4 +121,5 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     // Route pour profil
     Route::get('/profile', [GourmandController::class, 'profile'])->name('gourmand.profile');
     Route::put('/profile/update', [GourmandController::class, 'updateProfile'])->name('gourmand.profile.update');
+    Route::put('/profil/password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
 });
