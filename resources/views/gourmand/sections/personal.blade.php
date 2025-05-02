@@ -1,13 +1,13 @@
 <section id="personal-section" class="bg-white rounded-lg p-6 mb-8 shadow-xl">
 
     @if (session('success'))
-        <div id="success-alert" class="flex justify-end">
-            <div
-                class="mt-2 fixed top-20 right-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-md">
-                <i class="fas fa-check-circle"></i>
-                {{ session('success') }}
-            </div>
+    <div id="success-alert" class="flex justify-end">
+        <div
+            class="mt-2 fixed top-20 right-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-md">
+            <i class="fas fa-check-circle"></i>
+            {{ session('success') }}
         </div>
+    </div>
     @endif
 
     <div class="flex justify-between items-center mb-6">
@@ -70,10 +70,10 @@
                     class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
             </div>
             <div>
-    <label class="block text-brand-gray text-sm mb-1" for="avatar">URL de la photo de profil</label>
-    <input type="url" name="avatar" id="avatar" value="{{ old('avatar', $gourmand->user->avatar) }}"
-        class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
-</div>
+                <label class="block text-brand-gray text-sm mb-1" for="avatar">URL de la photo de profil</label>
+                <input type="url" name="avatar" id="avatar" value="{{ old('avatar', $gourmand->user->avatar) }}"
+                    class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
+            </div>
         </div>
         <div>
             <label class="block text-brand-gray text-sm mb-1" for="biographie">À propos de moi</label>
