@@ -104,12 +104,6 @@
                             <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-brand-burgundy">
                                 <img src="{{ $gourmand->user->avatar ?? 'https://atomic.site/wp-content/uploads/2019/02/Avatar.png' }}" alt="Photo de profil" class="w-full h-full object-cover">
                             </div>
-                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                <label for="profile-picture" class="w-24 h-24 rounded-full bg-black/50 flex items-center justify-center cursor-pointer">
-                                    <i class="fas fa-camera text-white text-xl"></i>
-                                    <input type="url" id="profile-picture" class="hidden" name="avatar">
-                                </label>
-                            </div>
                         </div>
                         <h1 class="playfair text-xl font-bold text-brand-burgundy">
                             {{ $gourmand->user->first_name }} {{ $gourmand->user->last_name }}
@@ -218,23 +212,55 @@
         const modal = document.getElementById("experienceModal");
         const openModalBtn = document.getElementById("openModal");
         const closeModalBtn = document.getElementById("closeModal");
-        const experienceForm = document.getElementById("experienceForm");
+        const editModal = document.getElementById("editExperienceModal");
+        const closeEditModalBtn = document.getElementById("closeEditModal");
+        const editForm = document.getElementById("editExperienceForm");
 
-        // Open Modal
+        // Open Add Experience Modal
         openModalBtn.addEventListener("click", () => {
             modal.classList.remove("hidden");
         });
 
-        // Close Modal
+        // Close Add Experience Modal
         closeModalBtn.addEventListener("click", () => {
             modal.classList.add("hidden");
         });
 
-        // Close modal when clicking outside
+        // Close Add Experience Modal when clicking outside
         window.addEventListener("click", (event) => {
             if (event.target === modal) {
                 modal.classList.add("hidden");
             }
+            if (event.target === editModal) {
+                editModal.classList.add("hidden");
+            }
+        });
+
+        // Open Edit Experience Modal and populate fields
+        function openEditModal(button) {
+            const experienceId = button.dataset.experienceId;
+            const title = button.dataset.experienceTitle;
+            const description = button.dataset.experienceDescription;
+            const image = button.dataset.experienceImage;
+            const themeId = button.dataset.experienceTheme;
+
+            // Populate form fields
+            document.getElementById("edit-experience-id").value = experienceId;
+            document.getElementById("edit-title").value = title;
+            document.getElementById("edit-description").value = description;
+            document.getElementById("edit-image").value = image;
+            document.getElementById("edit-theme-id").value = themeId;
+
+            // Set form action using Laravel route
+            editForm.action = "{{ route('experiences.update', ':id') }}".replace(':id', experienceId);
+
+            // Show edit modal
+            editModal.classList.remove("hidden");
+        }
+
+        // Close Edit Experience Modal
+        closeEditModalBtn.addEventListener("click", () => {
+            editModal.classList.add("hidden");
         });
     </script>
 </body>
