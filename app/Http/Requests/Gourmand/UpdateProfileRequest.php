@@ -27,6 +27,7 @@ class UpdateProfileRequest extends FormRequest
             'email'      => 'required|email|max:255',
             'adresse'    => 'nullable|string|max:255',
             'biographie' => 'nullable|string|max:1000',
+            'avatar'     => 'nullable|url',
         ];
     }
 }
