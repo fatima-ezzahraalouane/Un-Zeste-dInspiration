@@ -26,8 +26,8 @@ class GourmandController extends Controller
         $recipes = $this->recipeRepo->getMostLikedRecipes(4);
 
         $stats = [
-            'recipes' => Recipe::count(),
-            'experiences' => Experience::count(),
+            'recipes' => Recipe::where('statut', 'Approuver')->count(),
+            'experiences' => Experience::where('statut', 'Approuver')->count(),
             'chefs' => Chef::count(),
             'members' => User::whereHas('role', function ($q) {
                 $q->where('name_user', 'Gourmand');
@@ -52,11 +52,26 @@ class GourmandController extends Controller
 
         $themes = Theme::all();
         $experiences = $gourmand->experiences()
-        ->with('theme')
-        ->latest()
-        ->paginate(5);
-        
-        return view('gourmand.profile', compact('gourmand', 'themes', 'experiences'));
+            ->with('theme')
+            ->latest()
+            ->paginate(5);
+
+        $stats = [
+            'experiences' => $gourmand->experiences()->where('statut', 'Approuver')->count(),
+            'comments' => $gourmand->experiences()
+                ->where('statut', 'Approuver')
+                ->withCount('comments')
+                ->get()
+                ->sum('comments_count'),
+            'popularExperiences' => $gourmand->experiences()
+                ->where('statut', 'Approuver')
+                ->withCount('comments')
+                ->orderByDesc('comments_count')
+                ->take(5)
+                ->get(),
+        ];
+
+        return view('gourmand.profile', compact('gourmand', 'themes', 'experiences', 'stats'));
     }
 
     public function updateProfile(UpdateProfileRequest $request)
