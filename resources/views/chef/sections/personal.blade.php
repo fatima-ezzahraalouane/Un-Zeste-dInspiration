@@ -1,4 +1,15 @@
 <section id="personal-section" class="bg-white rounded-lg p-6 mb-8 shadow-xl">
+
+    @if (session('success'))
+    <div id="success-alert" class="flex justify-end">
+        <div
+            class="mt-2 fixed top-20 right-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-md">
+            <i class="fas fa-check-circle"></i>
+            {{ session('success') }}
+        </div>
+    </div>
+    @endif
+
     <div class="flex justify-between items-center mb-6">
         <h2 class="playfair text-2xl font-bold text-brand-burgundy">Informations Personnelles</h2>
         <button id="edit-profile-btn" class="text-brand-burgundy hover:text-brand-coral">
@@ -11,34 +22,24 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
                 <p class="text-brand-gray text-sm">Nom</p>
-                <p class="font-medium">Alouane</p>
+                <p class="font-medium">{{ $chef->user->last_name }}</p>
             </div>
             <div>
                 <p class="text-brand-gray text-sm">Prénom</p>
-                <p class="font-medium">Fatima-Ezzahra</p>
+                <p class="font-medium">{{ $chef->user->first_name }}</p>
             </div>
             <div>
                 <p class="text-brand-gray text-sm">Email</p>
-                <p class="font-medium">chef.fatimaezzahra@email.com</p>
+                <p class="font-medium">{{ $chef->user->email }}</p>
             </div>
-            <!-- <div>
-                                <p class="text-brand-gray text-sm">Téléphone</p>
-                                <p class="font-medium">+33 6 12 34 56 78</p>
-                            </div> -->
-            <!-- <div>
-                                <p class="text-brand-gray text-sm">Date de naissance</p>
-                                <p class="font-medium">15 mars 1990</p>
-                            </div> -->
             <div>
                 <p class="text-brand-gray text-sm">Localisation</p>
-                <p class="font-medium">Safi, Maroc</p>
+                <p class="font-medium">{{ $chef->adresse ?? 'Non renseignée' }}</p>
             </div>
         </div>
         <div>
             <p class="text-brand-gray text-sm">À propos de moi</p>
-            <p class="font-medium">Passionnée de cuisine depuis mon plus jeune âge,
-                j'aime particulièrement expérimenter avec les saveurs méditerranéennes et asiatiques.
-                Je partage ici mes recettes.</p>
+            <p class="font-medium">{{ $chef->biographie ?? 'Aucune biographie disponible.' }}</p>
         </div>
         <div>
             <p class="text-brand-gray text-sm">Spécialités</p>
