@@ -83,6 +83,7 @@ Route::middleware(['auth', 'check.role:Admin'])->prefix('admin')->group(function
 // routes chef
 Route::middleware(['auth', 'check.role:Chef'])->prefix('chef')->group(function () {
     Route::get('/dashboard', [ChefController::class, 'profile'])->name('chef.dashboard');
+    Route::put('/dashboard/update', [ChefController::class, 'updateProfile'])->name('chef.dashboard.update');
 });
 
 
