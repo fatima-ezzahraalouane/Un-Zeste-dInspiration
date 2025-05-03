@@ -1,9 +1,10 @@
 <section id="recettes-section" class="bg-white rounded-lg shadow-xl p-6 mb-8 hidden">
     <div class="flex justify-between items-center mb-6">
         <h2 class="playfair text-2xl font-bold text-brand-burgundy">Mes Recettes</h2>
-        <a href="#" class="shine-effect px-4 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+        <button type="button" id="openModal"
+            class="px-4 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
             <i class="fas fa-plus mr-2"></i> Nouvelle Recette
-        </a>
+        </button>
     </div>
 
     <!-- <div class="mb-6">
@@ -66,7 +67,7 @@
         <p class="text-brand-gray col-span-3 text-center">Aucune recette trouvée.</p>
         @endforelse
     </div>
-    
+
     <!-- Pagination -->
     @if ($recipes->count())
     <div class="flex justify-center mt-8">
@@ -104,3 +105,108 @@
     </div>
     @endif
 </section>
+
+<!-- Modal d'ajout recette -->
+<div id="recipeModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 hidden z-50">
+    <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-brand-burgundy mb-6">Ajouter une Recette</h2>
+
+        <form method="POST" action="{{ route('recipes.store') }}">
+            @csrf
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                <!-- Titre -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Titre <span class="text-red-500 font-bold">*</span></label>
+                    <input type="text" name="title" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Image -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Image (URL) <span class="text-red-500 font-bold">*</span></label>
+                    <input type="url" name="image" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Temps préparation -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Préparation (min) <span class="text-red-500 font-bold">*</span></label>
+                    <input type="number" name="preparation_time" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Temps cuisson -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Cuisson (min) <span class="text-red-500 font-bold">*</span></label>
+                    <input type="number" name="cooking_time" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Portions -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Portions <span class="text-red-500 font-bold">*</span></label>
+                    <input type="number" name="servings" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Complexité -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Complexité <span class="text-red-500 font-bold">*</span></label>
+                    <select name="complexity" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                        <option value="" disabled selected>Choisissez</option>
+                        <option value="Facile">Facile</option>
+                        <option value="Moyen">Moyen</option>
+                        <option value="Difficile">Difficile</option>
+                    </select>
+                </div>
+
+                <!-- Catégorie -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Catégorie <span class="text-red-500 font-bold">*</span></label>
+                    <select name="category_id" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                        <option value="" disabled selected>Choisissez</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Tags -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Tags <span class="text-red-500 font-bold">*</span></label>
+                    <select name="tags[]" multiple class="w-full px-4 py-2 border rounded-lg mb-3">
+                        @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description <span class="text-red-500 font-bold">*</span></label>
+                    <textarea name="description" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <!-- Ingrédients -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Ingrédients (séparés par des virgules) <span class="text-red-500 font-bold">*</span></label>
+                    <textarea name="ingredients" rows="2" required placeholder="ex: farine, sucre, œufs"
+                        class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
+                </div>
+
+                <!-- Instructions -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Instructions (séparées par des virgules) <span class="text-red-500 font-bold">*</span></label>
+                    <textarea name="instructions" rows="2" required placeholder="ex: Mélanger, Cuire, Servir chaud"
+                        class="w-full px-4 py-2 border rounded-lg mb-4"></textarea>
+                </div>
+            </div>
+
+            <!-- Boutons -->
+            <div class="flex justify-end gap-3 mt-4">
+                <button type="button" id="closeRecipeModal" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Annuler</button>
+                <button type="submit" class="bg-brand-burgundy text-white px-4 py-2 rounded hover:bg-brand-red">Ajouter</button>
+            </div>
+        </form>
+    </div>
+</div>
