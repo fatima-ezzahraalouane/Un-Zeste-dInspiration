@@ -1,6 +1,17 @@
 <section id="settings-section" class="bg-white rounded-lg shadow-xl p-6 mb-8 hidden">
     <h2 class="playfair text-2xl font-bold text-brand-burgundy mb-6">Paramètres du compte</h2>
 
+    @if ($errors->any())
+    <div id="error-message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <strong class="font-bold">Erreur !</strong>
+        <ul class="mt-2 list-disc list-inside text-sm">
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    
     <!-- Security Settings -->
     <div>
         <h3 class="playfair text-xl font-semibold text-brand-burgundy mb-4">Sécurité</h3>
