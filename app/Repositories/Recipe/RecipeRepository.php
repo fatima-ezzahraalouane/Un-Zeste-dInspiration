@@ -17,13 +17,16 @@ class RecipeRepository implements RecipeRepositoryInterface
 
     public function store(StoreRecipeRequest $request)
     {
-        $recipe = Recipe::create($request->validated());
+        $data = $request->validated();
+
+        $data['chef_id'] = auth()->user()->chef->id;
+        $data['statut'] = 'En attente';
 
         if ($request->has('tags')) {
-            $recipe->tags()->sync($request->tags);
+            $data->tags()->sync($request->tags);
         }
 
-        return $recipe;
+        return Recipe::create($data);
     }
 
     public function show($id)
@@ -64,7 +67,7 @@ class RecipeRepository implements RecipeRepositoryInterface
     public function search(Request $request)
     {
         $query = Recipe::with(['category', 'tags', 'chef.user'])
-                        ->where('statut', 'Approuver');
+            ->where('statut', 'Approuver');
 
         // Recherche par titre
         if ($request->filled('title')) {
@@ -78,7 +81,7 @@ class RecipeRepository implements RecipeRepositoryInterface
 
         // Filtrer par tag
         if ($request->filled('tag_id') && $request->tag_id != 'all') {
-            $query->whereHas('tags', function($q) use ($request) {
+            $query->whereHas('tags', function ($q) use ($request) {
                 $q->where('tag_id', $request->tag_id);
             });
         }
