@@ -38,6 +38,7 @@ class RecipeController extends Controller
     public function store(StoreRecipeRequest $request)
     {
         $this->recipeRepo->store($request);
+        return redirect()->back()->with('success', 'Votre recette a été soumise pour validation et sera approuvée par un administrateur.');
     }
 
     public function show($id)
@@ -48,12 +49,14 @@ class RecipeController extends Controller
 
     public function update(UpdateRecipeRequest $request, $id)
     {
-        return $this->recipeRepo->update($request, $id);
+        $this->recipeRepo->update($request, $id);
+        return redirect()->back()->with('success', 'Votre recette a été mise à jour avec succès.');
     }
 
     public function destroy($id)
     {
-        return $this->recipeRepo->destroy($id);
+        $this->recipeRepo->destroy($id);
+        return redirect()->back()->with('success', 'Votre recette a été supprimée avec succès.');
     }
 
     // top recettes pour le carrousel (composant)
