@@ -35,7 +35,7 @@
                         data-recipe-description="{{ $recipe->description }}"
                         data-recipe-image="{{ $recipe->image }}"
                         data-recipe-category="{{ $recipe->category_id }}"
-                        onclick="openEditRecipeModal(this)">
+                        onclick="openEditModal(this)">
                         <i class="fas fa-edit"></i>
                     </button>
                     @endif
@@ -206,6 +206,107 @@
             <div class="flex justify-end gap-3 mt-4">
                 <button type="button" id="closeRecipeModal" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Annuler</button>
                 <button type="submit" class="bg-brand-burgundy text-white px-4 py-2 rounded hover:bg-brand-red">Ajouter</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal de modification -->
+<div id="editRecipeModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 hidden z-50">
+    <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-4xl mx-auto">
+        <h2 class="text-2xl font-bold text-brand-burgundy mb-6">Modifier la Recette</h2>
+
+        <form id="editRecipeForm" method="POST">
+            @csrf
+            @method('PUT')
+            <input type="hidden" name="recipe_id" id="edit-recipe-id">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Titre -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Titre</label>
+                    <input type="text" name="title" id="edit-title" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Image -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Image (URL)</label>
+                    <input type="url" name="image" id="edit-image" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Temps préparation -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Préparation (min)</label>
+                    <input type="number" name="preparation_time" id="edit-preparation" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Temps cuisson -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Cuisson (min)</label>
+                    <input type="number" name="cooking_time" id="edit-cooking" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Portions -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Portions</label>
+                    <input type="number" name="servings" id="edit-servings" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <!-- Complexité -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Complexité</label>
+                    <select name="complexity" id="edit-complexity" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                        <option value="">Choisissez</option>
+                        <option value="Facile">Facile</option>
+                        <option value="Moyen">Moyen</option>
+                        <option value="Difficile">Difficile</option>
+                    </select>
+                </div>
+
+                <!-- Catégorie -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Catégorie</label>
+                    <select name="category_id" id="edit-category" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                        <option value="">Choisissez une catégorie</option>
+                        @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- Tags -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Tags</label>
+                    <select name="tags[]" id="edit-tags" multiple class="w-full px-4 py-2 border rounded-lg mb-3">
+                        @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+                <textarea name="description" id="edit-description" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
+            </div>
+
+            <!-- Ingrédients -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Ingrédients (séparés par des virgules)</label>
+                <textarea name="ingredients" id="edit-ingredients" rows="2" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
+            </div>
+
+            <!-- Instructions -->
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Instructions (séparées par des virgules)</label>
+                <textarea name="instructions" id="edit-instructions" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-4"></textarea>
+            </div>
+
+            <!-- Boutons -->
+            <div class="flex justify-end gap-3 mt-4">
+                <button type="button" id="closeEditRecipeModal" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Annuler</button>
+                <button type="submit" class="bg-brand-burgundy text-white px-4 py-2 rounded hover:bg-brand-red">Modifier</button>
             </div>
         </form>
     </div>
