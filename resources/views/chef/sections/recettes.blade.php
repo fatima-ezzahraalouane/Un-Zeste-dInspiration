@@ -212,7 +212,7 @@
 
             <!-- Boutons -->
             <div class="flex justify-end gap-3 mt-4">
-                <button type="button" id="closeRecipeModal" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Annuler</button>
+                <button type="button" id="closeModal" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Annuler</button>
                 <button type="submit" class="bg-brand-burgundy text-white px-4 py-2 rounded hover:bg-brand-red">Ajouter</button>
             </div>
         </form>
