@@ -29,13 +29,21 @@
                 <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}" class="w-full h-40 object-cover">
                 <div class="absolute top-2 right-2 flex space-x-2">
                     @if ($recipe->statut !== 'Approuver')
-                    <button class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-burgundy"
-                        data-recipe-id="{{ $recipe->id }}"
-                        data-recipe-title="{{ $recipe->title }}"
-                        data-recipe-description="{{ $recipe->description }}"
-                        data-recipe-image="{{ $recipe->image }}"
-                        data-recipe-category="{{ $recipe->category_id }}"
-                        onclick="openEditModal(this)">
+                    <button
+                        onclick="openEditRecipeModal(this)"
+                        data-id="{{ $recipe->id }}"
+                        data-title="{{ $recipe->title }}"
+                        data-image="{{ $recipe->image }}"
+                        data-description="{{ $recipe->description }}"
+                        data-preparation="{{ $recipe->preparation_time }}"
+                        data-cooking="{{ $recipe->cooking_time }}"
+                        data-servings="{{ $recipe->servings }}"
+                        data-complexity="{{ $recipe->complexity }}"
+                        data-category="{{ $recipe->category_id }}"
+                        data-tags='@json($recipe->tags->pluck("id"))'
+                        data-ingredients="{{ $recipe->ingredients }}"
+                        data-instructions="{{ $recipe->instructions }}"
+                        class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-burgundy hover:bg-white transition-all">
                         <i class="fas fa-edit"></i>
                     </button>
                     @endif
@@ -221,7 +229,7 @@
             @method('PUT')
             <input type="hidden" name="recipe_id" id="edit-recipe-id">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <!-- Titre -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Titre</label>
@@ -283,24 +291,26 @@
                         @endforeach
                     </select>
                 </div>
+
+                <!-- Description -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+                    <textarea name="description" id="edit-description" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
+                </div>
             </div>
 
-            <!-- Description -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
-                <textarea name="description" id="edit-description" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
-            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Ingrédients -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Ingrédients (séparés par des virgules)</label>
+                    <textarea name="ingredients" id="edit-ingredients" rows="2" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
+                </div>
 
-            <!-- Ingrédients -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">Ingrédients (séparés par des virgules)</label>
-                <textarea name="ingredients" id="edit-ingredients" rows="2" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
-            </div>
-
-            <!-- Instructions -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">Instructions (séparées par des virgules)</label>
-                <textarea name="instructions" id="edit-instructions" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-4"></textarea>
+                <!-- Instructions -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Instructions (séparées par des virgules)</label>
+                    <textarea name="instructions" id="edit-instructions" rows="2" required class="w-full px-4 py-2 border rounded-lg mb-4"></textarea>
+                </div>
             </div>
 
             <!-- Boutons -->
