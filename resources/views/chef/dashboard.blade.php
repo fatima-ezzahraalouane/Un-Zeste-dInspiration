@@ -353,6 +353,33 @@
                 editModal.classList.add("hidden");
             }
         });
+
+          // Open Edit Recipe Modal and populate fields
+          function openEditModal(button) {
+            const recipeId = button.dataset.recipeId;
+            const title = button.dataset.recipeTitle;
+            const description = button.dataset.recipeDescription;
+            const image = button.dataset.recipeImage;
+            const categoryId = button.dataset.recipeCategory;
+
+            // Populate form fields
+            document.getElementById("edit-recipe-id").value = recipeId;
+            document.getElementById("edit-title").value = title;
+            document.getElementById("edit-description").value = description;
+            document.getElementById("edit-image").value = image;
+            document.getElementById("edit-category-id").value = categoryId;
+
+            // Set form action using Laravel route
+            editForm.action = "{{ route('recipes.update', ':id') }}".replace(':id', recipeId);
+
+            // Show edit modal
+            editModal.classList.remove("hidden");
+        }
+
+        // Close Edit Experience Modal
+        closeEditModalBtn.addEventListener("click", () => {
+            editModal.classList.add("hidden");
+        });
     </script>
 </body>
 
