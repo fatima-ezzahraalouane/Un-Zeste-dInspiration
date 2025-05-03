@@ -326,6 +326,34 @@
             hiddenInput.value = values.join(',');
         }
     </script>
+    <script>
+        const modal = document.getElementById("recipeModal");
+        const openModalBtn = document.getElementById("openModal");
+        const closeModalBtn = document.getElementById("closeModal");
+        const editModal = document.getElementById("editRecipeModal");
+        const closeEditModalBtn = document.getElementById("closeEditModal");
+        const editForm = document.getElementById("editRecipeForm");
+
+        // Open Add Experience Modal
+        openModalBtn.addEventListener("click", () => {
+            modal.classList.remove("hidden");
+        });
+
+        // Close Add Experience Modal
+        closeModalBtn.addEventListener("click", () => {
+            modal.classList.add("hidden");
+        });
+
+        // Close Add Recipe Modal when clicking outside
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.classList.add("hidden");
+            }
+            if (event.target === editModal) {
+                editModal.classList.add("hidden");
+            }
+        });
+    </script>
 </body>
 
 </html>
