@@ -104,12 +104,6 @@
                             <div class="w-24 h-24 rounded-full overflow-hidden border-4 border-brand-burgundy">
                                 <img src="{{ $chef->user->avatar ?? 'https://img.freepik.com/premium-vector/vector-chef-character-design_746655-2375.jpg?w=740' }}" alt="Photo de profil" class="w-full h-full object-cover">
                             </div>
-                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                <label for="profile-picture" class="w-24 h-24 rounded-full bg-black/50 flex items-center justify-center cursor-pointer">
-                                    <i class="fas fa-camera text-white text-xl"></i>
-                                    <input type="file" id="profile-picture" class="hidden">
-                                </label>
-                            </div>
                         </div>
                         <h1 class="playfair text-xl font-bold text-brand-burgundy">
                             {{ $chef->user->last_name }} {{ $chef->user->first_name }}
