@@ -157,84 +157,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <!-- <footer class="bg-brand-burgundy text-white py-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="playfair text-2xl font-bold mb-4">Un Zeste d'Inspiration</h3>
-                    <p class="text-brand-peach">
-                        Votre destination culinaire d'excellence pour découvrir et partager des recettes
-                        extraordinaires.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="playfair text-xl font-semibold mb-4">Navigation</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-brand-peach hover:text-white transition-colors">Accueil</a>
-                        </li>
-                        <li><a href="recipes.html"
-                                class="text-brand-peach hover:text-white transition-colors">Recettes</a></li>
-                        <li><a href="chefs.html" class="text-brand-peach hover:text-white transition-colors">Chefs</a>
-                        </li>
-                        <li><a href="blog.html" class="text-brand-peach hover:text-white transition-colors">Blog</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="playfair text-xl font-semibold mb-4">Légal</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Conditions
-                                d'utilisation</a></li>
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Politique de
-                                confidentialité</a></li>
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Mentions légales</a>
-                        </li>
-                        <li><a href="#" class="text-brand-peach hover:text-white transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="playfair text-xl font-semibold mb-4">Suivez-nous</h4>
-                    <div class="flex space-x-4 mb-6">
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                        <a href="#"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                    <div class="text-brand-peach">
-                        <p class="mb-2">Newsletter culinaire</p>
-                        <div class="flex">
-                            <input type="email" placeholder="Votre email"
-                                class="bg-white/10 rounded-l-full py-2 px-4 focus:outline-none focus:bg-white/20 transition-all flex-grow">
-                            <button
-                                class="bg-white text-brand-burgundy px-6 rounded-r-full hover:bg-brand-peach transition-all">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="border-t border-white/10 my-12"></div>
-
-            <div class="flex justify-center items-center text-brand-peach text-sm">
-                <p>&copy; 2025 Un Zeste d'Inspiration. Tous droits réservés.</p>
-            </div>
-        </div>
-    </footer> -->
-
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
@@ -330,16 +252,13 @@
         const modal = document.getElementById("recipeModal");
         const openModalBtn = document.getElementById("openModal");
         const closeModalBtn = document.getElementById("closeModal");
-        const editModal = document.getElementById("editRecipeModal");
-        const closeEditModalBtn = document.getElementById("closeEditModal");
-        const editForm = document.getElementById("editRecipeForm");
 
-        // Open Add Experience Modal
+        // Open Add Recipe Modal
         openModalBtn.addEventListener("click", () => {
             modal.classList.remove("hidden");
         });
 
-        // Close Add Experience Modal
+        // Close Add Recipe Modal
         closeModalBtn.addEventListener("click", () => {
             modal.classList.add("hidden");
         });
@@ -353,32 +272,50 @@
                 editModal.classList.add("hidden");
             }
         });
+    </script>
+    <script>
+        function openEditRecipeModal(button) {
+            const modal = document.getElementById('editRecipeModal');
+            const form = document.getElementById('editRecipeForm');
 
-          // Open Edit Recipe Modal and populate fields
-          function openEditModal(button) {
-            const recipeId = button.dataset.recipeId;
-            const title = button.dataset.recipeTitle;
-            const description = button.dataset.recipeDescription;
-            const image = button.dataset.recipeImage;
-            const categoryId = button.dataset.recipeCategory;
+            const recipeId = button.dataset.id;
+            const title = button.dataset.title;
+            const image = button.dataset.image;
+            const description = button.dataset.description;
+            const preparation = button.dataset.preparation;
+            const cooking = button.dataset.cooking;
+            const servings = button.dataset.servings;
+            const complexity = button.dataset.complexity;
+            const categoryId = button.dataset.category;
+            const tags = JSON.parse(button.dataset.tags);
+            const ingredients = button.dataset.ingredients;
+            const instructions = button.dataset.instructions;
 
-            // Populate form fields
-            document.getElementById("edit-recipe-id").value = recipeId;
-            document.getElementById("edit-title").value = title;
-            document.getElementById("edit-description").value = description;
-            document.getElementById("edit-image").value = image;
-            document.getElementById("edit-category-id").value = categoryId;
+            document.getElementById('edit-recipe-id').value = recipeId;
 
-            // Set form action using Laravel route
-            editForm.action = "{{ route('recipes.update', ':id') }}".replace(':id', recipeId);
+            document.getElementById('edit-title').value = title;
+            document.getElementById('edit-image').value = image;
+            document.getElementById('edit-description').value = description;
+            document.getElementById('edit-preparation').value = preparation;
+            document.getElementById('edit-cooking').value = cooking;
+            document.getElementById('edit-servings').value = servings;
+            document.getElementById('edit-complexity').value = complexity;
+            document.getElementById('edit-category').value = categoryId;
+            document.getElementById('edit-ingredients').value = ingredients;
+            document.getElementById('edit-instructions').value = instructions;
 
-            // Show edit modal
-            editModal.classList.remove("hidden");
+            const selectTags = document.getElementById('edit-tags');
+            for (let option of selectTags.options) {
+                option.selected = tags.includes(parseInt(option.value));
+            }
+
+            form.action = "{{ route('recipes.update', ':id') }}".replace(':id', recipeId);
+
+            modal.classList.remove('hidden');
         }
 
-        // Close Edit Experience Modal
-        closeEditModalBtn.addEventListener("click", () => {
-            editModal.classList.add("hidden");
+        document.getElementById('closeEditRecipeModal').addEventListener('click', () => {
+            document.getElementById('editRecipeModal').classList.add('hidden');
         });
     </script>
 </body>
