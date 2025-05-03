@@ -22,11 +22,13 @@ class RecipeRepository implements RecipeRepositoryInterface
         $data['chef_id'] = auth()->user()->chef->id;
         $data['statut'] = 'En attente';
 
+        $recipe = Recipe::create($data);
+
         if ($request->has('tags')) {
-            $data->tags()->sync($request->tags);
+            $recipe->tags()->sync($request->tags);
         }
 
-        return Recipe::create($data);
+        return $recipe;
     }
 
     public function show($id)
