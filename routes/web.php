@@ -84,12 +84,12 @@ Route::middleware(['auth', 'check.role:Admin'])->prefix('admin')->group(function
 Route::middleware(['auth', 'check.role:Chef'])->prefix('chef')->group(function () {
     Route::get('/dashboard', [ChefController::class, 'profile'])->name('chef.dashboard');
     Route::put('/dashboard/update', [ChefController::class, 'updateProfile'])->name('chef.dashboard.update');
-    
+
     Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store');
     Route::put('/recipes/{id}/update', [RecipeController::class, 'update'])->name('recipes.update');
     Route::delete('/recipes/{id}', [RecipeController::class, 'destroy'])->name('recipes.destroy');
 
-    Route::put('/profil/password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+    Route::put('/profil/password', [ProfileController::class, 'updatePassword'])->name('dashboard.update-password');
 });
 
 
