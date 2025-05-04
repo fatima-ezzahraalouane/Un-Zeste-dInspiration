@@ -14,6 +14,7 @@ use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecipePdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,4 +130,7 @@ Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(fu
     Route::get('/profile', [GourmandController::class, 'profile'])->name('gourmand.profile');
     Route::put('/profile/update', [GourmandController::class, 'updateProfile'])->name('gourmand.profile.update');
     Route::put('/profil/password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+
+    // Route pour PDF
+    Route::get('/recipes/{id}/pdf', [RecipePdfController::class, 'download'])->name('recipes.pdf');
 });
