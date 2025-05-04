@@ -51,26 +51,17 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
+                    @forelse ($stats['popularRecipes'] as $recipe)
                     <tr class="hover:bg-brand-peach/20 transition-colors">
-                        <td class="px-4 py-3 text-sm text-brand-dark">Tarte aux fraises maison</td>
-                        <td class="px-4 py-3 text-sm text-center text-brand-dark">12</td>
-                        <td class="px-4 py-3 text-sm text-right text-brand-dark">12 mars 2025</td>
+                        <td class="px-4 py-3 text-sm text-brand-dark">{{ $recipe->title }}</td>
+                        <td class="px-4 py-3 text-sm text-center text-brand-dark">{{ $recipe->comments_count }}</td>
+                        <td class="px-4 py-3 text-sm text-right text-brand-dark">{{ $recipe->created_at->format('d M Y') }}</td>
                     </tr>
-                    <tr class="hover:bg-brand-peach/20 transition-colors">
-                        <td class="px-4 py-3 text-sm text-brand-dark">Curry vert thaïlandais</td>
-                        <td class="px-4 py-3 text-sm text-center text-brand-dark">9</td>
-                        <td class="px-4 py-3 text-sm text-right text-brand-dark">28 février 2025</td>
+                    @empty
+                    <tr>
+                        <td colspan="3" class="text-center py-4 text-brand-gray">Aucune recette populaire pour l'instant.</td>
                     </tr>
-                    <tr class="hover:bg-brand-peach/20 transition-colors">
-                        <td class="px-4 py-3 text-sm text-brand-dark">Gâteau au chocolat sans gluten</td>
-                        <td class="px-4 py-3 text-sm text-center text-brand-dark">7</td>
-                        <td class="px-4 py-3 text-sm text-right text-brand-dark">15 janvier 2025</td>
-                    </tr>
-                    <tr class="hover:bg-brand-peach/20 transition-colors">
-                        <td class="px-4 py-3 text-sm text-brand-dark">Salade César revisitée</td>
-                        <td class="px-4 py-3 text-sm text-center text-brand-dark">5</td>
-                        <td class="px-4 py-3 text-sm text-right text-brand-dark">5 février 2025</td>
-                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
