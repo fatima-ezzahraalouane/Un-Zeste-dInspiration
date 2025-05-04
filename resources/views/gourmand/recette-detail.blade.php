@@ -159,10 +159,10 @@
                 </div>
                 <!-- Bouton Imprimer en haut à droite -->
                 <div class="flex justify-center md:absolute md:top-4 md:right-4 z-10">
-                    <button onclick="printIngredientsAndInstructions()"
+                    <a href="{{ route('recipes.pdf', $recipe->id) }}" target="_blank"
                         class="px-6 py-2 w-full md:w-auto bg-gradient-to-r from-brand-red to-brand-burgundy text-white rounded-full shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center">
                         <i class="fas fa-print mr-2"></i> Imprimer
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Contenu principal : Ingrédients & Instructions -->
