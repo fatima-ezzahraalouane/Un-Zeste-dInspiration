@@ -8,7 +8,7 @@ use App\Repositories\Tag\TagRepositoryInterface;
 
 class TagRepository implements TagRepositoryInterface
 {
-    public function all()
+    public function getAll()
     {
         return Tag::all();
     }
