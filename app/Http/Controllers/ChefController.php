@@ -34,6 +34,12 @@ class ChefController extends Controller
                 ->withCount('comments')
                 ->get()
                 ->sum('comments_count'),
+            'favorites' => $chef->recipes()
+                ->where('statut', 'Approuver')
+                ->withCount('favoritedBy')
+                ->get()
+                ->sum('favorited_by_count'),
+
             'popularRecipes' => $chef->recipes()
                 ->where('statut', 'Approuver')
                 ->withCount('comments')
