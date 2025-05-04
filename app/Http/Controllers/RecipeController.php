@@ -71,7 +71,7 @@ class RecipeController extends Controller
     {
         $recipes = $this->recipeRepo->search($request);
         $categories = $this->categoryRepo->getAll();
-        $tags = $this->tagRepo->all();
+        $tags = $this->tagRepo->getAll();
 
         $likedRecipes = [];
         if (Auth::check() && Auth::user()->role->name_user === 'Gourmand' && Auth::user()->gourmand) {
