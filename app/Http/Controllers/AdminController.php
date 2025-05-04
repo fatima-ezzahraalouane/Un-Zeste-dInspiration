@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Recipe;
@@ -83,4 +85,65 @@ class AdminController extends Controller
 
         return back()->with('success', 'Utilisateur supprimé avec succès.');
     }
+
+
+    public function moderateContent()
+    {
+        // dd('test');
+        $recipes = Recipe::with('chef.user')
+            ->where('statut', 'En attente')
+            ->get();
+
+        // dd(vars: $recipes);
+
+        $experiences = Experience::with('gourmand.user')
+            ->where('statut', 'En attente')
+            ->get();
+
+        return view('admin.dashboard', compact('recipes', 'experiences'));
+    }
+
+    public function approveRecipe(Recipe $recipe)
+    {
+        $recipe->update(['statut' => 'Approuver']);
+        return back()->with('success', 'Recette approuvée avec succès.');
+    }
+
+    public function rejectRecipe(Recipe $recipe)
+    {
+        $recipe->update(['statut' => 'Rejeté']);
+        return back()->with('success', 'Recette rejetée avec succès.');
+    }
+
+    public function approveExperience(Experience $experience)
+    {
+        $experience->update(['statut' => 'Approuver']);
+        return back()->with('success', 'Expérience approuvée avec succès.');
+    }
+
+    public function rejectExperience(Experience $experience)
+    {
+        $experience->update(['statut' => 'Rejeté']);
+        return back()->with('success', 'Expérience rejetée avec succès.');
+    }
+
+
+
+
+    // public function test()
+    // {
+    //     $recipes = Recipe::with('chef.user')
+    //     ->where('statut', 'En attente')
+    //     ->orderBy('created_at', 'desc')
+    //     ->paginate(6, ['*'], 'recipes_page');
+
+
+    //     $experiences = Experience::with('gourmand.user')
+    //         ->where('statut', 'En attente')
+    //         ->orderBy('created_at', 'desc')
+    //         ->paginate(6, ['*'], 'experiences_page');
+
+    //         return view('admin.dashboard', compact('recipes', 'experiences'));
+    //     }
+
 }
