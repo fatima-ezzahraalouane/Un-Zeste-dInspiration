@@ -141,15 +141,9 @@
             </select>
 
             <!-- Buttons -->
-            <div class="flex flex-col sm:flex-row justify-end gap-3 sm:space-x-4">
-                <button type="button" id="closeModal"
-                    class="order-2 sm:order-1 w-full sm:w-auto px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition-all">
-                    Annuler
-                </button>
-                <button type="submit"
-                    class="order-1 sm:order-2 w-full sm:w-auto px-6 py-2 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red transition-all">
-                    Ajouter
-                </button>
+            <div class="flex justify-end gap-3">
+                <button type="button" id="closeModal" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Annuler</button>
+                <button type="submit" class="bg-brand-burgundy text-white px-4 py-2 rounded hover:bg-brand-red">Ajouter</button>
             </div>
         </form>
     </div>
@@ -193,9 +187,9 @@
 
             <div class="flex justify-end gap-3">
                 <button type="button" id="closeEditModal"
-                    class="px-6 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">Annuler</button>
+                    class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">Annuler</button>
                 <button type="submit"
-                    class="px-6 py-2 bg-brand-burgundy text-white rounded-lg hover:bg-brand-red">Modifier</button>
+                    class="bg-brand-burgundy text-white px-4 py-2 rounded hover:bg-brand-red">Modifier</button>
             </div>
         </form>
     </div>
