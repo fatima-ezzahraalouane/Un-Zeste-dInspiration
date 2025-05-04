@@ -13,9 +13,9 @@
         <button class="px-4 py-2 text-gray-500 hover:text-brand-burgundy">
             Approuvés
         </button>
-        <button class="px-4 py-2 text-gray-500 hover:text-brand-burgundy">
+        <!-- <button class="px-4 py-2 text-gray-500 hover:text-brand-burgundy">
             Rejetés
-        </button>
+        </button> -->
     </div>
 
     <!-- Content Moderation Cards -->
