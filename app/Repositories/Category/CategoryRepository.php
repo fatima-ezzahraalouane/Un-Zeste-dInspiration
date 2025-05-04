@@ -11,7 +11,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 {
     public function getAll()
     {
-        return Category::all();
+        return Category::all()->withCount('recipes');
     }
 
     public function store(StoreCategoryRequest $request)
