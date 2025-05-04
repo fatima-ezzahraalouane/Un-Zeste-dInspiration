@@ -264,6 +264,30 @@
             submitLabel.innerText = "Modifier";
         }
     </script>
+    <script>
+        function editTag(id, name) {
+            const form = document.getElementById('tag-form');
+            const nameInput = document.getElementById('tag-name');
+            const idInput = document.getElementById('tag-id');
+            const submitLabel = document.getElementById('tag-submit-label');
+
+            form.action = "{{ route('tags.update', ':id') }}".replace(':id', id);
+            nameInput.value = name;
+            idInput.value = id;
+
+            // Ajouter ou mettre à jour la méthode spoofée PUT
+            let methodInput = form.querySelector('input[name="_method"]');
+            if (!methodInput) {
+                methodInput = document.createElement('input');
+                methodInput.type = 'hidden';
+                methodInput.name = '_method';
+                form.appendChild(methodInput);
+            }
+            methodInput.value = 'PUT';
+
+            submitLabel.innerText = "Modifier le Tag";
+        }
+    </script>
 </body>
 
 </html>
