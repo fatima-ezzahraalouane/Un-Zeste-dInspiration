@@ -18,7 +18,7 @@ class TagController extends Controller
 
     public function index()
     {
-        $tags = $this->tagRepo->all();
+        $tags = $this->tagRepo->getAll();
         return view('tags.index', compact('tags'));
     }
 
