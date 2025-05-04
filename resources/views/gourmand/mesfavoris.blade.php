@@ -59,7 +59,7 @@
 
         .carousel-content {
             position: relative;
-            bottom: 136px;
+            bottom: 112px;
             background: rgba(0, 0, 0, 0.5);
             color: white;
             padding: 10px;
