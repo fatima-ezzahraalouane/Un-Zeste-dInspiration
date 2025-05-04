@@ -1,12 +1,6 @@
 <section id="categories-section" class="hidden space-y-6">
     <div class="flex justify-between items-center">
         <h1 class="playfair text-2xl md:text-3xl font-bold text-brand-burgundy">Catégories & Tags</h1>
-        <!-- <div class="flex space-x-3">
-                        <button
-                            class="bg-brand-burgundy text-white px-4 py-2 rounded-lg hover:bg-brand-red transition-all">
-                            <i class="fas fa-plus mr-2"></i>Ajouter
-                        </button>
-                    </div> -->
     </div>
 
     <!-- Tabs -->
@@ -95,45 +89,15 @@
             <div class="bg-white rounded-xl shadow-md p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-bold text-brand-burgundy">Liste des Tags</h3>
-                    <!-- <div class="relative">
-                                    <input type="text" placeholder="Rechercher un tag..."
-                                        class="pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent w-64">
-                                    <span class="absolute left-2 top-2.5 text-gray-400">
-                                        <i class="fas fa-search"></i>
-                                    </span>
-                                </div> -->
                 </div>
-                <!-- <div class="flex flex-wrap gap-2 mb-4">
-                                <span
-                                    class="px-3 py-1 bg-brand-peach text-brand-burgundy rounded-full text-sm flex items-center">
-                                    #Végétarien
-                                    <button class="ml-2 text-xs hover:text-brand-red"><i
-                                            class="fas fa-times"></i></button>
-                                </span>
-                                <span
-                                    class="px-3 py-1 bg-brand-peach text-brand-burgundy rounded-full text-sm flex items-center">
-                                    #SansGluten
-                                    <button class="ml-2 text-xs hover:text-brand-red"><i
-                                            class="fas fa-times"></i></button>
-                                </span>
-                                <span
-                                    class="px-3 py-1 bg-brand-peach text-brand-burgundy rounded-full text-sm flex items-center">
-                                    #Rapide
-                                    <button class="ml-2 text-xs hover:text-brand-red"><i
-                                            class="fas fa-times"></i></button>
-                                </span>
-                            </div> -->
                 <table class="min-w-full">
                     <thead>
                         <tr class="border-b">
                             <th class="text-left py-3 px-2">Tag</th>
-                            <!-- <th class="text-left py-3 px-2">Utilisations</th> -->
-                            <!-- <th class="text-left py-3 px-2">Statut</th> -->
                             <th class="text-left py-3 px-2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Lignes de tags similaires aux catégories -->
                     </tbody>
                 </table>
             </div>
@@ -149,16 +113,6 @@
                         <input type="text" placeholder="Ex: SansGluten"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent">
                     </div>
-                    <!-- <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                                    <select
-                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy">
-                                        <option>Régime alimentaire</option>
-                                        <option>Temps de préparation</option>
-                                        <option>Niveau de difficulté</option>
-                                        <option>Occasion</option>
-                                    </select>
-                                </div> -->
                     <button type="submit"
                         class="w-full bg-brand-burgundy text-white px-6 py-2 rounded-lg hover:bg-brand-red transition-all">
                         <i class="fas fa-plus mr-2"></i>Ajouter le Tag
@@ -175,13 +129,6 @@
             <div class="bg-white rounded-xl shadow-md p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-bold text-brand-burgundy">Thèmes Culinaires</h3>
-                    <!-- <div class="relative">
-                                    <input type="text" placeholder="Rechercher un thème..."
-                                        class="pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent w-64">
-                                    <span class="absolute left-2 top-2.5 text-gray-400">
-                                        <i class="fas fa-search"></i>
-                                    </span>
-                                </div> -->
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div class="p-4 border rounded-lg hover:bg-brand-peach/20 transition-all">
@@ -216,7 +163,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- ... autres thèmes ... -->
                 </div>
             </div>
         </div>
