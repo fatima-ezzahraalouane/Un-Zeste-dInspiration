@@ -237,6 +237,33 @@
             }
         }, 2000);
     </script>
+    <script>
+        function editCategory(id, name) {
+            const form = document.getElementById('category-form');
+            const nameInput = document.getElementById('category-name');
+            const idInput = document.getElementById('category-id');
+            const submitLabel = document.getElementById('submit-label');
+
+            // form.action = `/categories/${id}`;
+            const route = "{{ route('categories.update', ':id') }}".replace(':id', id);
+            form.action = route;
+            nameInput.value = name;
+            idInput.value = id;
+
+            // Changer la méthode en PUT (spoofed)
+            if (!form.querySelector('input[name="_method"]')) {
+                const methodInput = document.createElement('input');
+                methodInput.type = 'hidden';
+                methodInput.name = '_method';
+                methodInput.value = 'PUT';
+                form.appendChild(methodInput);
+            } else {
+                form.querySelector('input[name="_method"]').value = 'PUT';
+            }
+
+            submitLabel.innerText = "Modifier";
+        }
+    </script>
 </body>
 
 </html>
