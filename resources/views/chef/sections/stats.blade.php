@@ -7,7 +7,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-brand-dark text-sm">Recettes</p>
-                    <p class="text-3xl font-bold text-brand-burgundy">12</p>
+                    <p class="text-3xl font-bold text-brand-burgundy">{{ $stats['recipes'] }}</p>
                 </div>
                 <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-burgundy">
                     <i class="fas fa-utensils text-xl"></i>
@@ -18,7 +18,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-brand-dark text-sm">Commentaires</p>
-                    <p class="text-3xl font-bold text-brand-burgundy">47</p>
+                    <p class="text-3xl font-bold text-brand-burgundy">{{ $stats['comments'] }}</p>
                 </div>
                 <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-burgundy">
                     <i class="fas fa-comment-alt text-xl"></i>
@@ -29,7 +29,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-brand-dark text-sm">Favoris</p>
-                    <p class="text-3xl font-bold text-brand-burgundy">23</p>
+                    <p class="text-3xl font-bold text-brand-burgundy">{{ $stats['favorites'] }}</p>
                 </div>
                 <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand-burgundy">
                     <i class="fas fa-heart text-xl"></i>
