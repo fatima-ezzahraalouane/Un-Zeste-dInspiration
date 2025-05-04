@@ -16,6 +16,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipePdfController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,24 +79,26 @@ Route::middleware(['auth', 'check.role:Admin'])->prefix('admin')->group(function
     Route::patch('/users/{user}/approve', [AdminController::class, 'approveUser'])->name('admin.users.approve');
     Route::patch('/users/{user}/suspend', [AdminController::class, 'suspendUser'])->name('admin.users.suspend');
     Route::delete('/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
-    
+
     // Modération de contenu
-Route::get('/content-moderation', [AdminController::class, 'moderateContent'])->name('admin.content');
+    Route::get('/content-moderation', [AdminController::class, 'moderateContent'])->name('admin.content');
 
-Route::patch('/recipes/{recipe}/approve', [AdminController::class, 'approveRecipe'])->name('admin.recipes.approve');
-Route::patch('/recipes/{recipe}/reject', [AdminController::class, 'rejectRecipe'])->name('admin.recipes.reject');
+    Route::patch('/recipes/{recipe}/approve', [AdminController::class, 'approveRecipe'])->name('admin.recipes.approve');
+    Route::patch('/recipes/{recipe}/reject', [AdminController::class, 'rejectRecipe'])->name('admin.recipes.reject');
 
-Route::patch('/experiences/{experience}/approve', [AdminController::class, 'approveExperience'])->name('admin.experiences.approve');
-Route::patch('/experiences/{experience}/reject', [AdminController::class, 'rejectExperience'])->name('admin.experiences.reject');
+    Route::patch('/experiences/{experience}/approve', [AdminController::class, 'approveExperience'])->name('admin.experiences.approve');
+    Route::patch('/experiences/{experience}/reject', [AdminController::class, 'rejectExperience'])->name('admin.experiences.reject');
 
-// Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);
+    // Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);
 
-Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-Route::put('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
-Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::put('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-
-
+    // Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+    Route::post('/tags', [TagController::class, 'store'])->name('tags.store');
+    Route::put('/tags/{id}/update', [TagController::class, 'update'])->name('tags.update');
+    Route::delete('/tags/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
 });
 // Route::get('/test', [AdminController::class, 'test']);
 
