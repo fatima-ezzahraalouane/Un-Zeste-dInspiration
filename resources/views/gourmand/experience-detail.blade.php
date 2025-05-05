@@ -8,7 +8,6 @@
     <title>Un Zeste d'Inspiration - Détails de l'Expérience</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
         tailwind.config = {
             theme: {
@@ -80,41 +79,6 @@
         @media (min-width: 1024px) {
             .carousel-item {
                 min-width: 33.3333%;
-            }
-        }
-
-        /* Add touch support for swiping */
-        .carousel-container {
-            touch-action: pan-y;
-        }
-
-        .shine-effect {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shine-effect::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to bottom right,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.1) 50%,
-                    rgba(255, 255, 255, 0) 100%);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(100%) rotate(45deg);
             }
         }
     </style>
@@ -322,41 +286,12 @@
     @include('partials.footerc')
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialisation des animations
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
-
         // Toggle mobile menu
         document.getElementById('burger-menu').addEventListener('click', () => {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Carousel functionality
-        let currentIndex = 0;
-        const track = document.querySelector('.carousel-track');
-        const slides = document.querySelectorAll('.carousel-item');
-        const totalSlides = slides.length;
-        const visibleSlides = 3;
-        const slideWidth = slides[0].offsetWidth;
-
-        function updateCarousel() {
-            if (currentIndex >= totalSlides - visibleSlides + 1) {
-                currentIndex = 0;
-            }
-            track.style.transform = `translateX(-${currentIndex * (100 / visibleSlides)}%)`;
-        }
-
-        function autoSlide() {
-            currentIndex++;
-            updateCarousel();
-        }
-
-        setInterval(autoSlide, 5000);
     </script>
 
     <script>

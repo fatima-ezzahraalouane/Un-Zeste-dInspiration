@@ -12,7 +12,7 @@
                     <a href="{{ route('login') }}" class="px-6 py-2 text-brand-burgundy border-2 border-brand-burgundy rounded-full hover:bg-brand-burgundy hover:text-white transition-all">
                         Connexion
                     </a>
-                    <a href="{{ route('register') }}" class="shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <a href="{{ route('register') }}" class="px-6 py-2 bg-brand-burgundy text-white rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                         Inscription
                     </a>
                 </div>
@@ -29,7 +29,7 @@
                 Connexion
             </a>
             <a href="{{ route('register') }}"
-                class="block text-center shine-effect px-6 py-2 bg-brand-burgundy text-white rounded-full mt-4 hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                class="block text-center px-6 py-2 bg-brand-burgundy text-white rounded-full mt-4 hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                 Inscription
             </a>
         </div>

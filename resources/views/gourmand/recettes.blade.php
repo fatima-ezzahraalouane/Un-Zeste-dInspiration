@@ -8,8 +8,6 @@
     <title>Un Zeste d'Inspiration - Explorer les Recettes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <script>
         tailwind.config = {
@@ -84,36 +82,6 @@
         @media (min-width: 1024px) {
             .carousel-item {
                 min-width: 33.3333%;
-            }
-        }
-
-        .shine-effect {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shine-effect::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to bottom right,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.1) 50%,
-                    rgba(255, 255, 255, 0) 100%);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(100%) rotate(45deg);
             }
         }
     </style>
@@ -214,7 +182,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="recipes-grid">
                 @forelse($recipes as $recipe)
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <div class="relative">
                         <img src="{{ $recipe->image ?? 'https://via.placeholder.com/400x300' }}"
                             class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" alt="{{ $recipe->title }}">
@@ -303,45 +271,7 @@
     @include('partials.footerc')
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialisation des animations
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
-
-        // Animation des statistiques
-        function animateValue(obj, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.textContent = Math.floor(progress * (end - start) + start).toLocaleString();
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        // Observer pour déclencher les animations au scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const value = parseInt(el.dataset.value);
-                    animateValue(el, 0, value, 2000);
-                    observer.unobserve(el);
-                }
-            });
-        }, {
-            threshold: 0.5
-        });
-
-        // Observer les éléments avec data-value
-        document.querySelectorAll('[data-value]').forEach(el => observer.observe(el));
-
         // Toggle mobile menu
         document.getElementById('burger-menu').addEventListener('click', () => {
             const mobileMenu = document.getElementById('mobile-menu');

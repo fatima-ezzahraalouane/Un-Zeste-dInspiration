@@ -8,7 +8,6 @@
     <title>Un Zeste d'Inspiration - Accueil Client</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
         tailwind.config = {
             theme: {
@@ -36,48 +35,9 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(121, 62, 55, 0.15);
-        }
-
         .stat-card {
             background: rgba(255, 240, 237, 0.95);
             backdrop-filter: blur(10px);
-        }
-
-        .shine-effect {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shine-effect::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to bottom right,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.1) 50%,
-                    rgba(255, 255, 255, 0) 100%);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(100%) rotate(45deg);
-            }
         }
 
         @keyframes countUp {
@@ -101,7 +61,7 @@
         </div>
 
         <div class="relative max-w-7xl mx-auto px-4 py-32 text-white">
-            <div class="max-w-3xl" data-aos="fade-right">
+            <div class="max-w-3xl">
                 <h1 class="playfair text-5xl md:text-7xl font-bold mb-6">
                     Découvrez l'Art de la Cuisine
                 </h1>
@@ -165,7 +125,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach ($recipes as $index => $recipe)
-                <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-lg" data-aos="fade-up" data-aos-delay="{{ $index * 100 }}">
+                <div class="rounded-2xl overflow-hidden bg-white shadow-lg">
                     <div class="relative">
                         <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}"
                             class="w-full h-64 object-cover">
@@ -224,7 +184,7 @@
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="playfair text-4xl font-bold text-brand-burgundy text-center mb-12">À Propos de Nous</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div data-aos="fade-right">
+                <div>
                     <h3 class="text-2xl font-bold text-brand-dark mb-4">Notre Mission</h3>
                     <p class="text-brand-gray mb-6">
                         Offrir une plateforme où les passionnés de cuisine peuvent explorer, partager et découvrir des
@@ -236,7 +196,7 @@
                         inspiration.
                     </p>
                 </div>
-                <div data-aos="fade-left">
+                <div>
                     <h3 class="text-2xl font-bold text-brand-dark mb-4">À propos de la Fondatrice du site</h3>
                     <p class="text-brand-gray mb-6">
                         <strong>Fatima-Ezzahra Alouane</strong> a fondé Un Zeste d'Inspiration avec la passion de la
@@ -254,14 +214,7 @@
     @include('partials.footerc')
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialisation des animations
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
-
         // Toggle mobile menu
         document.getElementById('burger-menu').addEventListener('click', () => {
             const mobileMenu = document.getElementById('mobile-menu');

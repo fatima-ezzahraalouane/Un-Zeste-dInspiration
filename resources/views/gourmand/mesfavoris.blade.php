@@ -8,7 +8,6 @@
     <title>Un Zeste d'Inspiration - Mes Favoris</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
         tailwind.config = {
             theme: {
@@ -84,41 +83,6 @@
                 min-width: 33.3333%;
             }
         }
-
-        /* Add touch support for swiping */
-        .carousel-container {
-            touch-action: pan-y;
-        }
-
-        .shine-effect {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shine-effect::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to bottom right,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.1) 50%,
-                    rgba(255, 255, 255, 0) 100%);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(100%) rotate(45deg);
-            }
-        }
     </style>
 </head>
 
@@ -142,7 +106,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="favorites-grid">
                 @forelse ($recipes as $recipe)
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transition-all duration-300 group">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                     <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-3 text-brand-burgundy">{{ $recipe->title }}</h3>
@@ -198,39 +162,19 @@
 
 
     <!-- Carousel Section -->
-    <div id="carousel-container"></div>
+    @include('components.carousel')
 
     <!-- Footer -->
     @include('partials.footerc')
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialisation des animations
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
-
         // Toggle mobile menu
         document.getElementById('burger-menu').addEventListener('click', () => {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch(`{{ route('gourmand.carousel') }}`)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('carousel-container').innerHTML = html;
-                    initCarousel();
-                })
-                .catch(error => console.error('Erreur chargement carousel:', error));
-        });
-    </script>
-
-    <script src="{{ asset('js/carousel.js') }}"></script>
 
     <script>
         setTimeout(() => {

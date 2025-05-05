@@ -7,17 +7,10 @@
         </button>
     </div>
 
-    <!-- Filters -->
-    <!-- <div class="flex flex-wrap gap-3 mb-6">
-        <button class="px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-coral transition-colors">Toutes (12)</button>
-        <button class="px-4 py-2 bg-white text-brand-burgundy border border-brand-burgundy rounded-full hover:bg-brand-peach transition-colors">Publiées (8)</button>
-        <button class="px-4 py-2 bg-white text-brand-burgundy border border-brand-burgundy rounded-full hover:bg-brand-peach transition-colors">Brouillons (4)</button>
-    </div> -->
-
     <!-- Experiences Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @forelse ($experiences as $experience)
-        <div class="experience-card bg-white rounded-lg overflow-hidden shadow-md border border-gray-100">
+        <div class="bg-white rounded-lg overflow-hidden shadow-md border border-gray-100">
             <div class="relative">
                 <img src="{{ $experience->image }}" alt="{{ $experience->title }}" class="w-full h-40 object-cover">
                 <div class="absolute top-2 right-2 flex space-x-2">

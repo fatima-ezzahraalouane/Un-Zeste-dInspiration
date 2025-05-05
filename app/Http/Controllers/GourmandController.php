@@ -80,7 +80,6 @@ class GourmandController extends Controller
         $user = auth()->user();
         $gourmand = $user->gourmand;
 
-        // Mise à jour des données utilisateur
         $user->update([
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
@@ -88,7 +87,6 @@ class GourmandController extends Controller
             'avatar'     => $request->avatar,
         ]);
 
-        // Mise à jour des données gourmand
         $gourmand->update([
             'adresse'    => $request->adresse,
             'biographie' => $request->biographie,

@@ -75,7 +75,6 @@
                         <td class="px-4 py-4 text-right text-sm">
                             <div class="flex justify-end space-x-2">
                                 @if(!$user->is_approved || $user->statut == 'Suspendu')
-                                <!-- Bouton pour Approuver ou Réactiver -->
                                 <form action="{{ route('admin.users.approve', $user) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
@@ -86,7 +85,6 @@
                                 @endif
 
                                 @if($user->statut != 'Suspendu')
-                                <!-- Bouton pour Suspendre -->
                                 <form action="{{ route('admin.users.suspend', $user) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
@@ -96,7 +94,6 @@
                                 </form>
                                 @endif
 
-                                <!-- Bouton pour Supprimer (toujours présent) -->
                                 <form action="{{ route('admin.users.delete', $user) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -126,7 +123,6 @@
                 </div>
                 <div>
                     <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                        <!-- Previous Page Link -->
                         @if ($users->onFirstPage())
                         <span
                             class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-400">
@@ -153,7 +149,6 @@
                         @endif
                         @endforeach
 
-                        <!-- Next Page Link -->
                         @if ($users->hasMorePages())
                         <a href="{{ $users->nextPageUrl() }}"
                             class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">

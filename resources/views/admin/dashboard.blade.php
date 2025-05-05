@@ -8,8 +8,6 @@
     <title>Un Zeste d'Inspiration - Dashboard Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         tailwind.config = {
@@ -48,36 +46,6 @@
             background-color: #FFF0ED;
             color: #793E37;
             border-left: 4px solid #793E37;
-        }
-
-        .shine-effect {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shine-effect::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to bottom right,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.1) 50%,
-                    rgba(255, 255, 255, 0) 100%);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(100%) rotate(45deg);
-            }
         }
     </style>
 </head>
@@ -123,23 +91,17 @@
 
         <!-- Main Content -->
         <main class="flex-1 p-4 md:p-8">
-            <!-- Statistics Section -->
+
             @include('admin.sections.statistics')
 
-            <!-- User Management Section (hidden by default) -->
             @include('admin.sections.user-management')
 
-            <!-- Categories & Tags Section (hidden by default) -->
             @include('admin.sections.categories-tags')
         </main>
     </div>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialize AOS
-        AOS.init();
-
         // Mobile menu toggle
         const burgerMenu = document.getElementById('burger-menu');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -148,7 +110,6 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Dashboard tabs functionality
         const tabs = {
             statistics: {
                 btn: document.getElementById('btn-statistics'),
@@ -165,53 +126,19 @@
         };
 
         function switchTab(tabName) {
-            // Remove active class from all tabs and hide all sections
             Object.values(tabs).forEach(tab => {
                 tab.btn.classList.remove('active');
                 tab.section.classList.add('hidden');
             });
 
-            // Activate selected tab and show its section
             tabs[tabName].btn.classList.add('active');
             tabs[tabName].section.classList.remove('hidden');
         }
 
-        // Add click event listeners to all tab buttons
         Object.entries(tabs).forEach(([name, tab]) => {
             tab.btn.addEventListener('click', () => switchTab(name));
         });
     </script>
-    <!-- <script>
-        const categoryTabs = document.querySelectorAll('.flex.border-b.border-gray-200 button');
-        const categoryContent = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-3.gap-6');
-        const tagsManagement = document.getElementById('tags-management');
-        const themesManagement = document.getElementById('themes-management');
-        categoryTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                categoryTabs.forEach(t => {
-                    t.classList.remove('border-b-2', 'border-brand-burgundy', 'text-brand-burgundy');
-                    t.classList.add('text-gray-500');
-                });
-
-                tab.classList.remove('text-gray-500');
-                tab.classList.add('border-b-2', 'border-brand-burgundy', 'text-brand-burgundy');
-
-                if (tab.textContent.trim() === 'Catégories') {
-                    categoryContent.classList.remove('hidden');
-                    tagsManagement.classList.add('hidden');
-                    themesManagement.classList.add('hidden');
-                } else if (tab.textContent.trim() === 'Tags') {
-                    categoryContent.classList.add('hidden');
-                    tagsManagement.classList.remove('hidden');
-                    themesManagement.classList.add('hidden');
-                } else if (tab.textContent.trim() === 'Thèmes') {
-                    categoryContent.classList.add('hidden');
-                    tagsManagement.classList.add('hidden');
-                    themesManagement.classList.remove('hidden');
-                }
-            });
-        });
-    </script> -->
     <script>
         setTimeout(() => {
             const alert = document.getElementById('success-alert');
@@ -229,13 +156,11 @@
             const idInput = document.getElementById('category-id');
             const submitLabel = document.getElementById('submit-label');
 
-            // form.action = `/categories/${id}`;
             const route = "{{ route('categories.update', ':id') }}".replace(':id', id);
             form.action = route;
             nameInput.value = name;
             idInput.value = id;
 
-            // Changer la méthode en PUT (spoofed)
             if (!form.querySelector('input[name="_method"]')) {
                 const methodInput = document.createElement('input');
                 methodInput.type = 'hidden';
@@ -246,7 +171,7 @@
                 form.querySelector('input[name="_method"]').value = 'PUT';
             }
 
-            submitLabel.innerText = "Modifier";
+            submitLabel.innerText = "Modifier la Catégorie";
         }
     </script>
     <script>
@@ -260,7 +185,6 @@
             nameInput.value = name;
             idInput.value = id;
 
-            // Ajouter ou mettre à jour la méthode spoofée PUT
             let methodInput = form.querySelector('input[name="_method"]');
             if (!methodInput) {
                 methodInput = document.createElement('input');
@@ -271,6 +195,35 @@
             methodInput.value = 'PUT';
 
             submitLabel.innerText = "Modifier le Tag";
+        }
+    </script>
+    <script>
+        function editTheme(id, name, description, image) {
+            const form = document.getElementById('theme-form');
+            const nameInput = document.getElementById('theme-name');
+            const descriptionInput = document.getElementById('theme-description');
+            const imageInput = document.getElementById('theme-image');
+            const idInput = document.getElementById('theme-id');
+            const submitLabel = document.getElementById('theme-submit-label');
+
+            const route = "{{ route('themes.update', ':id') }}".replace(':id', id);
+            form.action = route;
+            nameInput.value = name;
+            descriptionInput.value = description;
+            imageInput.value = image;
+            idInput.value = id;
+
+            if (!form.querySelector('input[name="_method"]')) {
+                const methodInput = document.createElement('input');
+                methodInput.type = 'hidden';
+                methodInput.name = '_method';
+                methodInput.value = 'PUT';
+                form.appendChild(methodInput);
+            } else {
+                form.querySelector('input[name="_method"]').value = 'PUT';
+            }
+
+            submitLabel.innerText = "Modifier le Thème";
         }
     </script>
 </body>

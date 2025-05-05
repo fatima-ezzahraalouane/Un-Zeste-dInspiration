@@ -57,7 +57,6 @@ class ChefController extends Controller
         $user = auth()->user();
         $chef = $user->chef;
 
-        // Mise à jour des données utilisateur
         $user->update([
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
@@ -65,7 +64,6 @@ class ChefController extends Controller
             'avatar'     => $request->avatar,
         ]);
 
-        // Mise à jour des données chef
         $chef->update([
             'adresse'    => $request->adresse,
             'biographie' => $request->biographie,

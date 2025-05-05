@@ -8,7 +8,6 @@
     <title>Un Zeste d'Inspiration - Expériences Culinaires</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
         tailwind.config = {
             theme: {
@@ -45,11 +44,6 @@
             overflow: hidden;
             transition: all 0.4s ease-in-out;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .luxury-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .carousel-container {
@@ -96,41 +90,6 @@
         @media (min-width: 1024px) {
             .carousel-item {
                 min-width: 33.3333%;
-            }
-        }
-
-        /* Add touch support for swiping */
-        .carousel-container {
-            touch-action: pan-y;
-        }
-
-        .shine-effect {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shine-effect::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(to bottom right,
-                    rgba(255, 255, 255, 0) 0%,
-                    rgba(255, 255, 255, 0.1) 50%,
-                    rgba(255, 255, 255, 0) 100%);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%) rotate(45deg);
-            }
-
-            100% {
-                transform: translateX(100%) rotate(45deg);
             }
         }
     </style>
@@ -371,96 +330,11 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        // Initialisation des animations
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
-
         // Toggle mobile menu
         document.getElementById('burger-menu').addEventListener('click', () => {
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenu.classList.toggle('hidden');
-        });
-
-        // Carousel functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            // Carousel functionality
-            let currentIndex = 0;
-            const track = document.querySelector('.carousel-track');
-            const slides = document.querySelectorAll('.carousel-item');
-            const totalSlides = slides.length;
-            let visibleSlides = 1; // Default for mobile
-
-            // Determine visible slides based on screen width
-            function updateVisibleSlides() {
-                if (window.innerWidth >= 1024) {
-                    visibleSlides = 3;
-                } else if (window.innerWidth >= 768) {
-                    visibleSlides = 2;
-                } else {
-                    visibleSlides = 1;
-                }
-                updateCarousel();
-            }
-
-            // Update carousel position
-            function updateCarousel() {
-                const maxIndex = totalSlides - visibleSlides;
-                if (currentIndex > maxIndex) {
-                    currentIndex = maxIndex;
-                }
-                if (currentIndex < 0) {
-                    currentIndex = 0;
-                }
-
-                const slidePercentage = 100 / visibleSlides;
-                track.style.transform = `translateX(-${currentIndex * slidePercentage}%)`;
-            }
-
-            // Auto slide functionality
-            function autoSlide() {
-                currentIndex = (currentIndex + 1) % (totalSlides - visibleSlides + 1);
-                updateCarousel();
-            }
-
-            // Touch support for mobile swiping
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            track.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            track.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-
-            function handleSwipe() {
-                if (touchEndX < touchStartX - 50) { // Swiped left
-                    currentIndex = Math.min(totalSlides - visibleSlides, currentIndex + 1);
-                    updateCarousel();
-                }
-                if (touchEndX > touchStartX + 50) { // Swiped right
-                    currentIndex = Math.max(0, currentIndex - 1);
-                    updateCarousel();
-                }
-            }
-
-            // Handle window resize
-            window.addEventListener('resize', updateVisibleSlides);
-
-            // Initialize
-            updateVisibleSlides();
-
-            // Set auto slide interval - adjust timing as needed
-            const slideInterval = setInterval(autoSlide, 5000);
-
-            // Pause auto-sliding when user interacts with swipe
-            track.addEventListener('touchstart', () => clearInterval(slideInterval));
         });
     </script>
 

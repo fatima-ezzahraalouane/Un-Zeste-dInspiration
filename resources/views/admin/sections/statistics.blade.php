@@ -56,26 +56,7 @@
 
     <!-- Charts Section -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Distribution par catégorie -->
-        <!-- <div class="bg-white rounded-xl shadow-md p-6">
-            <h3 class="playfair text-xl font-bold text-brand-burgundy mb-4">Distribution par Catégorie</h3>
-            <div class="h-64 relative">
-                <canvas id="categoryChart"></canvas>
-            </div>
-            <div class="mt-4 grid grid-cols-2 gap-2">
-                @foreach($categories as $index => $category)
-                <div class="flex items-center">
-                    <span class="w-3 h-3 rounded-full mr-2"
-                        style="background-color: {{ ['#793E37', '#B55D51', '#974344', '#4C4C4C'][$index % 4] }};">
-                    </span>
-                    <span class="text-sm">
-                        {{ $category->name }} ({{ $category->recipes_count }})
-                    </span>
-                </div>
-                @endforeach
-            </div>
-        </div> -->
-
+        
         <!-- Top 3 Gourmands les plus actifs -->
         <div class="bg-white rounded-xl shadow-md p-6">
             <h3 class="playfair text-xl font-bold text-brand-burgundy mb-4">Top 3 Gourmands les plus actifs</h3>

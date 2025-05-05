@@ -282,7 +282,7 @@
                                     <p class="text-sm text-gray-600">{{ $theme->experiences_count ?? 0 }} expériences associées</p>
                                 </div>
                                 <div class="flex space-x-2">
-                                    <button onclick="editTheme({{ $theme->id }}, '{{ $theme->name }}', '{{ $theme->description }}', '{{ $theme->image }}')" class="text-brand-burgundy hover:text-brand-red">
+                                    <button onclick="editTheme('{{ $theme->id }}', '{{ $theme->name }}', '{{ $theme->description }}', '{{ $theme->image }}')" class="text-brand-burgundy hover:text-brand-red">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     <form action="{{ route('themes.destroy', $theme->id) }}" method="POST">
@@ -319,7 +319,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Image de couverture</label>
-                            <input type="text" name="image" id="theme-cover-image" placeholder="Url de l'image"
+                            <input type="text" name="image" id="theme-image" placeholder="Url de l'image"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent">
                         </div>
                         <div class="flex justify-end pt-2">
@@ -354,25 +354,5 @@
         // Highlight selected tab button
         event.target.classList.remove('text-gray-500');
         event.target.classList.add('border-b-2', 'border-brand-burgundy', 'text-brand-burgundy', 'font-medium');
-    }
-
-    function editCategory(id, name) {
-        document.getElementById('category-id').value = id;
-        document.getElementById('category-name').value = name;
-        document.getElementById('submit-label').textContent = 'Mettre à jour';
-    }
-
-    function editTag(id, name) {
-        document.getElementById('tag-id').value = id;
-        document.getElementById('tag-name').value = name;
-        document.getElementById('tag-submit-label').textContent = 'Mettre à jour';
-    }
-
-    function editTheme(id, name, description, coverImage) {
-        document.getElementById('theme-id').value = id;
-        document.getElementById('theme-name').value = name;
-        document.getElementById('theme-description').value = description;
-        document.getElementById('theme-cover-image').value = coverImage;
-        document.getElementById('theme-submit-label').textContent = 'Mettre à jour';
     }
 </script>

@@ -52,10 +52,8 @@
                 </div>
             </div>
 
-            <!-- Séparateur -->
             <div class="border-t border-white/10 my-12"></div>
 
-            <!-- Footer Bottom -->
             <div class="flex justify-center items-center text-brand-peach text-sm">
                 <p>&copy; 2024 Un Zeste d'Inspiration. Tous droits réservés.</p>
             </div>
