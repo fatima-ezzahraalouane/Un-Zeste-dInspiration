@@ -23,11 +23,11 @@ class UpdateProfileRequest extends FormRequest
     {
         return [
             'first_name' => 'required|string|max:255',
-            'last_name'  => 'required|string|max:255',
-            'email'      => 'required|email|max:255',
-            'adresse'    => 'nullable|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'adresse' => 'nullable|string|max:255',
             'biographie' => 'nullable|string|max:1000',
-            'avatar'     => 'nullable|url',
+            'avatar' => 'nullable|url',
         ];
     }
 }
