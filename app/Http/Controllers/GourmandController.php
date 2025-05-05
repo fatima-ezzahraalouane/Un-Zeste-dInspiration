@@ -26,8 +26,8 @@ class GourmandController extends Controller
         $recipes = $this->recipeRepo->getMostLikedRecipes(4);
 
         $stats = [
-            'recipes' => Recipe::where('statut', 'Approuver')->count(),
-            'experiences' => Experience::where('statut', 'Approuver')->count(),
+            'recipes' => Recipe::where('statut', 'Approuvé')->count(),
+            'experiences' => Experience::where('statut', 'Approuvé')->count(),
             'chefs' => Chef::count(),
             'members' => User::whereHas('role', function ($q) {
                 $q->where('name_user', 'Gourmand');
@@ -57,14 +57,14 @@ class GourmandController extends Controller
             ->paginate(5);
 
         $stats = [
-            'experiences' => $gourmand->experiences()->where('statut', 'Approuver')->count(),
+            'experiences' => $gourmand->experiences()->where('statut', 'Approuvé')->count(),
             'comments' => $gourmand->experiences()
-                ->where('statut', 'Approuver')
+                ->where('statut', 'Approuvé')
                 ->withCount('comments')
                 ->get()
                 ->sum('comments_count'),
             'popularExperiences' => $gourmand->experiences()
-                ->where('statut', 'Approuver')
+                ->where('statut', 'Approuvé')
                 ->withCount('comments')
                 ->orderByDesc('comments_count')
                 ->take(5)
