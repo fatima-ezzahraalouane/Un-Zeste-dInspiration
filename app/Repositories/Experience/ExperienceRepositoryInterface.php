@@ -14,4 +14,5 @@ interface ExperienceRepositoryInterface
     public function show($id);
     public function update(UpdateExperienceRequest $request, $id);
     public function destroy($id);
+    public function getMostCommentedExperiences(int $limit = 3);
 }
