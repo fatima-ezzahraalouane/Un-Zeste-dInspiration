@@ -45,7 +45,7 @@
                 <div class="p-4">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="playfair text-lg font-bold text-brand-burgundy">{{ $recipe->title }}</h3>
-                        <span class="px-2 py-1 rounded-full text-xs {{ $recipe->statut === 'Approuver' ? 'bg-green-100 text-green-800' : ($recipe->statut === 'Rejeter' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') }}">
+                        <span class="px-2 py-1 rounded-full text-xs {{ $recipe->statut === 'Approuvé' ? 'bg-green-100 text-green-800' : ($recipe->statut === 'Rejeté' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') }}">
                             {{ $recipe->statut }}
                         </span>
                     </div>
@@ -105,7 +105,7 @@
                 <div class="p-4">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="playfair text-lg font-bold text-brand-burgundy">{{ $experience->title }}</h3>
-                        <span class="px-2 py-1 rounded-full text-xs {{ $experience->statut === 'Approuver' ? 'bg-green-100 text-green-800' : ($experience->statut === 'Rejeter' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') }}">
+                        <span class="px-2 py-1 rounded-full text-xs {{ $experience->statut === 'Approuvé' ? 'bg-green-100 text-green-800' : ($experience->statut === 'Rejeté' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800') }}">
                             {{ $experience->statut }}
                         </span>
                     </div>
