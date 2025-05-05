@@ -103,15 +103,10 @@
                         <i class="fas fa-users text-lg"></i>
                         <span>Gestion Utilisateurs</span>
                     </button>
-                    <button id="btn-content"
-                        class="dashboard-tab w-full text-left px-4 py-3 rounded flex items-center space-x-3 hover:bg-brand-peach/50">
-                        <i class="fas fa-utensils text-lg"></i>
-                        <span>Modération Contenu</span>
-                    </button>
                     <button id="btn-categories"
                         class="dashboard-tab w-full text-left px-4 py-3 rounded flex items-center space-x-3 hover:bg-brand-peach/50">
                         <i class="fas fa-tags text-lg"></i>
-                        <span>Catégories & Tags</span>
+                        <span>Gestion du Contenu</span>
                     </button>
                 </div>
             </div>
@@ -133,9 +128,6 @@
 
             <!-- User Management Section (hidden by default) -->
             @include('admin.sections.user-management')
-
-            <!-- Content Moderation Section (hidden by default) -->
-            @include('admin.sections.content-moderation')
 
             <!-- Categories & Tags Section (hidden by default) -->
             @include('admin.sections.categories-tags')
@@ -166,10 +158,6 @@
                 btn: document.getElementById('btn-users'),
                 section: document.getElementById('users-section')
             },
-            content: {
-                btn: document.getElementById('btn-content'),
-                section: document.getElementById('content-section')
-            },
             categories: {
                 btn: document.getElementById('btn-categories'),
                 section: document.getElementById('categories-section')
@@ -193,24 +181,21 @@
             tab.btn.addEventListener('click', () => switchTab(name));
         });
     </script>
-    <script>
+    <!-- <script>
         const categoryTabs = document.querySelectorAll('.flex.border-b.border-gray-200 button');
         const categoryContent = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-3.gap-6');
         const tagsManagement = document.getElementById('tags-management');
         const themesManagement = document.getElementById('themes-management');
         categoryTabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                // Remove active state from all tabs
                 categoryTabs.forEach(t => {
                     t.classList.remove('border-b-2', 'border-brand-burgundy', 'text-brand-burgundy');
                     t.classList.add('text-gray-500');
                 });
 
-                // Add active state to clicked tab
                 tab.classList.remove('text-gray-500');
                 tab.classList.add('border-b-2', 'border-brand-burgundy', 'text-brand-burgundy');
 
-                // Show/hide appropriate content
                 if (tab.textContent.trim() === 'Catégories') {
                     categoryContent.classList.remove('hidden');
                     tagsManagement.classList.add('hidden');
@@ -226,7 +211,7 @@
                 }
             });
         });
-    </script>
+    </script> -->
     <script>
         setTimeout(() => {
             const alert = document.getElementById('success-alert');
