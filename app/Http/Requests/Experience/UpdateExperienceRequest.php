@@ -25,6 +25,7 @@ class UpdateExperienceRequest extends FormRequest
             'title' => 'sometimes|required|string|max:255',
             'image' => 'sometimes|required|url',
             'description' => 'sometimes|required|string',
+            'statut' => 'nullable|in:En attente,Approuvé,Rejeté',
             'theme_id' => 'required|exists:themes,id',
         ];
     }
