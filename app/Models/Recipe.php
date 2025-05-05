@@ -21,6 +21,7 @@ class Recipe extends Model
         'instructions',
         'category_id',
         'chef_id',
+        'statut',
     ];
 
     // recette appartient à une catégorie
