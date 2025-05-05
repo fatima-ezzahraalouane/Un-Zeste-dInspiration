@@ -21,7 +21,7 @@
             <div class="relative">
                 <img src="{{ $experience->image }}" alt="{{ $experience->title }}" class="w-full h-40 object-cover">
                 <div class="absolute top-2 right-2 flex space-x-2">
-                    @if ($experience->statut !== 'Approuver')
+                    @if ($experience->statut !== 'Approuvé')
                     <button class="w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-brand-burgundy hover:bg-white transition-all"
                         data-experience-id="{{ $experience->id }}"
                         data-experience-title="{{ $experience->title }}"
@@ -40,8 +40,8 @@
                         </button>
                     </form>
                 </div>
-                <div class="absolute bottom-0 left-0 {{ $experience->statut === 'Approuver' ? 'bg-brand-burgundy' : 'bg-gray-600' }} text-white px-3 py-1 text-xs">
-                    {{ $experience->statut === 'Approuver' ? 'Publié' : 'Brouillon' }}
+                <div class="absolute bottom-0 left-0 {{ $experience->statut === 'Approuvé' ? 'bg-brand-burgundy' : 'bg-gray-600' }} text-white px-3 py-1 text-xs">
+                    {{ $experience->statut === 'Approuvé' ? 'Publié' : 'Brouillon' }}
                 </div>
             </div>
             <div class="p-4">
@@ -54,7 +54,7 @@
                         {{ $experience->theme->name ?? 'Sans thème' }}
                     </span>
                 </div>
-                @if ($experience->statut === 'Approuver')
+                @if ($experience->statut === 'Approuvé')
                 <a href="{{ route('gourmand.experiences.show', $experience->id) }}" class="text-brand-burgundy hover:text-brand-coral text-sm font-medium">
                     Voir l'expérience
                     <i class="fas fa-arrow-right ml-1"></i>
