@@ -59,7 +59,7 @@ class RecipeRepository implements RecipeRepositoryInterface
     public function getMostLikedRecipes(int $limit)
     {
         return Recipe::with('chef.user')
-            ->where('statut', 'Approuver')
+            ->where('statut', 'Approuvé')
             ->withCount('favoritedBy')
             ->orderByDesc('favorited_by_count')
             ->take($limit)
@@ -69,7 +69,7 @@ class RecipeRepository implements RecipeRepositoryInterface
     public function search(Request $request)
     {
         $query = Recipe::with(['category', 'tags', 'chef.user'])
-            ->where('statut', 'Approuver');
+            ->where('statut', 'Approuvé');
 
         // Recherche par titre
         if ($request->filled('title')) {
