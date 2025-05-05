@@ -44,7 +44,8 @@ class RecipeController extends Controller
     public function show($id)
     {
         $recipe = $this->recipeRepo->show($id);
-        return view('gourmand.recette-detail', compact('recipe'));
+        $carouselRecipes = $this->recipeRepo->getMostLikedRecipes(3);
+        return view('gourmand.recette-detail', compact('recipe', 'carouselRecipes'));
     }
 
     public function update(UpdateRecipeRequest $request, $id)
@@ -58,14 +59,6 @@ class RecipeController extends Controller
         $this->recipeRepo->destroy($id);
         return redirect()->back()->with('success', 'Votre recette a été supprimée avec succès.');
     }
-
-    // top recettes pour le carrousel (composant)
-    public function getTopCarousel()
-    {
-        $recipes = $this->recipeRepo->getMostLikedRecipes(5);
-        return view('components.carousel', compact('recipes'));
-    }
-
 
     public function browse(Request $request)
     {
