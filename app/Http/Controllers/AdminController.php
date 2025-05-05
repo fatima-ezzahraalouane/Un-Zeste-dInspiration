@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Chef;
 use App\Models\Gourmand;
 use App\Models\Category;
+use App\Models\Tag;
+use App\Models\Theme;
 
 class AdminController extends Controller
 {
@@ -26,6 +28,16 @@ class AdminController extends Controller
         ];
 
         $categories = Category::withCount('recipes')->get();
+        $tags = Tag::withCount('recipes')->get();
+        $themes = Theme::withCount('experiences')->get();
+
+        $recipes = Recipe::with(['chef.user', 'category'])
+            ->latest()
+            ->paginate(6);
+
+        $experiences = Experience::with(['gourmand.user', 'theme'])
+            ->latest()
+            ->paginate(6);
 
         $topChefs = Chef::withCount(['recipes as approved_recipes_count' => function ($query) {
             $query->where('statut', 'Approuver');
@@ -41,7 +53,6 @@ class AdminController extends Controller
             ->take(3)
             ->get();
 
-
         $users = User::whereHas('role', function ($query) {
             $query->whereIn('name_user', ['Chef', 'Gourmand']);
         })
@@ -52,6 +63,10 @@ class AdminController extends Controller
             'user',
             'stats',
             'categories',
+            'tags',
+            'themes',
+            'recipes',
+            'experiences',
             'topChefs',
             'users',
             'topGourmands'
@@ -71,6 +86,7 @@ class AdminController extends Controller
     public function suspendUser(User $user)
     {
         $user->update([
+            'is_approved' => false,
             'statut' => 'Suspendu'
         ]);
 
@@ -82,5 +98,29 @@ class AdminController extends Controller
         $user->delete();
 
         return back()->with('success', 'Utilisateur supprimé avec succès.');
+    }
+
+    public function approveRecipe(Recipe $recipe)
+    {
+        $recipe->update(['statut' => 'Approuver']);
+        return back()->with('success', 'Recette approuvée avec succès.');
+    }
+
+    public function rejectRecipe(Recipe $recipe)
+    {
+        $recipe->update(['statut' => 'Rejeter']);
+        return back()->with('success', 'Recette rejetée avec succès.');
+    }
+
+    public function approveExperience(Experience $experience)
+    {
+        $experience->update(['statut' => 'Approuver']);
+        return back()->with('success', 'Expérience approuvée avec succès.');
+    }
+
+    public function rejectExperience(Experience $experience)
+    {
+        $experience->update(['statut' => 'Rejeter']);
+        return back()->with('success', 'Expérience rejetée avec succès.');
     }
 }
