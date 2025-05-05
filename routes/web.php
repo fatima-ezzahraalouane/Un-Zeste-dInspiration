@@ -59,7 +59,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // Afficher formulaire email
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgot-password');
 
-// Envoyer l’email de réinitialisation
+// Envoyer l'email de réinitialisation
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
 // Afficher formulaire de nouveau mot de passe
@@ -89,16 +89,20 @@ Route::middleware(['auth', 'check.role:Admin'])->prefix('admin')->group(function
     Route::patch('/experiences/{experience}/approve', [AdminController::class, 'approveExperience'])->name('admin.experiences.approve');
     Route::patch('/experiences/{experience}/reject', [AdminController::class, 'rejectExperience'])->name('admin.experiences.reject');
 
-    // Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);
-
+    // Gestion des catégories
     Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
-    Route::put('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
-    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-    // Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+    // Gestion des tags
     Route::post('/tags', [TagController::class, 'store'])->name('tags.store');
-    Route::put('/tags/{id}/update', [TagController::class, 'update'])->name('tags.update');
-    Route::delete('/tags/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
+    Route::put('/tags/{tag}', [TagController::class, 'update'])->name('tags.update');
+    Route::delete('/tags/{tag}', [TagController::class, 'destroy'])->name('tags.destroy');
+
+    // Gestion des thèmes
+    Route::post('/themes', [ThemeController::class, 'store'])->name('themes.store');
+    Route::put('/themes/{theme}', [ThemeController::class, 'update'])->name('themes.update');
+    Route::delete('/themes/{theme}', [ThemeController::class, 'destroy'])->name('themes.destroy');
 });
 // Route::get('/test', [AdminController::class, 'test']);
 
