@@ -30,7 +30,7 @@ class UpdateTagRequest extends FormRequest
     {
         return [
             'name.required' => 'Le nom du tag est requis.',
-            'name.unique'   => 'Ce tag est déjà utilisé.',
+            'name.unique' => 'Ce tag est déjà utilisé.',
         ];
     }
 }

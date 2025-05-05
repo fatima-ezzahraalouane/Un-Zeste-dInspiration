@@ -30,7 +30,7 @@ class StoreTagRequest extends FormRequest
     {
         return [
             'name.required' => 'Le nom du tag est requis.',
-            'name.unique'   => 'Ce tag existe déjà.',
+            'name.unique' => 'Ce tag existe déjà.',
         ];
     }
 }
