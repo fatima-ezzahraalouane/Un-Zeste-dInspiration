@@ -28,7 +28,7 @@
             <div class="relative">
                 <img src="{{ $recipe->image }}" alt="{{ $recipe->title }}" class="w-full h-40 object-cover">
                 <div class="absolute top-2 right-2 flex space-x-2">
-                    @if ($recipe->statut !== 'Approuver')
+                    @if ($recipe->statut !== 'Approuvé')
                     <button
                         onclick="openEditRecipeModal(this)"
                         data-id="{{ $recipe->id }}"
@@ -55,8 +55,8 @@
                         </button>
                     </form>
                 </div>
-                <div class="absolute bottom-0 left-0 {{ $recipe->statut === 'Approuver' ? 'bg-brand-burgundy' : 'bg-gray-600' }} text-white px-3 py-1 text-xs">
-                    {{ $recipe->statut === 'Approuver' ? 'Publié' : 'Brouillon' }}
+                <div class="absolute bottom-0 left-0 {{ $recipe->statut === 'Approuvé' ? 'bg-brand-burgundy' : 'bg-gray-600' }} text-white px-3 py-1 text-xs">
+                    {{ $recipe->statut === 'Approuvé' ? 'Publié' : 'Brouillon' }}
                 </div>
             </div>
             <div class="p-4">
