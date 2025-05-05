@@ -87,11 +87,6 @@
             }
         }
 
-        /* Add touch support for swiping */
-        .carousel-container {
-            touch-action: pan-y;
-        }
-
         .shine-effect {
             position: relative;
             overflow: hidden;
@@ -302,7 +297,7 @@
     </section>
 
     <!-- Carousel Section -->
-    <div id="carousel-container"></div>
+    @include('components.carousel')
 
     <!-- Footer -->
     @include('partials.footerc')
@@ -368,20 +363,6 @@
             });
         });
     </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch(`{{ route('gourmand.carousel') }}`)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('carousel-container').innerHTML = html;
-                    initCarousel();
-                })
-                .catch(error => console.error('Erreur chargement carousel:', error));
-        });
-    </script>
-
-    <script src="{{ asset('js/carousel.js') }}"></script>
 
     <script>
         setTimeout(() => {
