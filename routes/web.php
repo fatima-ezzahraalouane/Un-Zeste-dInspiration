@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ChefController;
 use App\Http\Controllers\GourmandController;
@@ -56,17 +54,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Afficher formulaire email
-Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('forgot-password');
-
-// Envoyer l'email de réinitialisation
-Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-
-// Afficher formulaire de nouveau mot de passe
-Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-
-// Enregistrer le nouveau mot de passe
-Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 
 
@@ -104,7 +91,6 @@ Route::middleware(['auth', 'check.role:Admin'])->prefix('admin')->group(function
     Route::put('/themes/{theme}', [ThemeController::class, 'update'])->name('themes.update');
     Route::delete('/themes/{theme}', [ThemeController::class, 'destroy'])->name('themes.destroy');
 });
-// Route::get('/test', [AdminController::class, 'test']);
 
 
 
@@ -126,7 +112,6 @@ Route::middleware(['auth', 'check.role:Chef'])->prefix('chef')->group(function (
 Route::middleware(['auth', 'check.role:Gourmand'])->prefix('gourmand')->group(function () {
     Route::get('/accueil', [GourmandController::class, 'index'])->name('gourmand.accueil');
     Route::get('/recettes', [RecipeController::class, 'browse'])->name('gourmand.recettes');
-    Route::get('/gourmand/carousel', [RecipeController::class, 'getTopCarousel'])->name('gourmand.carousel');
 
     // Routes pour les recettes
     Route::get('/recettes/{id}', [RecipeController::class, 'show'])->name('gourmand.recettes.show');
