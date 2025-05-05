@@ -151,7 +151,7 @@
                                     <td class="py-3 px-2">{{ $category->recipes_count ?? 0 }}</td>
                                     <td class="py-3 px-2">
                                         <div class="flex space-x-2">
-                                            <button onclick="editCategory({{ $category->id }}, '{{ $category->name }}')" class="text-brand-burgundy hover:text-brand-red">
+                                            <button onclick="editCategory('{{ $category->id }}', '{{ $category->name }}')" class="text-brand-burgundy hover:text-brand-red">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
@@ -220,7 +220,7 @@
                                     <td class="py-3 px-2">{{ $tag->recipes_count ?? 0 }}</td>
                                     <td class="py-3 px-2">
                                         <div class="flex space-x-2">
-                                            <button onclick="editTag({{ $tag->id }}, '{{ $tag->name }}')" class="text-brand-burgundy hover:text-brand-red">
+                                            <button onclick="editTag('{{ $tag->id }}', '{{ $tag->name }}')" class="text-brand-burgundy hover:text-brand-red">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <form action="{{ route('tags.destroy', $tag->id) }}" method="POST">

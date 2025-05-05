@@ -222,7 +222,7 @@
                                         @method('DELETE')
                                         <button class="text-sm text-red-500 hover:underline">Supprimer</button>
                                     </form>
-                                    <button type="button" onclick="toggleEditForm({{ $comment->id }})"
+                                    <button type="button" onclick="toggleEditForm('{{ $comment->id }}')"
                                         class="text-sm text-brand-burgundy hover:underline">Modifier</button>
                                 </div>
                                 @endif
@@ -243,7 +243,7 @@
                                 @enderror
 
                                 <div class="flex justify-end mt-2">
-                                    <button type="button" onclick="toggleEditForm({{ $comment->id }})"
+                                    <button type="button" onclick="toggleEditForm('{{ $comment->id }}')"
                                         class="px-4 py-1 mr-2 text-sm bg-gray-300 text-brand-dark rounded-full hover:bg-gray-400 transition-all">
                                         Annuler
                                     </button>
