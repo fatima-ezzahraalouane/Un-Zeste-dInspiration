@@ -13,7 +13,7 @@ class ExperienceRepository implements ExperienceRepositoryInterface
     public function browse(Request $request, Theme $theme)
     {
         $query = Experience::where('theme_id', $theme->id)
-            ->where('statut', 'Approuver');
+            ->where('statut', 'Approuvé');
 
         if ($request->filled('title')) {
             $query->where('title', 'like', '%' . $request->title . '%');
