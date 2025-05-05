@@ -26,14 +26,6 @@
     <div id="recipes-tab" class="space-y-6">
         <div class="flex justify-between items-center">
             <h2 class="text-xl font-bold text-brand-burgundy">Gestion des Recettes</h2>
-            <!-- <div class="flex space-x-2">
-                <select class="border rounded-lg px-3 py-1" onchange="filterRecipes(this.value)">
-                    <option value="all">Tous les statuts</option>
-                    <option value="En attente">En attente</option>
-                    <option value="Approuver">Approuvées</option>
-                    <option value="Rejeter">Rejetées</option>
-                </select>
-            </div> -->
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -86,14 +78,6 @@
     <div id="experiences-tab" class="hidden space-y-6">
         <div class="flex justify-between items-center">
             <h2 class="text-xl font-bold text-brand-burgundy">Gestion des Expériences</h2>
-            <!-- <div class="flex space-x-2">
-                <select class="border rounded-lg px-3 py-1" onchange="filterExperiences(this.value)">
-                    <option value="all">Tous les statuts</option>
-                    <option value="En attente">En attente</option>
-                    <option value="Approuver">Approuvées</option>
-                    <option value="Rejeter">Rejetées</option>
-                </select>
-            </div> -->
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -390,13 +374,5 @@
         document.getElementById('theme-description').value = description;
         document.getElementById('theme-cover-image').value = coverImage;
         document.getElementById('theme-submit-label').textContent = 'Mettre à jour';
-    }
-
-    function filterRecipes(status) {
-        // Implement recipe filtering logic
-    }
-
-    function filterExperiences(status) {
-        // Implement experience filtering logic
     }
 </script>
