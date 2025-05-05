@@ -27,10 +27,10 @@ class ExperienceRepository implements ExperienceRepositoryInterface
     public function store(StoreExperienceRequest $request)
     {
         $data = $request->validated();
-    
+
         $data['gourmand_id'] = auth()->user()->gourmand->id;
         $data['statut'] = 'En attente';
-    
+
         return Experience::create($data);
     }
 
@@ -51,5 +51,14 @@ class ExperienceRepository implements ExperienceRepositoryInterface
     {
         $experience = Experience::findOrFail($id);
         return $experience->delete();
+    }
+
+    public function getMostCommentedExperiences(int $limit = 3)
+    {
+        return Experience::withCount('comments')
+            ->where('statut', 'Approuvé')
+            ->orderByDesc('comments_count')
+            ->take($limit)
+            ->get();
     }
 }
