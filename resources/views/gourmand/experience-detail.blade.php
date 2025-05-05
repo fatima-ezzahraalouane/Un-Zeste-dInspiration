@@ -56,7 +56,7 @@
 
         .carousel-content {
             position: relative;
-            bottom: 136px;
+            bottom: 112px;
             background: rgba(0, 0, 0, 0.5);
             color: white;
             padding: 10px;
@@ -227,60 +227,7 @@
     </section>
 
     <!-- Carousel Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 relative">
-            <h2 class="playfair text-4xl font-bold text-brand-burgundy text-center mb-12">Les Expériences les Plus
-                Commentées</h2>
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    <div class="carousel-item">
-                        <img src="https://www.stefanofaita.com/wp-content/uploads/2022/04/pizzamargherita1.jpg"
-                            alt="Expérience Culinaire" class="w-full h-80 object-cover rounded-lg">
-                        <div class="carousel-content">
-                            <h3 class="text-xl font-bold">Titre de l'Expérience</h3>
-                            <p>Une description courte de l'expérience culinaire..</p>
-                            <a href="experience-details.html"
-                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Lire
-                                la suite</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c" alt="Salade Gourmet"
-                            class="w-full h-80 object-cover rounded-lg">
-                        <div class="carousel-content">
-                            <h3 class="text-xl font-bold">Salade Gourmet aux Agrumes</h3>
-                            <p>Un mélange frais et savoureux de fruits et légumes.</p>
-                            <a href="experience-details.html"
-                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Lire
-                                la suite</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1560717845-968823efbee1" alt="Saumon Grillé"
-                            class="w-full h-80 object-cover rounded-lg">
-                        <div class="carousel-content">
-                            <h3 class="text-xl font-bold">Saumon Grillé aux Herbes</h3>
-                            <p>Un plat sain et délicieux aux arômes méditerranéens.</p>
-                            <a href="experience-details.html"
-                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Lire
-                                la suite</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307"
-                            alt="Tarte aux Fruits Rouges" class="w-full h-80 object-cover rounded-lg">
-                        <div class="carousel-content">
-                            <h3 class="text-xl font-bold">Tarte aux Fruits Rouges</h3>
-                            <p>Une tarte délicieuse garnie de fruits rouges frais.</p>
-                            <a href="experience-details.html"
-                                class="block text-center px-4 py-2 bg-brand-burgundy text-white rounded-full hover:bg-brand-red transition-colors">Lire
-                                la suite</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('components.carousel-exp', ['experiences' => $topExperiences])
 
     <!-- Footer -->
     @include('partials.footerc')
