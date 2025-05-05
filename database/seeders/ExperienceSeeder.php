@@ -19,7 +19,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'Une expérience authentique de préparation de Tagine marocain.',
                 'theme_id' => 1,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
             [
                 'title' => 'Secrets de la Pâtisserie Française',
@@ -27,7 +27,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'Découverte des bases de la pâtisserie classique.',
                 'theme_id' => 2,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
             [
                 'title' => 'Voyage Street Food Bangkok',
@@ -35,7 +35,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'Découverte des saveurs thaïlandaises en mode street food.',
                 'theme_id' => 3,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
             [
                 'title' => 'Cuisine Végétarienne Express',
@@ -43,7 +43,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'Des plats végétariens faciles et rapides à préparer.',
                 'theme_id' => 4,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
             [
                 'title' => 'Couscous Royal Maison',
@@ -51,7 +51,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'Préparation complète du couscous traditionnel.',
                 'theme_id' => 1,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
             [
                 'title' => 'Baguette Artisanale',
@@ -59,7 +59,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'Secrets pour réussir une baguette comme un boulanger.',
                 'theme_id' => 2,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
             [
                 'title' => 'Tacos Mexicains Maison',
@@ -67,7 +67,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'La fabrication authentique des tacos maison.',
                 'theme_id' => 3,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
             [
                 'title' => 'Cuisine Vegan Débutant',
@@ -75,7 +75,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'Découverte de plats simples et savoureux sans produits animaux.',
                 'theme_id' => 4,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
             [
                 'title' => 'Pastilla Sucrée Salée',
@@ -83,7 +83,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'La fameuse Pastilla marocaine expliquée étape par étape.',
                 'theme_id' => 1,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
             [
                 'title' => 'Atelier Chocolat Maison',
@@ -91,7 +91,7 @@ class ExperienceSeeder extends Seeder
                 'description' => 'Créer ses propres chocolats maison facilement.',
                 'theme_id' => 2,
                 'gourmand_id' => 1,
-                'statut' => 'Approuver',
+                'statut' => 'Approuvé',
             ],
         ];
 
