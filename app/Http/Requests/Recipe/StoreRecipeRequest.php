@@ -22,19 +22,19 @@ class StoreRecipeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'             => 'required|string|max:255',
-            'image'             => 'required|url',
-            'description'       => 'required|string',
-            'preparation_time'  => 'required|integer|min:1',
-            'cooking_time'      => 'required|integer|min:1',
-            'servings'          => 'required|integer|min:1',
-            'complexity'        => 'required|in:Facile,Moyen,Difficile',
-            'ingredients'       => 'required|string',
-            'instructions'      => 'required|string',
-            'category_id'       => 'required|exists:categories,id',
-            'tags'              => 'nullable|array',
-            'tags.*'            => 'exists:tags,id',
-            'statut'            => 'nullable|in:En attente,Approuver,Rejeter',
+            'title' => 'required|string|max:255',
+            'image' => 'required|url',
+            'description' => 'required|string',
+            'preparation_time' => 'required|integer|min:1',
+            'cooking_time' => 'required|integer|min:1',
+            'servings' => 'required|integer|min:1',
+            'complexity' => 'required|in:Facile,Moyen,Difficile',
+            'ingredients' => 'required|string',
+            'instructions' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id',
+            'statut' => 'nullable|in:En attente,Approuvé,Rejeté',
         ];
     }
 

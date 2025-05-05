@@ -22,19 +22,19 @@ class UpdateRecipeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'             => 'sometimes|required|string|max:255',
-            'image'             => 'sometimes|required|url',
-            'description'       => 'sometimes|required|string',
-            'preparation_time'  => 'sometimes|required|integer|min:1',
-            'cooking_time'      => 'sometimes|required|integer|min:1',
-            'servings'          => 'sometimes|required|integer|min:1',
-            'complexity'        => 'sometimes|required|in:Facile,Moyen,Difficile',
-            'ingredients'       => 'sometimes|required|string',
-            'instructions'      => 'sometimes|required|string',
-            'category_id'       => 'sometimes|required|exists:categories,id',
-            'tags'              => 'nullable|array',
-            'tags.*'            => 'exists:tags,id',
-            'statut'            => 'nullable|in:En attente,Approuver,Rejeter',
+            'title' => 'sometimes|required|string|max:255',
+            'image' => 'sometimes|required|url',
+            'description' => 'sometimes|required|string',
+            'preparation_time' => 'sometimes|required|integer|min:1',
+            'cooking_time' => 'sometimes|required|integer|min:1',
+            'servings' => 'sometimes|required|integer|min:1',
+            'complexity' => 'sometimes|required|in:Facile,Moyen,Difficile',
+            'ingredients' => 'sometimes|required|string',
+            'instructions' => 'sometimes|required|string',
+            'category_id' => 'sometimes|required|exists:categories,id',
+            'tags' => 'nullable|array',
+            'tags.*' => 'exists:tags,id',
+            'statut' => 'nullable|in:En attente,Approuvé,Rejeté',
         ];
     }
 
