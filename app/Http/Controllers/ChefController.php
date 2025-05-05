@@ -28,20 +28,20 @@ class ChefController extends Controller
             ->paginate(5);
 
         $stats = [
-            'recipes' => $chef->recipes()->where('statut', 'Approuver')->count(),
+            'recipes' => $chef->recipes()->where('statut', 'Approuvé')->count(),
             'comments' => $chef->recipes()
-                ->where('statut', 'Approuver')
+                ->where('statut', 'Approuvé')
                 ->withCount('comments')
                 ->get()
                 ->sum('comments_count'),
             'favorites' => $chef->recipes()
-                ->where('statut', 'Approuver')
+                ->where('statut', 'Approuvé')
                 ->withCount('favoritedBy')
                 ->get()
                 ->sum('favorited_by_count'),
 
             'popularRecipes' => $chef->recipes()
-                ->where('statut', 'Approuver')
+                ->where('statut', 'Approuvé')
                 ->withCount('comments')
                 ->orderByDesc('comments_count')
                 ->take(5)
