@@ -40,7 +40,8 @@ class ExperienceController extends Controller
     public function show($id)
     {
         $experience = $this->experienceRepo->show($id);
-        return view('gourmand.experience-detail', compact('experience'));
+        $topExperiences = $this->experienceRepo->getMostCommentedExperiences(3);
+        return view('gourmand.experience-detail', compact('experience', 'topExperiences'));
     }
 
     public function update(UpdateExperienceRequest $request, $id)
