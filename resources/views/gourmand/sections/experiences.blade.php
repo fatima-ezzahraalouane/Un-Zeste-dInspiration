@@ -108,23 +108,23 @@
             @csrf
 
             <!-- Title -->
-            <label class="block text-sm font-semibold text-gray-700 mb-1">Titre</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Titre <span class="text-red-500 font-bold">*</span></label>
             <input type="text" name="title" required placeholder="Nom de l'expérience"
                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3">
 
             <!-- Description -->
-            <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Description <span class="text-red-500 font-bold">*</span></label>
             <textarea name="description" required placeholder="Décrivez votre expérience..."
                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3"
                 rows="3"></textarea>
 
             <!-- Image URL -->
-            <label class="block text-sm font-semibold text-gray-700 mb-1">URL de l'Image</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">URL de l'Image <span class="text-red-500 font-bold">*</span></label>
             <input type="url" name="image" required placeholder="https://example.com/image.jpg"
                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-3">
 
             <!-- Theme Selection -->
-            <label class="block text-sm font-semibold text-gray-700 mb-1">Thème</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Thème <span class="text-red-500 font-bold">*</span></label>
             <select name="theme_id" required
                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy mb-4">
                 <option value="" disabled selected>Choisissez un thème</option>

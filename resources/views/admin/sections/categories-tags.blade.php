@@ -179,7 +179,7 @@
                         @csrf
                         <input type="hidden" id="category-id" name="id">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom de la Catégorie</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom de la Catégorie <span class="text-red-500 font-bold">*</span></label>
                             <input type="text" name="name" id="category-name" placeholder="Ex: Cuisine Méditerranéenne"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent">
                         </div>
@@ -248,7 +248,7 @@
                         @csrf
                         <input type="hidden" id="tag-id" name="id">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom du Tag</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom du Tag <span class="text-red-500 font-bold">*</span></label>
                             <input type="text" name="name" id="tag-name" placeholder="Ex: SansGluten"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent">
                         </div>
@@ -308,17 +308,17 @@
                         @csrf
                         <input type="hidden" id="theme-id" name="id">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom du Thème</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom du Thème <span class="text-red-500 font-bold">*</span></label>
                             <input type="text" name="name" id="theme-name" placeholder="Ex: Cuisine Française"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent">
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Description <span class="text-red-500 font-bold">*</span></label>
                             <textarea name="description" id="theme-description" rows="3" placeholder="Décrivez ce thème culinaire..."
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent"></textarea>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Image de couverture</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Image de couverture <span class="text-red-500 font-bold">*</span></label>
                             <input type="text" name="image" id="theme-image" placeholder="Url de l'image"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-burgundy focus:border-transparent">
                         </div>
