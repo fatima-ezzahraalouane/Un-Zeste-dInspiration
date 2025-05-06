@@ -71,7 +71,7 @@
                     de passe.</p>
             </div>
 
-            <form method="POST" action="{{ route('password.email') }}" class="space-y-6" data-parsley-validate>
+            <form method="POST" action="#" class="space-y-6" data-parsley-validate>
                 @csrf
                 <div>
                     <label class="block text-brand-gray mb-2">Email</label>

@@ -65,12 +65,13 @@ class RecipeController extends Controller
         $recipes = $this->recipeRepo->search($request);
         $categories = $this->categoryRepo->getAll();
         $tags = $this->tagRepo->getAll();
+        $carouselRecipes = $this->recipeRepo->getMostLikedRecipes(3);
 
         $likedRecipes = [];
         if (Auth::check() && Auth::user()->role->name_user === 'Gourmand' && Auth::user()->gourmand) {
             $likedRecipes = Auth::user()->gourmand->favorites->pluck('id')->toArray();
         }
 
-        return view('gourmand.recettes', compact('recipes', 'categories', 'tags', 'likedRecipes'));
+        return view('gourmand.recettes', compact('recipes', 'categories', 'tags', 'likedRecipes', 'carouselRecipes'));
     }
 }

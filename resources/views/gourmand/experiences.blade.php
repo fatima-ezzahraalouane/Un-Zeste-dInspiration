@@ -221,7 +221,7 @@
     </section>
 
     <!-- Carousel Section -->
-    @include('components.carousel-exp')
+    @include('components.carousel-exp', ['topExperiences' => $topExperiences])
 
     <!-- Footer -->
     @include('partials.footerc')

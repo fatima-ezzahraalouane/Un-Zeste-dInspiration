@@ -4,7 +4,7 @@
             Commentées</h2>
         <div class="carousel-container">
             <div class="carousel-track">
-                @foreach($experiences as $experience)
+                @foreach($topExperiences as $experience)
                 <div class="carousel-item">
                     <img src="{{ $experience->image ?? 'https://via.placeholder.com/400x300' }}"
                         alt="Expérience Culinaire" class="w-full h-80 object-cover rounded-lg">

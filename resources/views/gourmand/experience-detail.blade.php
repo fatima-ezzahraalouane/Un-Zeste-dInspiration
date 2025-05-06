@@ -160,7 +160,7 @@
 
             <!-- Liste des commentaires -->
             <div id="comments-section" class="mt-10 space-y-6">
-                @foreach ($experience->comments as $comment)
+                @foreach ($experience->comments()->orderByDesc('created_at')->get() as $comment)
                 <div class="bg-white rounded-lg p-4 shadow">
                     <div class="flex items-start gap-4">
                         <!-- Avatar -->

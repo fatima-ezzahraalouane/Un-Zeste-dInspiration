@@ -23,10 +23,10 @@ class ExperienceController extends Controller
     public function index(Request $request, Theme $theme)
     {
         $experiences = $this->experienceRepo->browse($request, $theme);
-
         $themes = $this->themeRepo->getAll();
+        $topExperiences = $this->experienceRepo->getMostCommentedExperiences(3);
 
-        return view('gourmand.experiences', compact('theme', 'experiences', 'themes'));
+        return view('gourmand.experiences', compact('theme', 'experiences', 'themes', 'topExperiences'));
     }
 
     public function store(StoreExperienceRequest $request)

@@ -58,6 +58,7 @@ class ExperienceRepository implements ExperienceRepositoryInterface
         return Experience::withCount('comments')
             ->where('statut', 'Approuvé')
             ->orderByDesc('comments_count')
+            ->orderByDesc('created_at')
             ->take($limit)
             ->get();
     }
