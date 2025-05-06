@@ -162,7 +162,7 @@
 
 
     <!-- Carousel Section -->
-    @include('components.carousel')
+    @include('components.carousel', ['recipes' => $carouselRecipes])
 
     <!-- Footer -->
     @include('partials.footerc')

@@ -8,6 +8,7 @@ use App\Http\Requests\Favorite\StoreFavoriteRequest;
 use App\Http\Requests\Favorite\DeleteFavoriteRequest;
 use App\Repositories\Favorite\FavoriteRepositoryInterface;
 use Illuminate\Http\JsonResponse;
+use App\Repositories\Recipe\RecipeRepositoryInterface;
 
 class FavoriteController extends Controller
 {
@@ -26,9 +27,10 @@ class FavoriteController extends Controller
             abort(403, 'Accès non autorisé.');
         }
 
-        $recipes = $gourmand->favorites()->paginate(5);
+        $recipes = $gourmand->favorites()->paginate(10);
+        $carouselRecipes = app(RecipeRepositoryInterface::class)->getMostLikedRecipes(3);
 
-        return view('gourmand.mesfavoris', compact('recipes'));
+        return view('gourmand.mesfavoris', compact('recipes', 'carouselRecipes'));
     }
 
     public function store(StoreFavoriteRequest $request)

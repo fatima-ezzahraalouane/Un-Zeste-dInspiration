@@ -62,6 +62,7 @@ class RecipeRepository implements RecipeRepositoryInterface
             ->where('statut', 'Approuvé')
             ->withCount('favoritedBy')
             ->orderByDesc('favorited_by_count')
+            ->orderByDesc('created_at')
             ->take($limit)
             ->get();
     }
