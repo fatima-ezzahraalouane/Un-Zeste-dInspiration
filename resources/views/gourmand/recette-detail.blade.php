@@ -102,8 +102,12 @@
                     @endforeach
                 </div>
             </div>
-            <img src="{{ $recipe->image ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $recipe->title }}"
-                class="w-full h-96 object-cover rounded-lg mb-6 shadow-xl">
+            <!-- <img src="{{ $recipe->image ?? 'https://via.placeholder.com/400x300' }}" alt="{{ $recipe->title }}"
+                class="w-full h-96 object-cover rounded-lg mb-6 shadow-xl"> -->
+            <iframe src="https://www.youtube.com/embed/{{ preg_replace('/.*youtu\.be\/([^\?]+).*/', '$1', $recipe->video) }}?autoplay=1&mute=1"
+                title="{{ $recipe->title }}" class="w-full h-96 object-cover rounded-lg mb-6 shadow-xl" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
             <div class="relative p-8 bg-gradient-to-br from-brand-peach to-white shadow-2xl rounded-2xl">
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

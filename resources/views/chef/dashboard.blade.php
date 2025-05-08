@@ -228,6 +228,7 @@
             const recipeId = button.dataset.id;
             const title = button.dataset.title;
             const image = button.dataset.image;
+            const video = button.dataset.video;
             const description = button.dataset.description;
             const preparation = button.dataset.preparation;
             const cooking = button.dataset.cooking;
@@ -242,6 +243,7 @@
 
             document.getElementById('edit-title').value = title;
             document.getElementById('edit-image').value = image;
+            document.getElementById('edit-video').value = video;
             document.getElementById('edit-description').value = description;
             document.getElementById('edit-preparation').value = preparation;
             document.getElementById('edit-cooking').value = cooking;

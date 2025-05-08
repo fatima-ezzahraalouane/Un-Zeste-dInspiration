@@ -12,6 +12,7 @@ class Recipe extends Model
     protected $fillable = [
         'title',
         'image',
+        'video',
         'description',
         'preparation_time',
         'cooking_time',

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('image');
+            $table->text('video');
             $table->text('description');
             $table->enum('statut', ['En attente', 'Approuvé', 'Rejeté'])->default('En attente');
             $table->integer('preparation_time');

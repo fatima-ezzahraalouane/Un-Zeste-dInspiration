@@ -20,6 +20,7 @@
                         data-id="{{ $recipe->id }}"
                         data-title="{{ $recipe->title }}"
                         data-image="{{ $recipe->image }}"
+                        data-video="{{ $recipe->video }}"
                         data-description="{{ $recipe->description }}"
                         data-preparation="{{ $recipe->preparation_time }}"
                         data-cooking="{{ $recipe->cooking_time }}"
@@ -113,31 +114,36 @@
                 <!-- Titre -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Titre <span class="text-red-500 font-bold">*</span></label>
-                    <input type="text" name="title" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                    <input type="text" name="title" required class="w-full px-4 py-2 border rounded-lg mb-3" placeholder="ex: Tarte aux pommes">
                 </div>
 
                 <!-- Image -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Image (URL) <span class="text-red-500 font-bold">*</span></label>
-                    <input type="url" name="image" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                    <input type="url" name="image" required class="w-full px-4 py-2 border rounded-lg mb-3" placeholder="ex: https://tarte.com/image.jpg">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Vidéo (URL) <span class="text-red-500 font-bold">*</span></label>
+                    <input type="url" name="video" required class="w-full px-4 py-2 border rounded-lg mb-3" placeholder="ex: https://tarte.com/video">
                 </div>
 
                 <!-- Temps préparation -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Préparation (min) <span class="text-red-500 font-bold">*</span></label>
-                    <input type="number" name="preparation_time" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                    <input type="number" name="preparation_time" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3" placeholder="ex: 30">
                 </div>
 
                 <!-- Temps cuisson -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Cuisson (min) <span class="text-red-500 font-bold">*</span></label>
-                    <input type="number" name="cooking_time" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                    <input type="number" name="cooking_time" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3" placeholder="ex: 45">
                 </div>
 
                 <!-- Portions -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Portions <span class="text-red-500 font-bold">*</span></label>
-                    <input type="number" name="servings" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                    <input type="number" name="servings" min="1" required class="w-full px-4 py-2 border rounded-lg mb-3" placeholder="ex: 4">
                 </div>
 
                 <!-- Complexité -->
@@ -162,6 +168,28 @@
                     </select>
                 </div>
 
+                <!-- Description -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description <span class="text-red-500 font-bold">*</span></label>
+                    <textarea name="description" rows="2" required class="w-full px-4 py-2 border rounded-lg mb-3" placeholder="Décrivez votre recette ..."></textarea>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Ingrédients -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Ingrédients (séparés par des virgules) <span class="text-red-500 font-bold">*</span></label>
+                    <textarea name="ingredients" rows="3" required placeholder="ex: farine, sucre, œufs"
+                        class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
+                </div>
+
+                <!-- Instructions -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Instructions (séparées par des virgules) <span class="text-red-500 font-bold">*</span></label>
+                    <textarea name="instructions" rows="3" required placeholder="ex: Mélanger, Cuire, Servir chaud"
+                        class="w-full px-4 py-2 border rounded-lg mb-4"></textarea>
+                </div>
+
                 <!-- Tags -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Tags <span class="text-red-500 font-bold">*</span></label>
@@ -170,29 +198,6 @@
                         <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                         @endforeach
                     </select>
-                </div>
-
-                <!-- Description -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description <span class="text-red-500 font-bold">*</span></label>
-                    <textarea name="description" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                <!-- Ingrédients -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Ingrédients (séparés par des virgules) <span class="text-red-500 font-bold">*</span></label>
-                    <textarea name="ingredients" rows="2" required placeholder="ex: farine, sucre, œufs"
-                        class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
-                </div>
-
-                <!-- Instructions -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Instructions (séparées par des virgules) <span class="text-red-500 font-bold">*</span></label>
-                    <textarea name="instructions" rows="2" required placeholder="ex: Mélanger, Cuire, Servir chaud"
-                        class="w-full px-4 py-2 border rounded-lg mb-4"></textarea>
                 </div>
             </div>
 
@@ -226,6 +231,11 @@
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Image (URL)</label>
                     <input type="url" name="image" id="edit-image" required class="w-full px-4 py-2 border rounded-lg mb-3">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Vidéo (URL)</label>
+                    <input type="url" name="video" id="edit-video" required class="w-full px-4 py-2 border rounded-lg mb-3">
                 </div>
 
                 <!-- Temps préparation -->
@@ -268,6 +278,26 @@
                     </select>
                 </div>
 
+                <!-- Description -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+                    <textarea name="description" id="edit-description" rows="2" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Ingrédients -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Ingrédients (séparés par des virgules)</label>
+                    <textarea name="ingredients" id="edit-ingredients" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
+                </div>
+
+                <!-- Instructions -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Instructions (séparées par des virgules)</label>
+                    <textarea name="instructions" id="edit-instructions" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-4"></textarea>
+                </div>
+
                 <!-- Tags -->
                 <div>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Tags</label>
@@ -276,26 +306,6 @@
                         <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                         @endforeach
                     </select>
-                </div>
-
-                <!-- Description -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
-                    <textarea name="description" id="edit-description" rows="3" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Ingrédients -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Ingrédients (séparés par des virgules)</label>
-                    <textarea name="ingredients" id="edit-ingredients" rows="2" required class="w-full px-4 py-2 border rounded-lg mb-3"></textarea>
-                </div>
-
-                <!-- Instructions -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-1">Instructions (séparées par des virgules)</label>
-                    <textarea name="instructions" id="edit-instructions" rows="2" required class="w-full px-4 py-2 border rounded-lg mb-4"></textarea>
                 </div>
             </div>
 
