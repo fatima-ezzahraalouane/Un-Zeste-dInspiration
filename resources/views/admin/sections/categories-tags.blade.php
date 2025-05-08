@@ -24,9 +24,9 @@
 
     <!-- Recipes Tab -->
     <div id="recipes-tab" class="space-y-6">
-        <div class="flex justify-between items-center">
+        <!-- <div class="flex justify-between items-center">
             <h2 class="text-xl font-bold text-brand-burgundy">Gestion des Recettes</h2>
-        </div>
+        </div> -->
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($recipes as $recipe)
@@ -76,9 +76,9 @@
 
     <!-- Experiences Tab -->
     <div id="experiences-tab" class="hidden space-y-6">
-        <div class="flex justify-between items-center">
+        <!-- <div class="flex justify-between items-center">
             <h2 class="text-xl font-bold text-brand-burgundy">Gestion des Expériences</h2>
-        </div>
+        </div> -->
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($experiences as $experience)

@@ -1,6 +1,6 @@
 <footer class="bg-brand-burgundy text-white py-12">
     <div class="max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <h3 class="playfair text-2xl font-bold mb-4">Un Zeste d'Inspiration</h3>
                 <p class="text-brand-peach">
@@ -10,19 +10,11 @@
             <div>
                 <h4 class="playfair text-xl font-semibold mb-4">Navigation</h4>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Accueil</a></li>
-                    <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Recettes</a></li>
-                    <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Chefs</a></li>
-                    <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Blog</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="playfair text-xl font-semibold mb-4">Légal</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Conditions d'utilisation</a></li>
-                    <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Politique de confidentialité</a></li>
-                    <li><a href="#" class="text-brand-peach hover:text-white transition-colors">Mentions légales</a></li>
-                    <li><a href="#" class="text-brand-peach hover:text-white transition-colors">FAQ</a></li>
+                    <li><a href="{{ route('gourmand.accueil') }}" class="text-brand-peach hover:text-white transition-colors">Accueil</a></li>
+                    <li><a href="{{ route('gourmand.recettes') }}" class="text-brand-peach hover:text-white transition-colors">Recettes</a></li>
+                    <li><a href="{{ route('gourmand.blog') }}" class="text-brand-peach hover:text-white transition-colors">Blog</a></li>
+                    <li><a href="{{ route('gourmand.mesfavoris') }}" class="text-brand-peach hover:text-white transition-colors">Mes favoris</a></li>
+                    <li><a href="{{ route('gourmand.profile') }}" class="text-brand-peach hover:text-white transition-colors">Profil</a></li>
                 </ul>
             </div>
             <div>
