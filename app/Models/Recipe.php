@@ -25,19 +25,16 @@ class Recipe extends Model
         'statut',
     ];
 
-    // recette appartient à une catégorie
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    // recette peut avoir plusieurs tags
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'recipe_tag');
     }
 
-    // recette peut aimer par plusieurs gourmands
     public function favoritedBy()
     {
         return $this->belongsToMany(Gourmand::class, 'favorites');
