@@ -103,69 +103,69 @@ class AdminController extends Controller
 
     public function approveRecipe(Recipe $recipe)
     {
-        try {
-            DB::beginTransaction();
+        // try {
+        //     DB::beginTransaction();
             
             $recipe->update([
                 'statut' => 'Approuvé'
             ]);
             
-            DB::commit();
+            // DB::commit();
             return redirect()->back()->with('success', 'Recette approuvée avec succès.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'approbation de la recette.');
-        }
+        // } catch (\Exception $e) {
+        //     DB::rollBack();
+        //     return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'approbation de la recette.');
+        // }
     }
 
     public function rejectRecipe(Recipe $recipe)
     {
-        try {
-            DB::beginTransaction();
+        // try {
+        //     DB::beginTransaction();
             
             $recipe->update([
                 'statut' => 'Rejeté'
             ]);
             
-            DB::commit();
+        //     DB::commit();
             return redirect()->back()->with('success', 'Recette rejetée avec succès.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Une erreur est survenue lors du rejet de la recette.');
-        }
+        // } catch (\Exception $e) {
+        //     DB::rollBack();
+        //     return redirect()->back()->with('error', 'Une erreur est survenue lors du rejet de la recette.');
+        // }
     }
 
     public function approveExperience(Experience $experience)
     {
-        try {
-            DB::beginTransaction();
+        // try {
+        //     DB::beginTransaction();
             
             $experience->update([
                 'statut' => 'Approuvé'
             ]);
             
-            DB::commit();
+            // DB::commit();
             return redirect()->back()->with('success', 'Expérience approuvée avec succès.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'approbation de l\'expérience.');
-        }
+        // } catch (\Exception $e) {
+        //     DB::rollBack();
+        //     return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'approbation de l\'expérience.');
+        // }
     }
 
     public function rejectExperience(Experience $experience)
     {
-        try {
-            DB::beginTransaction();
+        // try {
+        //     DB::beginTransaction();
             
             $experience->update([
                 'statut' => 'Rejeté'
             ]);
             
-            DB::commit();
+            // DB::commit();
             return redirect()->back()->with('success', 'Expérience rejetée avec succès.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Une erreur est survenue lors du rejet de l\'expérience.');
-        }
+        // } catch (\Exception $e) {
+        //     DB::rollBack();
+        //     return redirect()->back()->with('error', 'Une erreur est survenue lors du rejet de l\'expérience.');
+        // }
     }
 }

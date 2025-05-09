@@ -137,7 +137,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-10">
                     <!-- Ingrédients -->
                     <div
-                        class="bg-white bg-opacity-70 backdrop-blur-md shadow-lg p-6 rounded-xl hover:shadow-2xl transition-all duration-300">
+                        class="bg-white bg-opacity-70 backdrop-blur-md shadow-lg p-6 rounded-xl">
                         <h2 class="text-2xl font-bold text-brand-burgundy mb-4">🛒 Ingrédients</h2>
                         <ul id="ingredients-list" class="list-disc list-inside text-brand-dark space-y-2">
                             @foreach(explode(',', $recipe->ingredients) as $ingredient)
@@ -148,7 +148,7 @@
 
                     <!-- Instructions -->
                     <div
-                        class="bg-white bg-opacity-70 backdrop-blur-md shadow-lg p-6 rounded-xl hover:shadow-2xl transition-all duration-300">
+                        class="bg-white bg-opacity-70 backdrop-blur-md shadow-lg p-6 rounded-xl">
                         <h2 class="text-2xl font-bold text-brand-burgundy mb-4">📜 Instructions</h2>
                         <ol id="instructions-list" class="list-decimal list-inside text-brand-dark space-y-2">
                             @foreach(explode(',', $recipe->instructions) as $instruction)

@@ -101,9 +101,6 @@
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-brand-burgundy focus:ring-2 focus:ring-brand-burgundy/20"
                         placeholder="Votre mot de passe">
                 </div>
-                <div class="flex items-center justify-end">
-                    <a href="{{ route('forgot-password') }}" class="text-brand-coral hover:text-brand-red transition-colors">Mot de passe oublié ?</a>
-                </div>
                 <button type="submit"
                     class="w-full bg-brand-burgundy text-white py-3 rounded-lg hover:bg-brand-red transition-colors">
                     Se connecter

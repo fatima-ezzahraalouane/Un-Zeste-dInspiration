@@ -43,10 +43,6 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-// Forgot Password
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->name('forgot-password');
 
 Route::post('/register', [AuthController::class, 'register'])->name('register.store');
 
