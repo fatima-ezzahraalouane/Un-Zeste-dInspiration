@@ -137,13 +137,13 @@ Palette personnalisée :
 
 Typographies lisibles et modernes. Images de qualité pour recettes et thèmes.
 
-### 🧭 Navigation Intuitive
+<!-- ### 🧭 Navigation Intuitive
 - Menu principal fixe et clair
 - Responsive design (approche mobile-first)
-- Composants adaptatifs aux différents écrans
-
+- Composants adaptatifs aux différents écrans -->
+<!-- 
 ### 🖼️ Logo
-- Logo harmonisé à la charte graphique
+- Logo harmonisé à la charte graphique -->
 
 ---
 
