@@ -13,7 +13,6 @@ use App\Models\Gourmand;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Models\Theme;
-use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -40,16 +39,20 @@ class AdminController extends Controller
             ->latest()
             ->paginate(15);
 
-        $topChefs = Chef::withCount(['recipes as approved_recipes_count' => function ($query) {
-            $query->where('statut', 'Approuvé');
-        }])
+        $topChefs = Chef::withCount([
+            'recipes as approved_recipes_count' => function ($query) {
+                $query->where('statut', 'Approuvé');
+            }
+        ])
             ->orderByDesc('approved_recipes_count')
             ->take(3)
             ->get();
 
-        $topGourmands = Gourmand::withCount(['experiences as approved_experiences_count' => function ($query) {
-            $query->where('statut', 'Approuvé');
-        }])
+        $topGourmands = Gourmand::withCount([
+            'experiences as approved_experiences_count' => function ($query) {
+                $query->where('statut', 'Approuvé');
+            }
+        ])
             ->orderByDesc('approved_experiences_count')
             ->take(3)
             ->get();
@@ -103,69 +106,37 @@ class AdminController extends Controller
 
     public function approveRecipe(Recipe $recipe)
     {
-        // try {
-        //     DB::beginTransaction();
-            
-            $recipe->update([
-                'statut' => 'Approuvé'
-            ]);
-            
-            // DB::commit();
-            return redirect()->back()->with('success', 'Recette approuvée avec succès.');
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'approbation de la recette.');
-        // }
+        $recipe->update([
+            'statut' => 'Approuvé'
+        ]);
+
+        return redirect()->back()->with('success', 'Recette approuvée avec succès.');
     }
 
     public function rejectRecipe(Recipe $recipe)
     {
-        // try {
-        //     DB::beginTransaction();
-            
-            $recipe->update([
-                'statut' => 'Rejeté'
-            ]);
-            
-        //     DB::commit();
-            return redirect()->back()->with('success', 'Recette rejetée avec succès.');
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     return redirect()->back()->with('error', 'Une erreur est survenue lors du rejet de la recette.');
-        // }
+        $recipe->update([
+            'statut' => 'Rejeté'
+        ]);
+
+        return redirect()->back()->with('success', 'Recette rejetée avec succès.');
     }
 
     public function approveExperience(Experience $experience)
     {
-        // try {
-        //     DB::beginTransaction();
-            
-            $experience->update([
-                'statut' => 'Approuvé'
-            ]);
-            
-            // DB::commit();
-            return redirect()->back()->with('success', 'Expérience approuvée avec succès.');
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'approbation de l\'expérience.');
-        // }
+        $experience->update([
+            'statut' => 'Approuvé'
+        ]);
+
+        return redirect()->back()->with('success', 'Expérience approuvée avec succès.');
     }
 
     public function rejectExperience(Experience $experience)
     {
-        // try {
-        //     DB::beginTransaction();
-            
-            $experience->update([
-                'statut' => 'Rejeté'
-            ]);
-            
-            // DB::commit();
-            return redirect()->back()->with('success', 'Expérience rejetée avec succès.');
-        // } catch (\Exception $e) {
-        //     DB::rollBack();
-        //     return redirect()->back()->with('error', 'Une erreur est survenue lors du rejet de l\'expérience.');
-        // }
+        $experience->update([
+            'statut' => 'Rejeté'
+        ]);
+
+        return redirect()->back()->with('success', 'Expérience rejetée avec succès.');
     }
 }
