@@ -153,7 +153,8 @@ Typographies lisibles et modernes. Images de qualité pour recettes et thèmes.
 
 **Merci à toutes les personnes ayant contribué, conseillé ou testé la plateforme 🍽️✨**
 
-```bash
-💡 Dédicace spéciale à M. Achraf Chaoub,
-pour sa passion communicative, ses conseils inspirants et son accompagnement bienveillant tout au long de cette belle aventure d’apprentissage. 🙌
-"Un bon formateur laisse une empreinte durable — la vôtre est celle de la passion et de l’excellence." 💫
+
+**💡 Dédicace spéciale à M. Achraf Chaoub,
+pour sa passion communicative, ses conseils inspirants et son accompagnement bienveillant tout au long de cette belle aventure d’apprentissage. 🙌**
+
+**"Un bon formateur laisse une empreinte durable — la vôtre est celle de la passion et de l’excellence." 💫**
